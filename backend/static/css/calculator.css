@@ -1,0 +1,512 @@
+/* ================================
+   Страница калькулятора
+   ================================ */
+
+.calculator-page {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.calculator-header {
+    max-width: 600px;
+    margin: 0 auto 40px auto;
+    text-align: center;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+}
+
+.page-description {
+    font-size: 15px;
+    color: #666;
+}
+
+/* ================================
+   Загрузочный экран
+   ================================ */
+
+.calculator-loading {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.loading-spinner {
+    width: 32px;
+    height: 32px;
+    border: 2px solid #e0e0e0;
+    border-top-color: #1a1a2e;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 16px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.calculator-loading p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* ================================
+   Экран успеха
+   ================================ */
+
+.success-message {
+    text-align: center;
+    padding: 60px 30px;
+    background: #fff;
+    border-radius: 12px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.success-icon {
+    width: 60px;
+    height: 60px;
+    background: #28a745;
+    color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    margin: 0 auto 20px auto;
+}
+
+.success-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 10px;
+}
+
+.success-text {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 8px;
+}
+
+.btn {
+    padding: 12px 28px;
+    background: #1a1a2e;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    background: #2a2a3e;
+}
+
+/* ================================
+   Вкладки
+   ================================ */
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 30px;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    border: 1px solid #e0e0e0;
+    background: #fff;
+    color: #666;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.tab-button:hover {
+    border-color: #1a1a2e;
+}
+
+.tab-button.tab-active {
+    border-color: #1a1a2e;
+    background: #1a1a2e;
+    color: #fff;
+}
+
+/* ================================
+   Вскрытие
+   ================================ */
+
+.autopsy-section {
+    margin-bottom: 30px;
+}
+
+.autopsy-options {
+    display: flex;
+    gap: 12px;
+    max-width: 400px;
+}
+
+.autopsy-option {
+    flex: 1;
+    display: block;
+    cursor: pointer;
+}
+
+.autopsy-option input[type="radio"] {
+    display: none;
+}
+
+.autopsy-card {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #fff;
+    transition: all 0.2s ease;
+    text-align: center;
+}
+
+.autopsy-option:hover .autopsy-card {
+    border-color: #1a1a2e;
+}
+
+.autopsy-option input[type="radio"]:checked + .autopsy-card {
+    border-color: #1a1a2e;
+    background: #1a1a2e;
+    color: #fff;
+}
+
+.autopsy-name {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.autopsy-price {
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.autopsy-time {
+    font-size: 12px;
+    opacity: 0.7;
+}
+
+/* ================================
+   Инфо-блок
+   ================================ */
+
+.info-box {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 24px;
+}
+
+.info-box p {
+    color: #856404;
+    font-size: 13px;
+    margin: 0;
+}
+
+/* ================================
+   Услуги - Карточки категорий
+   ================================ */
+
+.services-section {
+    margin-bottom: 30px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 20px;
+}
+
+.category-card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 24px;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+}
+
+.category-card:hover {
+    border-color: #1a1a2e;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.category-icon {
+    width: 48px;
+    height: 48px;
+    background: #f0f1f3;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+}
+
+.category-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.category-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+}
+
+.category-services {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.service-option {
+    display: block;
+    cursor: pointer;
+}
+
+.service-option input {
+    display: none;
+}
+
+.service-option-content {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.service-option:hover .service-option-content {
+    background: #f8f9fa;
+}
+
+.service-option input:checked + .service-option-content {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+.service-check {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    color: transparent;
+    transition: all 0.2s ease;
+}
+
+.service-check svg {
+    width: 10px;
+    height: 10px;
+}
+
+.service-option input:checked + .service-option-content .service-check {
+    border-color: #fff;
+    color: #fff;
+}
+
+.service-name {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.3;
+}
+
+.service-price {
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    opacity: 0.8;
+}
+
+.service-option input:checked + .service-option-content .service-price {
+    opacity: 1;
+}
+
+/* ================================
+   Итого
+   ================================ */
+
+.total-section {
+    background: #1a1a2e;
+    color: #fff;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 30px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}
+
+.total-label {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.total-value {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.total-final {
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 12px;
+    padding-top: 16px;
+}
+
+.total-final .total-label {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.total-final .total-value {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* ================================
+   Форма
+   ================================ */
+
+.form-section {
+    background: #fff;
+    border-radius: 10px;
+    padding: 24px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-row {
+    margin-bottom: 16px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: inherit;
+    transition: all 0.2s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #1a1a2e;
+}
+
+.form-input.input-error {
+    border-color: #dc3545;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.error-message {
+    font-size: 12px;
+    color: #dc3545;
+    margin-top: 4px;
+    display: block;
+}
+
+.error-box {
+    background: #f8d7da;
+    border: 1px solid #dc3545;
+    color: #721c24;
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+}
+
+.error-box p {
+    margin: 0;
+    font-size: 13px;
+}
+
+.submit-button {
+    width: 100%;
+    padding: 14px;
+    background: #1a1a2e;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.submit-button:hover:not(:disabled) {
+    background: #2a2a3e;
+}
+
+.submit-button.submit-disabled,
+.submit-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* ================================
+   Адаптив
+   ================================ */
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 24px;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab-button {
+        width: 100%;
+    }
+
+    .autopsy-options {
+        flex-direction: column;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .total-section {
+        padding: 20px;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+}

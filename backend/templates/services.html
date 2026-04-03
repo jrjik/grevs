@@ -1,0 +1,217 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Наши услуги | Ритуальные услуги Гревс{% endblock %}
+{% block description %}Полный спектр ритуальных услуг в Ростове-на-Дону — от оформления документов до благоустройства. Честные цены.{% endblock %}
+
+{% block content %}
+<!-- Header -->
+<section class="services-header">
+    <div class="container">
+        <h1 class="page-title">Наши услуги</h1>
+        <p class="page-subtitle">Полный спектр ритуальных услуг — от оформления документов до благоустройства</p>
+    </div>
+</section>
+
+<!-- Services Grid -->
+<section class="services-catalog">
+    <div class="container">
+        <div class="services-grid">
+            <!-- Оформление документов -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Оформление документов</h3>
+                <p class="service-price">от 1 500 ₽</p>
+                <p class="service-description">Помощь в получении всех необходимых документов и разрешений. Берём на себя бюрократические формальности.</p>
+                <ul class="service-list">
+                    <li>Свидетельство о смерти</li>
+                    <li>Медицинские документы</li>
+                    <li>Разрешения на похорону/кремацию</li>
+                    <li>Консультации по документам</li>
+                </ul>
+            </div>
+
+            <!-- Транспортные услуги -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="1" y="3" width="15" height="13"/>
+                        <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+                        <circle cx="5.5" cy="18.5" r="2.5"/>
+                        <circle cx="18.5" cy="18.5" r="2.5"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Транспортные услуги</h3>
+                <p class="service-price">от 2 000 ₽</p>
+                <p class="service-description">Профессиональное перевозка покойного с соблюдением всех требований и норм.</p>
+                <ul class="service-list">
+                    <li>Транспортировка до морга</li>
+                    <li>Доставка до ритуального зала</li>
+                    <li>Перевозка на кладбище</li>
+                    <li>Междугороднее перевозка</li>
+                </ul>
+            </div>
+
+            <!-- Ритуальные принадлежности -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Ритуальные принадлежности</h3>
+                <p class="service-price">от 5 000 ₽</p>
+                <p class="service-description">Широкий выбор гробов, венков, табличек и других ритуальных принадлежностей.</p>
+                <ul class="service-list">
+                    <li>Гробы разных моделей</li>
+                    <li>Венки и цветочные композиции</li>
+                    <li>Ритуальный текстиль</li>
+                    <li>Траурная атрибутика</li>
+                </ul>
+            </div>
+
+            <!-- Религиозные обряды -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2v20M2 12h20"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Религиозные обряды</h3>
+                <p class="service-price">от 3 000 ₽</p>
+                <p class="service-description">Организация церемонии прощания согласно с традициями и обычаями разных конфессий.</p>
+                <ul class="service-list">
+                    <li>Православное отпевание</li>
+                    <li>Мусульманские обряды</li>
+                    <li>Иудейские традиции</li>
+                    <li>Гражданская панихида</li>
+                </ul>
+            </div>
+
+            <!-- Кремация -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+                        <path d="M12 6v6l4 2"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Кремация</h3>
+                <p class="service-price">от 8 000 ₽</p>
+                <p class="service-description">Полный комплекс услуг по кремации с предоставлением урны для праха.</p>
+                <ul class="service-list">
+                    <li>Организация кремации</li>
+                    <li>Урны разных моделей</li>
+                    <li>Колумбарий</li>
+                    <li>Развеивание праха</li>
+                </ul>
+            </div>
+
+            <!-- Памятники и благоустройство -->
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-9a2 2 0 0 1 4 0v9"/>
+                    </svg>
+                </div>
+                <h3 class="service-title">Памятники и благоустройство</h3>
+                <p class="service-price">от 15 000 ₽</p>
+                <p class="service-description">Изготовление памятников, оград, лавочек. Благоустройство мест захоронения.</p>
+                <ul class="service-list">
+                    <li>Памятники из гранита и мрамора</li>
+                    <li>Ограды и цоколи</li>
+                    <li>Гравировка портретов</li>
+                    <li>Укладка плитки</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Price Policy -->
+<section class="pricing-section">
+    <div class="container">
+        <div class="pricing-header">
+            <h2 class="section-title">Ценовая политика</h2>
+            <p class="section-subtitle">Честные и прозрачные цены</p>
+        </div>
+        <div class="pricing-content">
+            <p class="pricing-description">
+                Стоимость услуг зависит от выбранного комплекса и индивидуальных пожеланий. 
+                Мы предлагаем различные варианты — от эконом до премиум класса.
+            </p>
+            <div class="pricing-list">
+                <div class="pricing-item">
+                    <span class="pricing-name">Эконом комплекс</span>
+                    <span class="pricing-value">от 10 000 ₽</span>
+                </div>
+                <div class="pricing-item">
+                    <span class="pricing-name">Стандарт комплекс</span>
+                    <span class="pricing-value">от 18 000 ₽</span>
+                </div>
+                <div class="pricing-item">
+                    <span class="pricing-name">Премиум комплекс</span>
+                    <span class="pricing-value">от 35 000 ₽</span>
+                </div>
+            </div>
+            <p class="pricing-note">* Точная стоимость рассчитывается индивидуально. Никаких скрытых платежей.</p>
+        </div>
+    </div>
+</section>
+
+<!-- How We Work -->
+<section class="how-section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Как мы работаем</h2>
+        </div>
+        <div class="how-grid">
+            <div class="how-step">
+                <span class="step-number">01</span>
+                <h3 class="step-title">Первый звонок</h3>
+                <p class="step-text">Консультация и выезд агента</p>
+            </div>
+            <div class="how-step">
+                <span class="step-number">02</span>
+                <h3 class="step-title">Выбор услуг</h3>
+                <p class="step-text">Подбор необходимого комплекса</p>
+            </div>
+            <div class="how-step">
+                <span class="step-number">03</span>
+                <h3 class="step-title">Организация</h3>
+                <p class="step-text">Оформление и проведение церемонии</p>
+            </div>
+            <div class="how-step">
+                <span class="step-number">04</span>
+                <h3 class="step-title">Поддержка</h3>
+                <p class="step-text">Помощь на всех этапах</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Нужна консультация?</h2>
+            <p class="cta-text">Позвоните нам или закажите обратный звонок. Мы ответим на все вопросы</p>
+            <a href="tel:+79613013040" class="btn btn-white">
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                8 (961) 301-30-40
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

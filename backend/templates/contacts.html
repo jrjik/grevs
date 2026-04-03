@@ -1,0 +1,254 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Контакты | Ритуальное бюро Гревс Ростов-на-Дону{% endblock %}
+{% block description %}Контакты похоронного бюро Гревс в Ростове-на-Дону. Адрес, телефоны, режим работы. Круглосуточная помощь.{% endblock %}
+{% block keywords %}контакты ритуального бюро, похоронное бюро Ростов, адрес морг{% endblock %}
+
+{% block content %}
+<section class="section contacts-page">
+    <div class="container">
+        <div class="contacts-grid">
+            <!-- Левая колонка - Форма -->
+            <div class="contacts-form-section">
+                <h1 class="page-title">Заказать обратный звонок</h1>
+                <p class="page-description">
+                    Оставьте свои контакты, и наш специалист свяжется с вами ближайшим временем
+                </p>
+
+                <form class="contact-form" x-data="contactForm()" @submit.prevent="submitForm()">
+                    <div class="form-group">
+                        <label for="name" class="form-label">Ваше имя</label>
+                        <input
+                            type="text"
+                            id="name"
+                            x-model="formData.name"
+                            :class="{'input-error': errors.name}"
+                            class="form-input"
+                            placeholder="Имя">
+                        <span class="error-message" x-show="errors.name" x-text="errors.name"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone" class="form-label">Телефон</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            x-model="formData.phone"
+                            @input="formatPhone()"
+                            :class="{'input-error': errors.phone}"
+                            class="form-input"
+                            placeholder="+7 (xx) xxx-xx-xx">
+                        <span class="error-message" x-show="errors.phone" x-text="errors.phone"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message" class="form-label">Сообщение (необязательно)</label>
+                        <textarea
+                            id="message"
+                            x-model="formData.message"
+                            class="form-input form-textarea"
+                            placeholder="Дополнительная информация..."
+                            rows="4"></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn" :disabled="submitting">
+                        <span x-show="!submitting">Заказать звонок</span>
+                        <span x-show="submitting">Отправка...</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Правая колонка - Контактная информация -->
+            <div class="contacts-info-section">
+                <h2 class="info-title">Контактная информация</h2>
+
+                <div class="contact-cards">
+                    <!-- Телефон -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <svg class="icon-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                            </svg>
+                        </div>
+                        <div class="contact-content">
+                            <h3 class="contact-label">Телефон</h3>
+                            <div class="contact-values">
+                                <a href="tel:+79613013040" class="contact-link">8 (961) 301-30-40</a>
+                                <a href="tel:3013040" class="contact-link">301-30-40</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Режим работы -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <svg class="icon-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="12" cy="12" r="10"/>
+                                <polyline points="12 6 12 12 16 14"/>
+                            </svg>
+                        </div>
+                        <div class="contact-content">
+                            <h3 class="contact-label">Режим работы</h3>
+                            <p class="contact-text">Круглосуточно, без выходных</p>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <svg class="icon-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                <polyline points="22,6 12,13 2,6"/>
+                            </svg>
+                        </div>
+                        <div class="contact-content">
+                            <h3 class="contact-label">Email</h3>
+                            <a href="mailto:info@grevs.ru" class="contact-link">info@grevs.ru</a>
+                        </div>
+                    </div>
+
+                    <!-- Адрес -->
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <svg class="icon-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                                <circle cx="12" cy="10" r="3"/>
+                            </svg>
+                        </div>
+                        <div class="contact-content">
+                            <h3 class="contact-label">Адрес</h3>
+                            <p class="contact-text">Ростов-на-Дону, ул. Международная, 3</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Тёмная карточка 24/7 -->
+                <div class="service-247-card">
+                    <h3 class="service-247-title">Круглосуточная служба</h3>
+                    <p class="service-247-text">
+                        Мы работаем 24 часа в сутки, 7 дней в неделю. Вы можете позвонить нам в любое время.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Секция FAQ -->
+<!-- Секция FAQ -->
+<section class="section faq-section">
+    <div class="container">
+        <h2 class="section-title">Частые вопросы</h2>
+
+        <div class="faq-grid">
+            <!-- Вопрос 1 -->
+            <div class="faq-card">
+                <div class="faq-content">
+                    <p class="faq-question">Как быстро вы можете приехать?</p>
+                    <p class="faq-answer">Наш агент может выехать к вам в течение часа после звонка, в любое время суток.</p>
+                </div>
+            </div>
+
+            <!-- Вопрос 2 -->
+            <div class="faq-card">
+                <div class="faq-content">
+                    <p class="faq-question">Какие документы нужны для организации похорон?</p>
+                    <p class="faq-answer">Паспорт покойного, медицинское свидетельство о смерти. Все остальные документы мы поможем оформить.</p>
+                </div>
+            </div>
+
+            <!-- Вопрос 3 -->
+            <div class="faq-card">
+                <div class="faq-content">
+                    <p class="faq-question">Можно ли организовать похороны в кредит?</p>
+                    <p class="faq-answer">Да, мы работаем с несколькими банками и можем предложить различные варианты рассрочки.</p>
+                </div>
+            </div>
+
+            <!-- Вопрос 4 -->
+            <div class="faq-card">
+                <div class="faq-content">
+                    <p class="faq-question">Организуете ли вы поминальные обеды?</p>
+                    <p class="faq-answer">Да, мы можем организовать поминальную трапезу в кафе или ресторане, порекомендовать соответствующие места.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script>
+    function contactForm() {
+        return {
+            formData: {
+                name: '',
+                phone: '',
+                message: ''
+            },
+            errors: {
+                name: '',
+                phone: ''
+            },
+            submitting: false,
+
+            formatPhone() {
+                const value = this.formData.phone.replace(/\D/g, '');
+                if (value.length === 0) {
+                    this.formData.phone = '';
+                    return;
+                }
+
+                let formatted = '+7';
+                if (value[0] === '8') {
+                    value[0] = '7';
+                }
+
+                if (value.length > 1) formatted += ' (' + value.slice(1, 4);
+                if (value.length > 4) formatted += ') ' + value.slice(4, 7);
+                if (value.length > 7) formatted += '-' + value.slice(7, 9);
+                if (value.length > 9) formatted += '-' + value.slice(9, 11);
+
+                this.formData.phone = formatted;
+            },
+
+            validate() {
+                let isValid = true;
+
+                if (!this.formData.name.trim()) {
+                    this.errors.name = 'Введите ваше имя';
+                    isValid = false;
+                } else {
+                    this.errors.name = '';
+                }
+
+                const phoneDigits = this.formData.phone.replace(/\D/g, '');
+                if (phoneDigits.length < 11) {
+                    this.errors.phone = 'Введите полный номер телефона';
+                    isValid = false;
+                } else {
+                    this.errors.phone = '';
+                }
+
+                return isValid;
+            },
+
+            async submitForm() {
+                if (!this.validate()) {
+                    return;
+                }
+
+                this.submitting = true;
+
+                console.log('Форма отправлена:', this.formData);
+
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                alert('Спасибо! Мы перезвоним вам в ближайшее время.');
+                this.formData = { name: '', phone: '', message: '' };
+                this.submitting = false;
+            }
+        }
+    }
+</script>
+{% endblock %}

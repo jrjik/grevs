@@ -1,0 +1,387 @@
+/* ================================
+   Hero Section
+   ================================ */
+
+.hero-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f5f6f8 0%, #e8eaf0 100%);
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #1a1a2e;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-icon {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-primary {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+
+
+.btn-outline {
+    background: #fff;
+    color: #1a1a2e;
+    border: 1px solid #1a1a2e;
+}
+
+.btn-outline:hover {
+    background: #f5f6f8;
+}
+
+.hero-phone {
+    font-size: 14px;
+    color: #666;
+}
+
+.hero-image {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ================================
+   Trust Section
+   ================================ */
+
+.trust-section {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.section-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+}
+
+.section-subtitle {
+    font-size: 16px;
+    color: #666;
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.trust-card {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 32px 28px;
+    transition: all 0.2s ease;
+}
+
+.trust-card:hover {
+    background: #f0f1f3;
+    transform: translateY(-4px);
+}
+
+.trust-icon {
+    width: 48px;
+    height: 48px;
+    background: #1a1a2e;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.trust-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.trust-card-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+}
+
+.trust-card-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ================================
+   Services Section
+   ================================ */
+
+.services-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.services-content {
+    max-width: 500px;
+}
+
+.section-description {
+    font-size: 16px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.services-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.service-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: #333;
+}
+
+.check-icon {
+    width: 20px;
+    height: 20px;
+    color: #1a1a2e;
+    flex-shrink: 0;
+}
+
+.services-image {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.services-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ================================
+   How We Work Section
+   ================================ */
+
+.how-section {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+    margin-top: 50px;
+}
+
+.how-step {
+    text-align: center;
+    padding: 0 20px;
+}
+
+.step-number {
+    display: block;
+    font-size: 48px;
+    font-weight: 700;
+    color: #e0e0e0;
+    margin-bottom: 16px;
+}
+
+.how-step:hover .step-number {
+    color: #1a1a2e;
+}
+
+.step-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+}
+
+.step-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ================================
+   CTA Section
+   ================================ */
+
+.cta-section {
+    padding: 80px 0;
+    background: #1a1a2e;
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.cta-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.btn-white {
+    background: #fff;
+    color: #1a1a2e;
+}
+
+.btn-white:hover {
+    background: #f5f6f8;
+}
+
+.btn-outline-white {
+    background: transparent;
+    color: #fff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-outline-white:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #fff;
+}
+
+/* ================================
+   Адаптив
+   ================================ */
+
+@media (max-width: 1024px) {
+    .hero-grid,
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .hero-image,
+    .services-image {
+        order: -1;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .how-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section,
+    .trust-section,
+    .services-section,
+    .how-section,
+    .cta-section {
+        padding: 50px 0;
+    }
+
+    .hero-title {
+        font-size: 32px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .hero-buttons,
+    .cta-buttons {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .how-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .step-number {
+        font-size: 36px;
+    }
+}

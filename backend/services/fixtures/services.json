@@ -1,0 +1,382 @@
+[
+  {
+    "model": "services.category",
+    "pk": 1,
+    "fields": {
+      "name": "Гробы",
+      "order": 1,
+      "service_type": "common",
+      "selection_type": "single"
+    }
+  },
+  {
+    "model": "services.category",
+    "pk": 2,
+    "fields": {
+      "name": "Кресты",
+      "order": 2,
+      "service_type": "funeral",
+      "selection_type": "single"
+    }
+  },
+  {
+    "model": "services.category",
+    "pk": 3,
+    "fields": {
+      "name": "Венки",
+      "order": 3,
+      "service_type": "common",
+      "selection_type": "single"
+    }
+  },
+  {
+    "model": "services.category",
+    "pk": 4,
+    "fields": {
+      "name": "Постельные принадлежности",
+      "order": 4,
+      "service_type": "common",
+      "selection_type": "multiple"
+    }
+  },
+  {
+    "model": "services.category",
+    "pk": 5,
+    "fields": {
+      "name": "Одежда для усопшего",
+      "order": 5,
+      "service_type": "common",
+      "selection_type": "multiple"
+    }
+  },
+  {
+    "model": "services.category",
+    "pk": 6,
+    "fields": {
+      "name": "Услуги и работы",
+      "order": 6,
+      "service_type": "common",
+      "selection_type": "multiple"
+    }
+  },
+  {
+    "model": "services.category",
+    "pk": 7,
+    "fields": {
+      "name": "Урны",
+      "order": 7,
+      "service_type": "cremation",
+      "selection_type": "single"
+    }
+  },
+  {
+    "model": "services.category",
+    "pk": 8,
+    "fields": {
+      "name": "Кремация",
+      "order": 8,
+      "service_type": "cremation",
+      "selection_type": "single"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 1,
+    "fields": {
+      "category": 1,
+      "name": "Гроб деревянный (обитый тканью)",
+      "description": "Стандартный гроб, обитый тканью",
+      "price": "15000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 2,
+    "fields": {
+      "category": 1,
+      "name": "Гроб лакированный (4 ручки)",
+      "description": "Лакированный гроб с 4 ручками",
+      "price": "25000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 3,
+    "fields": {
+      "category": 1,
+      "name": "Гроб двухкрышечный элитный",
+      "description": "Элитный двухкрышечный гроб",
+      "price": "45000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 4,
+    "fields": {
+      "category": 1,
+      "name": "Гроб цинковый (для транспортировки)",
+      "description": "Цинковый гроб для транспортировки",
+      "price": "35000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 5,
+    "fields": {
+      "category": 2,
+      "name": "Крест деревянный (резной)",
+      "description": "Резной деревянный крест",
+      "price": "3500.00",
+      "is_mandatory": false,
+      "applicability": "funeral"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 6,
+    "fields": {
+      "category": 2,
+      "name": "Крест металлический",
+      "description": "Металлический крест",
+      "price": "5500.00",
+      "is_mandatory": false,
+      "applicability": "funeral"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 7,
+    "fields": {
+      "category": 2,
+      "name": "Крест дубовый (элитный)",
+      "description": "Элитный дубовый крест",
+      "price": "12000.00",
+      "is_mandatory": false,
+      "applicability": "funeral"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 8,
+    "fields": {
+      "category": 3,
+      "name": "Венок из искусственных цветов (малый)",
+      "description": "Малый венок из искусственных цветов",
+      "price": "2500.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 9,
+    "fields": {
+      "category": 3,
+      "name": "Венок из живых цветов (средний)",
+      "description": "Средний венок из живых цветов",
+      "price": "5000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 10,
+    "fields": {
+      "category": 3,
+      "name": "Венок элитный (комбинированный)",
+      "description": "Элитный комбинированный венок",
+      "price": "9000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 11,
+    "fields": {
+      "category": 4,
+      "name": "Комплект постельных принадлежностей (стандарт)",
+      "description": "Стандартный комплект постельных принадлежностей",
+      "price": "2000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 12,
+    "fields": {
+      "category": 4,
+      "name": "Комплект постельных принадлежностей (элитный)",
+      "description": "Элитный комплект постельных принадлежностей",
+      "price": "4500.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 13,
+    "fields": {
+      "category": 4,
+      "name": "Подушка в гроб",
+      "description": "Подушка в гроб",
+      "price": "800.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 14,
+    "fields": {
+      "category": 5,
+      "name": "Одежда для усопшего (комплект)",
+      "description": "Комплект одежды для усопшего",
+      "price": "3000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 15,
+    "fields": {
+      "category": 5,
+      "name": "Платок головной",
+      "description": "Головной платок",
+      "price": "500.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 16,
+    "fields": {
+      "category": 6,
+      "name": "Выносная группа (4 человека)",
+      "description": "Услуги выносной группы из 4 человек",
+      "price": "8000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 17,
+    "fields": {
+      "category": 6,
+      "name": "Копка могилы",
+      "description": "Копка могилы (цена зависит от типа: новая или подзахоронение)",
+      "price": "15000.00",
+      "is_mandatory": false,
+      "applicability": "funeral"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 18,
+    "fields": {
+      "category": 6,
+      "name": "Бригада сопровождения",
+      "description": "Сопровождение бригадой",
+      "price": "5000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 19,
+    "fields": {
+      "category": 6,
+      "name": "Оформление документов",
+      "description": "Оформление всех необходимых документов",
+      "price": "3000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 20,
+    "fields": {
+      "category": 6,
+      "name": "Транспорт для перевозки (катафалк)",
+      "description": "Катафалк для перевозки усопшего",
+      "price": "7000.00",
+      "is_mandatory": false,
+      "applicability": "all"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 21,
+    "fields": {
+      "category": 7,
+      "name": "Урна пластиковая (стандарт)",
+      "description": "Стандартная пластиковая урна",
+      "price": "1500.00",
+      "is_mandatory": false,
+      "applicability": "cremation"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 22,
+    "fields": {
+      "category": 7,
+      "name": "Урна металлическая",
+      "description": "Металлическая урна",
+      "price": "4000.00",
+      "is_mandatory": false,
+      "applicability": "cremation"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 23,
+    "fields": {
+      "category": 7,
+      "name": "Урна керамическая (элитная)",
+      "description": "Элитная керамическая урна",
+      "price": "8000.00",
+      "is_mandatory": false,
+      "applicability": "cremation"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 24,
+    "fields": {
+      "category": 8,
+      "name": "Кремация (стандарт)",
+      "description": "Стандартная кремация",
+      "price": "20000.00",
+      "is_mandatory": false,
+      "applicability": "cremation"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 25,
+    "fields": {
+      "category": 8,
+      "name": "Кремация (срочная)",
+      "description": "Срочная кремация",
+      "price": "35000.00",
+      "is_mandatory": false,
+      "applicability": "cremation"
+    }
+  }
+]

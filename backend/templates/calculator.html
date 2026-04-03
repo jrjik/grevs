@@ -1,0 +1,197 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Калькулятор стоимости похорон | Рассчитать цену онлайн{% endblock %}
+{% block description %}Онлайн калькулятор похорон в Ростове-на-Дону. Рассчитайте стоимость ритуальных услуг: гроб, венки, транспорт, кремация. Честные цены.{% endblock %}
+{% block keywords %}калькулятор похорон, стоимость ритуальных услуг, цена кремации, рассчитать похороны{% endblock %}
+
+{% block content %}
+<section class="section calculator-page" x-data="funeralCalculator()" x-init="initCalculator()">
+    <div class="container">
+        <!-- Заголовок -->
+        <div class="calculator-header">
+            <h1 class="page-title">Калькулятор стоимости похорон</h1>
+            <p class="page-description">Выберите необходимые услуги для расчёта стоимости</p>
+        </div>
+
+        <!-- Загрузочный экран -->
+        <div x-show="loading" class="calculator-loading">
+            <div class="loading-spinner"></div>
+            <p>Загрузка...</p>
+        </div>
+
+        <!-- Экран успеха -->
+        <div x-show="submitSuccess" class="success-message" style="display: none;">
+            <div class="success-icon">✓</div>
+            <h2 class="success-title">Заявка отправлена!</h2>
+            <p class="success-text">Менеджер перезвонит в течение 15 минут</p>
+            <button @click="resetForm()" class="btn btn-primary">Новая заявка</button>
+        </div>
+
+        <!-- Основной контент -->
+        <div x-show="!loading && !submitSuccess" style="display: none;">
+            
+            <!-- Переключатель вкладок -->
+            <div class="tabs">
+                <button :class="{'tab-active': currentTab === 'new'}" @click="switchTab('new')" class="tab-button">Новая могила</button>
+                <button :class="{'tab-active': currentTab === 'relative'}" @click="switchTab('relative')" class="tab-button">Подзахоронение</button>
+                <button :class="{'tab-active': currentTab === 'cremation'}" @click="switchTab('cremation')" class="tab-button">Кремация</button>
+            </div>
+
+            <!-- Выбор типа вскрытия -->
+            <div class="autopsy-section">
+                <div class="autopsy-options">
+                    <label class="autopsy-option">
+                        <input type="radio" name="autopsy_type" value="paid" x-model="formData.autopsyType" checked>
+                        <div class="autopsy-card">
+                            <span class="autopsy-name">Платное</span>
+                            <span class="autopsy-price">3 000 ₽</span>
+                            <span class="autopsy-time">1-2 дня</span>
+                        </div>
+                    </label>
+                    <label class="autopsy-option">
+                        <input type="radio" name="autopsy_type" value="free" x-model="formData.autopsyType">
+                        <div class="autopsy-card">
+                            <span class="autopsy-name">Бесплатное</span>
+                            <span class="autopsy-price">0 ₽</span>
+                            <span class="autopsy-time">2-3 дня</span>
+                        </div>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Подсказка для подзахоронения -->
+            <div x-show="currentTab === 'relative'" class="info-box">
+                <p>⚠️ Потребуются документы о родстве</p>
+            </div>
+
+            <!-- Список услуг - Карточки категорий -->
+            <div class="services-section">
+                <div class="services-grid">
+                    <template x-for="category in filteredCategories" :key="category.id">
+                        <div class="category-card">
+                            <!-- Иконка категории -->
+                            <div class="category-icon">
+                                <template x-if="category.name.includes('Гроб')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="3" y="8" width="18" height="12" rx="2"/>
+                                        <line x1="12" y1="8" x2="12" y2="20"/>
+                                    </svg>
+                                </template>
+                                <template x-if="category.name.includes('Крест')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 2v20M8 6h8"/>
+                                    </svg>
+                                </template>
+                                <template x-if="category.name.includes('Венок')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="12" cy="12" r="9"/>
+                                        <circle cx="12" cy="12" r="3"/>
+                                    </svg>
+                                </template>
+                                <template x-if="category.name.includes('Урн')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M6 8v8a6 6 0 0012 0V8"/>
+                                        <line x1="12" y1="2" x2="12" y2="8"/>
+                                    </svg>
+                                </template>
+                                <template x-if="category.name.includes('Кремация')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M12 2c0 4-4 6-4 10a4 4 0 008 0c0-4-4-6-4-10z"/>
+                                    </svg>
+                                </template>
+                                <template x-if="category.name.includes('Постель') || category.name.includes('Одежда')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M20 12v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8"/>
+                                        <path d="M12 2v10"/>
+                                    </svg>
+                                </template>
+                                <template x-if="category.name.includes('Услуги')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+                                    </svg>
+                                </template>
+                                <template x-if="!category.name.includes('Гроб') && !category.name.includes('Крест') && !category.name.includes('Венок') && !category.name.includes('Урн') && !category.name.includes('Кремация') && !category.name.includes('Постель') && !category.name.includes('Одежда') && !category.name.includes('Услуги')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M12 6v6l4 2"/>
+                                    </svg>
+                                </template>
+                            </div>
+
+                            <!-- Заголовок категории -->
+                            <h4 class="category-title" x-text="category.name"></h4>
+
+                            <!-- Список услуг внутри категории -->
+                            <div class="category-services">
+                                <template x-for="service in category.services" :key="service.id">
+                                    <label class="service-option">
+                                        <input
+                                            :type="category.selection_type === 'single' ? 'radio' : 'checkbox'"
+                                            :name="'category_' + category.id"
+                                            :checked="isSelected(service.id)"
+                                            @change="toggleService(service.id, category.selection_type)"
+                                            class="service-input">
+                                        <div class="service-option-content">
+                                            <span class="service-check">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                                    <polyline points="20 6 9 17 4 12"/>
+                                                </svg>
+                                            </span>
+                                            <span class="service-name" x-text="service.name"></span>
+                                            <span class="service-price" x-text="formatPrice(service.price)"></span>
+                                        </div>
+                                    </label>
+                                </template>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+
+            <!-- Итого -->
+            <div class="total-section">
+                <div class="total-row">
+                    <span class="total-label">Услуги:</span>
+                    <span class="total-value" x-text="formatPrice(calculateTotal() - getAutopsyPrice())"></span>
+                </div>
+                <div class="total-row" x-show="formData.autopsyType === 'paid'">
+                    <span class="total-label">Вскрытие:</span>
+                    <span class="total-value" x-text="formatPrice(getAutopsyPrice())"></span>
+                </div>
+                <div class="total-row total-final">
+                    <span class="total-label">Итого:</span>
+                    <span class="total-value" x-text="formatPrice(calculateTotal())"></span>
+                </div>
+            </div>
+
+            <!-- Форма заявки -->
+            <div class="form-section">
+                <div class="form-row">
+                    <input type="text" x-model="formData.name" :class="{'input-error': errors.name}" class="form-input" placeholder="Ваше имя *">
+                    <span class="error-message" x-show="errors.name" x-text="errors.name"></span>
+                </div>
+                <div class="form-row">
+                    <input type="tel" x-model="formData.phone" @input="validatePhone()" :class="{'input-error': errors.phone}" class="form-input" placeholder="Телефон *">
+                    <span class="error-message" x-show="errors.phone" x-text="errors.phone"></span>
+                </div>
+                <div class="form-row">
+                    <textarea x-model="formData.comment" class="form-input form-textarea" placeholder="Комментарий" rows="3"></textarea>
+                </div>
+                
+                <div x-show="errors.services" class="error-box">
+                    <p x-text="errors.services"></p>
+                </div>
+
+                <button @click="submitLead()" :disabled="!canSubmit || submitting" class="submit-button" :class="{'submit-disabled': !canSubmit}">
+                    <span x-show="!submitting">Оставить заявку</span>
+                    <span x-show="submitting">Отправка...</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<script src="{% static 'js/calculator.js' %}"></script>
+{% endblock %}

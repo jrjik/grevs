@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- SEO: Динамические мета-теги -->
+    <title>{% block title %}Дом ритуальных услуг Гревс | Ростов-на-Дону{% endblock %}</title>
+    <meta name="description" content="{% block description %}Ритуальные услуги в Ростове-на-Дону. Организация похорон, кремация, груз 200. Работаем 24/7. Честные цены.{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}ритуальные услуги, похороны, кремация, гроб, венки, Ростов-на-Дону{% endblock %}">
+
+    <!-- SEO: Canonical URL (защита от дублей) -->
+    <link rel="canonical" href="{{ request.build_absolute_uri }}">
+    <link rel="stylesheet" href="{% static 'css/calculator.css' %}">
+
+    <!-- Open Graph (для красивых ссылок в соцсетях и мессенджерах) -->
+    <meta property="og:title" content="{% block og_title %}Гревс - Ритуальные услуги{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Помощь в организации похорон{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ request.build_absolute_uri }}">
+    <meta property="og:image" content="{% static 'img/main-image.png' %}">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'img/about-ograda.png' %}">
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,500,600,700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/contacts.css' %}">
+    <link rel="stylesheet" href="{% static 'css/calculator.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main-page.css' %}">
+    <link rel="stylesheet" href="{% static 'css/services-page.css' %}">
+
+    <!-- Schema.org LocalBusiness (Критично для локального SEO) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FuneralHome",
+      "name": "Дом ритуальных услуг Гревс",
+      "image": "{{ request.build_absolute_uri }}{% static 'img/logo.png' %}",
+      "telephone": "+79613013040",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ул. Международная, 3",
+        "addressLocality": "Ростов-на-Дону",
+        "addressCountry": "RU"
+      },
+      "openingHours": "Mo-Su 00:00-23:59",
+      "priceRange": "₽₽"
+    }
+    </script>
+
+    {% block extra_head %}{% endblock %}
+</head>
+
+<body>
+   <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Логотип -->
+            <a href="/" class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M2 12h20"/>
+                    </svg>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-name">Гревс</span>
+                    <span class="logo-subtitle">Ритуальные услуги</span>
+                </div>
+            </a>
+
+            <!-- Навигация -->
+            <nav class="header-nav">
+                <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Главная</a>
+                <a href="/#about" class="nav-link {% if 'about' in request.path %}active{% endif %}">О нас</a>
+                <a href="/#services" class="nav-link {% if 'services' in request.path %}active{% endif %}">Услуги</a>
+                <a href="/calculator/" class="nav-link {% if 'calculator' in request.path %}active{% endif %}">Калькулятор</a>
+                <a href="/contacts/" class="nav-link {% if 'contacts' in request.path %}active{% endif %}">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+<footer class="site-footer">
+    <div class="footer-container">
+        <!-- Колонка 1: Логотип и описание -->
+        <div class="footer-column footer-about">
+            <a href="/" class="footer-logo">
+                <div class="footer-logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2v20M2 12h20"/>
+                    </svg>
+                </div>
+                <div class="footer-logo-text">
+                    <span class="footer-logo-name">Гревс</span>
+                    <span class="footer-logo-subtitle">Ритуальные услуги</span>
+                </div>
+            </a>
+            <p class="footer-description">
+                С уважением и заботой помогаем в трудную минуту. Работаем круглосуточно без выходных.
+            </p>
+        </div>
+
+        <!-- Колонка 2: Контакты -->
+        <div class="footer-column footer-contacts">
+            <h4 class="footer-column-title">Контакты</h4>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+                </svg>
+                <a href="tel:+79613013040" class="footer-contact-link">8 (961) 301-30-40</a>
+            </div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                <a href="mailto:info@grevs.ru" class="footer-contact-link">info@grevs.ru</a>
+            </div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <span class="footer-contact-text">Ростов-на-Дону, ул. Международная, 3</span>
+            </div>
+            <div class="footer-contact-item">
+                <svg class="footer-contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span class="footer-contact-text">Круглосуточно, без выходных</span>
+            </div>
+        </div>
+
+        <!-- Колонка 3: Полезная информация -->
+        <div class="footer-column footer-links">
+            <h4 class="footer-column-title">Полезная информация</h4>
+            <nav class="footer-nav">
+                <a href="/#services" class="footer-nav-link">Наши услуги</a>
+                <a href="/#about" class="footer-nav-link">О компании</a>
+                <a href="/calculator/" class="footer-nav-link">Калькулятор стоимости</a>
+                <a href="/contacts/" class="footer-nav-link">Связаться с нами</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Разделитель и копирайт -->
+    <div class="footer-bottom">
+        <div class="footer-container">
+            <p class="footer-copyright">
+                © {% now "Y" %} Гревс. Все права защищены.
+            </p>
+        </div>
+    </div>
+</footer>
+
+    {% block extra_scripts %}{% endblock %}
+</body>
+</html>

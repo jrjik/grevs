@@ -1,0 +1,325 @@
+/* ================================
+   Services Header
+   ================================ */
+
+.services-header {
+    padding: 60px 0 40px 0;
+    background: linear-gradient(135deg, #f5f6f8 0%, #e8eaf0 100%);
+    text-align: center;
+}
+
+.page-title {
+    font-size: 48px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+}
+
+.page-subtitle {
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ================================
+   Services Catalog
+   ================================ */
+
+.services-catalog {
+    padding: 60px 0;
+    background: #fff;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.service-card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 32px 28px;
+    transition: all 0.3s ease;
+    height: 100%;
+}
+
+.service-card:hover {
+    border-color: #1a1a2e;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+    transform: translateY(-4px);
+}
+
+.service-icon {
+    width: 56px;
+    height: 56px;
+    background: #f0f1f3;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a2e;
+    margin-bottom: 24px;
+}
+
+.service-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.service-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+}
+
+.service-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+}
+
+.service-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.service-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-top: auto;
+}
+
+.service-list li {
+    font-size: 14px;
+    color: #333;
+    padding: 6px 0;
+    padding-left: 20px;
+    position: relative;
+    line-height: 1.5;
+}
+
+.service-list li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #1a1a2e;
+    font-weight: bold;
+}
+
+/* ================================
+   Pricing Section
+   ================================ */
+
+.pricing-section {
+    padding: 80px 0;
+    background: #f8f9fa;
+}
+
+.pricing-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.pricing-content {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 12px;
+    padding: 40px;
+    border: 1px solid #e0e0e0;
+}
+
+.pricing-description {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.7;
+    margin-bottom: 32px;
+}
+
+.pricing-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.pricing-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.pricing-item:last-child {
+    border-bottom: none;
+}
+
+.pricing-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.pricing-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+}
+
+.pricing-note {
+    font-size: 13px;
+    color: #999;
+    margin-top: 24px;
+    font-style: italic;
+}
+
+/* ================================
+   How We Work
+   ================================ */
+
+.how-section {
+    padding: 80px 0;
+    background: #fff;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.how-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px;
+}
+
+.how-step {
+    text-align: center;
+    padding: 0 20px;
+}
+
+.step-number {
+    display: block;
+    font-size: 48px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 16px;
+}
+
+.how-step:hover .step-number {
+    color: #1a1a2e;
+}
+
+.step-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+}
+
+.step-text {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ================================
+   CTA Section
+   ================================ */
+
+.cta-section {
+    padding: 80px 0;
+    background: #1a1a2e;
+}
+
+.cta-content {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.cta-title {
+    font-size: 36px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+}
+
+.cta-text {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.btn-white {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 32px;
+    background: #fff;
+    color: #1a1a2e;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-white:hover {
+    background: #f5f6f8;
+    transform: translateY(-2px);
+}
+
+.btn-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* ================================
+   Адаптив
+   ================================ */
+
+@media (max-width: 1024px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .how-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        font-size: 32px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .how-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .pricing-content {
+        padding: 24px;
+    }
+
+    .pricing-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
