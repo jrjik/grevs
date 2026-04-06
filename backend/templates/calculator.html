@@ -40,6 +40,22 @@
 
             <!-- Выбор типа вскрытия -->
             <div class="autopsy-section">
+                <div class="autopsy-header">
+                    <h3 class="section-subtitle">Вскрытие</h3>
+                    <button type="button" class="help-btn" onclick="toggleAutopsyHelp(event)" title="В чем разница?">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="autopsy-help" id="autopsyHelp" style="display: none;">
+                    <p><strong>Платное вскрытие:</strong> проводится в день смерти или на следующий день (1-2 рабочих дня)</p>
+                    <p><strong>Бесплатное вскрытие:</strong> проводится через 2-3 рабочих дня после смерти</p>
+                </div>
+                
                 <div class="autopsy-options">
                     <label class="autopsy-option">
                         <input type="radio" name="autopsy_type" value="paid" x-model="formData.autopsyType" checked>
@@ -151,32 +167,38 @@
 
             <!-- Итого -->
             <div class="total-section">
-                <div class="total-row">
-                    <span class="total-label">Услуги:</span>
-                    <span class="total-value" x-text="formatPrice(calculateTotal() - getAutopsyPrice())"></span>
-                </div>
-                <div class="total-row" x-show="formData.autopsyType === 'paid'">
-                    <span class="total-label">Вскрытие:</span>
-                    <span class="total-value" x-text="formatPrice(getAutopsyPrice())"></span>
-                </div>
-                <div class="total-row total-final">
-                    <span class="total-label">Итого:</span>
-                    <span class="total-value" x-text="formatPrice(calculateTotal())"></span>
+                <div class="total-content">
+                    <div class="total-row">
+                        <span class="total-label">Услуги:</span>
+                        <span class="total-value" x-text="formatPrice(calculateTotal() - getAutopsyPrice())"></span>
+                    </div>
+                    <div class="total-row" x-show="formData.autopsyType === 'paid'">
+                        <span class="total-label">Вскрытие:</span>
+                        <span class="total-value" x-text="formatPrice(getAutopsyPrice())"></span>
+                    </div>
+                    <div class="total-divider"></div>
+                    <div class="total-row total-final">
+                        <span class="total-label">Итого:</span>
+                        <span class="total-price" x-text="formatPrice(calculateTotal())"></span>
+                    </div>
                 </div>
             </div>
 
             <!-- Форма заявки -->
             <div class="form-section">
                 <div class="form-row">
-                    <input type="text" x-model="formData.name" :class="{'input-error': errors.name}" class="form-input" placeholder="Ваше имя *">
+                    <label for="client_name" class="form-label">Ваше имя *</label>
+                    <input type="text" id="client_name" x-model="formData.name" :class="{'input-error': errors.name}" class="form-input" placeholder="Иван Иванович">
                     <span class="error-message" x-show="errors.name" x-text="errors.name"></span>
                 </div>
                 <div class="form-row">
-                    <input type="tel" x-model="formData.phone" @input="validatePhone()" :class="{'input-error': errors.phone}" class="form-input" placeholder="Телефон *">
+                    <label for="client_phone" class="form-label">Телефон *</label>
+                    <input type="tel" id="client_phone" x-model="formData.phone" @input="validatePhone()" :class="{'input-error': errors.phone}" class="form-input" placeholder="+7 (xx) xxx-xx-xx">
                     <span class="error-message" x-show="errors.phone" x-text="errors.phone"></span>
                 </div>
                 <div class="form-row">
-                    <textarea x-model="formData.comment" class="form-input form-textarea" placeholder="Комментарий" rows="3"></textarea>
+                    <label for="client_comment" class="form-label">Комментарий (необязательно)</label>
+                    <textarea id="client_comment" x-model="formData.comment" class="form-input form-textarea" placeholder="Дополнительная информация..." rows="3"></textarea>
                 </div>
                 
                 <div x-show="errors.services" class="error-box">
@@ -194,4 +216,22 @@
 
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 <script src="{% static 'js/calculator.js' %}"></script>
+
+<script>
+function toggleAutopsyHelp(event) {
+    event.stopPropagation();
+    const helpDiv = document.getElementById('autopsyHelp');
+    if (helpDiv) {
+        helpDiv.style.display = helpDiv.style.display === 'none' ? 'block' : 'none';
+    }
+}
+
+// Закрыть подсказку при клике вне её
+document.addEventListener('click', function() {
+    const helpDiv = document.getElementById('autopsyHelp');
+    if (helpDiv) {
+        helpDiv.style.display = 'none';
+    }
+});
+</script>
 {% endblock %}
