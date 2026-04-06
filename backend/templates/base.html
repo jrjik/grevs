@@ -77,7 +77,7 @@
             <nav class="header-nav">
                 <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Главная</a>
                 <a href="/#about" class="nav-link {% if 'about' in request.path %}active{% endif %}">О нас</a>
-                <a href="/#services" class="nav-link {% if 'services' in request.path %}active{% endif %}">Услуги</a>
+                <a href="/services/" class="nav-link">Услуги</a>
                 <a href="/calculator/" class="nav-link {% if 'calculator' in request.path %}active{% endif %}">Калькулятор</a>
                 <a href="/contacts/" class="nav-link {% if 'contacts' in request.path %}active{% endif %}">Контакты</a>
             </nav>

@@ -20,6 +20,7 @@
     color: #1a1a2e;
     line-height: 1.2;
     margin-bottom: 20px;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .hero-description {
@@ -59,7 +60,10 @@
     color: #fff;
 }
 
-
+.btn-primary:hover {
+    background: #2a2a3e;
+    transform: translateY(-2px);
+}
 
 .btn-outline {
     background: #fff;
@@ -107,6 +111,7 @@
     font-weight: 700;
     color: #1a1a2e;
     margin-bottom: 12px;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .section-subtitle {
@@ -154,6 +159,7 @@
     font-weight: 600;
     color: #1a1a2e;
     margin-bottom: 12px;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .trust-card-text {
@@ -248,12 +254,9 @@
     display: block;
     font-size: 48px;
     font-weight: 700;
-    color: #e0e0e0;
-    margin-bottom: 16px;
-}
-
-.how-step:hover .step-number {
     color: #1a1a2e;
+    margin-bottom: 16px;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .step-title {
@@ -261,6 +264,7 @@
     font-weight: 600;
     color: #1a1a2e;
     margin-bottom: 12px;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .step-text {
@@ -289,6 +293,7 @@
     font-weight: 700;
     color: #fff;
     margin-bottom: 16px;
+    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .cta-text {
