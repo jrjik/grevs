@@ -200,6 +200,40 @@
     }
   },
   {
+  "model": "services.category",
+  "pk": 9,
+  "fields": {
+    "name": "Таблички на могилу",
+    "order": 4,
+    "service_type": "common",
+    "selection_type": "single"
+  }
+},
+{
+  "model": "services.service",
+  "pk": 26,
+  "fields": {
+    "category": 9,
+    "name": "Табличка пластиковая",
+    "description": "Пластиковая табличка на могилу",
+    "price": "2000.00",
+    "is_mandatory": false,
+    "applicability": "all"
+  }
+},
+{
+  "model": "services.service",
+  "pk": 27,
+  "fields": {
+    "category": 9,
+    "name": "Табличка металлическая",
+    "description": "Металлическая табличка на могилу",
+    "price": "3500.00",
+    "is_mandatory": false,
+    "applicability": "all"
+  }
+},
+  {
     "model": "services.service",
     "pk": 11,
     "fields": {

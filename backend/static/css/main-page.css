@@ -159,7 +159,6 @@
     font-weight: 600;
     color: #1a1a2e;
     margin-bottom: 12px;
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .trust-card-text {
@@ -173,7 +172,6 @@
    ================================ */
 
 .services-section {
-    padding: 80px 0;
     background: #f8f9fa;
 }
 
@@ -256,7 +254,6 @@
     font-weight: 700;
     color: #1a1a2e;
     margin-bottom: 16px;
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .step-title {
@@ -264,7 +261,6 @@
     font-weight: 600;
     color: #1a1a2e;
     margin-bottom: 12px;
-    font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 .step-text {
@@ -389,4 +385,7 @@
     .step-number {
         font-size: 36px;
     }
+}
+.footer-bottom {
+    border-top: none !important;
 }

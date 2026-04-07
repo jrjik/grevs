@@ -76,7 +76,6 @@
             <!-- Навигация -->
             <nav class="header-nav">
                 <a href="/" class="nav-link {% if request.path == '/' %}active{% endif %}">Главная</a>
-                <a href="/#about" class="nav-link {% if 'about' in request.path %}active{% endif %}">О нас</a>
                 <a href="/services/" class="nav-link">Услуги</a>
                 <a href="/calculator/" class="nav-link {% if 'calculator' in request.path %}active{% endif %}">Калькулятор</a>
                 <a href="/contacts/" class="nav-link {% if 'contacts' in request.path %}active{% endif %}">Контакты</a>
@@ -145,8 +144,7 @@
         <div class="footer-column footer-links">
             <h4 class="footer-column-title">Полезная информация</h4>
             <nav class="footer-nav">
-                <a href="/#services" class="footer-nav-link">Наши услуги</a>
-                <a href="/#about" class="footer-nav-link">О компании</a>
+                <a href="/services/" class="footer-nav-link">Наши услуги</a>
                 <a href="/calculator/" class="footer-nav-link">Калькулятор стоимости</a>
                 <a href="/contacts/" class="footer-nav-link">Связаться с нами</a>
             </nav>

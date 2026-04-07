@@ -187,7 +187,8 @@
     height: 18px;
 }
 
-.autopsy-help {
+.autopsy-help,
+.info-box-help {
     background: #f8f9fa;
     border-left: 3px solid #1a1a2e;
     padding: 16px 20px;
@@ -195,18 +196,21 @@
     margin-bottom: 16px;
 }
 
-.autopsy-help p {
+.autopsy-help p,
+.info-box-help p {
     margin: 0 0 8px 0;
     font-size: 14px;
     color: #666;
     line-height: 1.5;
 }
 
-.autopsy-help p:last-child {
+.autopsy-help p:last-child,
+.info-box-help p:last-child {
     margin-bottom: 0;
 }
 
-.autopsy-help strong {
+.autopsy-help strong,
+.info-box-help strong {
     color: #1a1a2e;
 }
 
@@ -262,23 +266,85 @@
     font-size: 12px;
     opacity: 0.7;
 }
-
-/* ================================
-   Инфо-блок
-   ================================ */
-
+/* Инфо-блок (документы о родстве) - без желтого фона */
 .info-box {
-    background: #fff3cd;
-    border: 1px solid #ffc107;
-    padding: 12px 16px;
-    border-radius: 6px;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    padding: 16px 20px;
+    border-radius: 8px;
     margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.info-box p {
-    color: #856404;
-    font-size: 13px;
+.info-box-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.info-box-icon {
+    width: 20px;
+    height: 20px;
+    color: #1a1a2e;
+    flex-shrink: 0;
+}
+
+.info-box-text {
+    color: #333;
+    font-size: 14px;
     margin: 0;
+    flex: 1;
+}
+
+.info-box-help-btn {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: #999;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.info-box-help-btn:hover {
+    color: #1a1a2e;
+}
+
+.info-box-help-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Подсказка для документов о родстве */
+.info-box-help {
+    background: #f8f9fa;
+    border-left: 3px solid #1a1a2e;
+    padding: 16px 20px;
+    border-radius: 6px;
+    margin-top: 12px;
+}
+
+.info-box-help p {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+.info-box-help p:last-child {
+    margin-bottom: 0;
+}
+
+.info-box-help strong {
+    color: #1a1a2e;
 }
 
 /* ================================
@@ -405,11 +471,14 @@
     font-size: 14px;
     font-weight: 600;
     white-space: nowrap;
-    opacity: 0.8;
+    opacity: 0.9;
+    color: #1a1a2e;
 }
 
+/* Исправление: цена всегда видна */
 .service-option input:checked + .service-option-content .service-price {
     opacity: 1;
+    color: #fff;
 }
 
 /* ================================
@@ -427,6 +496,31 @@
     padding: 24px 28px;
     max-width: 600px;
     margin: 0 auto;
+}
+
+.total-services-list {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.total-service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 6px 0;
+    font-size: 14px;
+}
+
+.total-service-name {
+    color: #666;
+    flex: 1;
+}
+
+.total-service-price {
+    color: #1a1a2e;
+    font-weight: 500;
+    margin-left: 20px;
 }
 
 .total-row {
@@ -611,5 +705,77 @@
     .total-content,
     .form-section {
         padding: 20px;
+    }
+    
+    .info-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .info-box-content {
+        width: 100%;
+    }
+}
+
+/* ================================
+   Таблица табличек на могилу
+   ================================ */
+
+.tablets-table {
+    margin-top: 16px;
+}
+
+.tablets-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.tablets-column-header {
+    text-align: center;
+}
+
+.tablets-type {
+    display: inline-block;
+    padding: 8px 20px;
+    background: #f0f1f3;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.tablets-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.tablets-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.tablets-column .service-option {
+    margin-bottom: 0;
+}
+
+.tablets-column .service-option-content {
+    padding: 8px 12px;
+}
+
+/* Адаптив для табличек */
+@media (max-width: 640px) {
+    .tablets-header,
+    .tablets-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .tablets-column-header {
+        margin-bottom: 8px;
     }
 }

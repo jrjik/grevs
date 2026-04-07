@@ -93,6 +93,9 @@ function funeralCalculator() {
                 );
 
                 if (category) {
+                    // Проверяем, выбрана ли уже эта услуга
+                    const isAlreadySelected = currentSelected.includes(serviceId);
+                    
                     // Сначала удаляем ВСЕ услуги этой категории из выбора
                     category.services.forEach(s => {
                         const idx = currentSelected.indexOf(s.id);
@@ -101,12 +104,11 @@ function funeralCalculator() {
                         }
                     });
 
-                    // Если кликнули на уже выбранный элемент - просто снимаем выбор (не добавляем обратно)
-                    // Если кликнули на новый - добавляем его
-                    if (index === -1) {
+                    // Если услуга НЕ была выбрана - добавляем её
+                    // Если УЖЕ была выбрана - мы её удалили (отмена выбора)
+                    if (!isAlreadySelected) {
                         currentSelected.push(serviceId);
                     }
-                    // Если index !== -1, значит мы сняли выбор и не добавляем ничего (отмена выбора)
                 }
             } else {
                 // Для checkbox: обычное добавление/удаление
@@ -116,6 +118,26 @@ function funeralCalculator() {
                     currentSelected.push(serviceId);
                 }
             }
+        },
+
+        // Получение списка выбранных услуг с названиями и ценами
+        getSelectedServicesList() {
+            const selectedIds = this.selectedServices[this.currentTab];
+            const selectedList = [];
+
+            this.allCategories.forEach(category => {
+                category.services.forEach(service => {
+                    if (selectedIds.includes(service.id)) {
+                        selectedList.push({
+                            id: service.id,
+                            name: service.name,
+                            price: parseFloat(service.price)
+                        });
+                    }
+                });
+            });
+
+            return selectedList;
         },
 
         // Расчёт общей суммы
@@ -375,6 +397,22 @@ function funeralCalculator() {
             }
             return cookieValue;
         },
+        getTabletServices(type) {
+            const category = this.allCategories.find(cat => cat.name.includes('Табличк'));
+            if (!category) return [];
+            
+            return category.services.filter(service => {
+                if (type === 'plastic') {
+                    return service.name.toLowerCase().includes('пластик') || 
+                        service.name.toLowerCase().includes('пластиков');
+                } else if (type === 'metal') {
+                    return service.name.toLowerCase().includes('металл') || 
+                        service.name.toLowerCase().includes('металлическ');
+                }
+                return true;
+            });
+        },
+
 
         // Сброс формы
         resetForm() {
@@ -421,4 +459,4 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.value = formatted;
         });
     }
-});
+})
