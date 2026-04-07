@@ -108,9 +108,9 @@
     "pk": 3,
     "fields": {
       "category": 1,
-      "name": "Гроб двухкрышечный элитный",
+      "name": "Гроб двухкрышечный лакированный",
       "description": "Элитный двухкрышечный гроб",
-      "price": "45000.00",
+      "price": "30000.00",
       "is_mandatory": false,
       "applicability": "all"
     }
@@ -120,9 +120,9 @@
     "pk": 4,
     "fields": {
       "category": 1,
-      "name": "Гроб цинковый (для транспортировки)",
+      "name": "Гроб цинковый",
       "description": "Цинковый гроб для транспортировки",
-      "price": "35000.00",
+      "price": "45000.00",
       "is_mandatory": false,
       "applicability": "all"
     }
@@ -156,7 +156,7 @@
     "pk": 7,
     "fields": {
       "category": 2,
-      "name": "Крест дубовый (элитный)",
+      "name": "Крест дубовый",
       "description": "Элитный дубовый крест",
       "price": "12000.00",
       "is_mandatory": false,
@@ -168,7 +168,7 @@
     "pk": 8,
     "fields": {
       "category": 3,
-      "name": "Венок из искусственных цветов (малый)",
+      "name": "Венок малый",
       "description": "Малый венок из искусственных цветов",
       "price": "2500.00",
       "is_mandatory": false,
@@ -180,8 +180,8 @@
     "pk": 9,
     "fields": {
       "category": 3,
-      "name": "Венок из живых цветов (средний)",
-      "description": "Средний венок из живых цветов",
+      "name": "Венок средний",
+      "description": "Средний венок из искуственных цветов",
       "price": "5000.00",
       "is_mandatory": false,
       "applicability": "all"
@@ -192,8 +192,8 @@
     "pk": 10,
     "fields": {
       "category": 3,
-      "name": "Венок элитный (комбинированный)",
-      "description": "Элитный комбинированный венок",
+      "name": "Венок большой",
+      "description": "Большой венок из изскуственных цветов",
       "price": "9000.00",
       "is_mandatory": false,
       "applicability": "all"
@@ -238,21 +238,9 @@
     "pk": 11,
     "fields": {
       "category": 4,
-      "name": "Комплект постельных принадлежностей (стандарт)",
+      "name": "Комплект постельных принадлежностей (подушка и покрывало)",
       "description": "Стандартный комплект постельных принадлежностей",
       "price": "2000.00",
-      "is_mandatory": false,
-      "applicability": "all"
-    }
-  },
-  {
-    "model": "services.service",
-    "pk": 12,
-    "fields": {
-      "category": 4,
-      "name": "Комплект постельных принадлежностей (элитный)",
-      "description": "Элитный комплект постельных принадлежностей",
-      "price": "4500.00",
       "is_mandatory": false,
       "applicability": "all"
     }
@@ -319,18 +307,6 @@
   },
   {
     "model": "services.service",
-    "pk": 18,
-    "fields": {
-      "category": 6,
-      "name": "Бригада сопровождения",
-      "description": "Сопровождение бригадой",
-      "price": "5000.00",
-      "is_mandatory": false,
-      "applicability": "all"
-    }
-  },
-  {
-    "model": "services.service",
     "pk": 19,
     "fields": {
       "category": 6,
@@ -382,7 +358,7 @@
     "pk": 23,
     "fields": {
       "category": 7,
-      "name": "Урна керамическая (элитная)",
+      "name": "Урна керамическая",
       "description": "Элитная керамическая урна",
       "price": "8000.00",
       "is_mandatory": false,
@@ -394,21 +370,9 @@
     "pk": 24,
     "fields": {
       "category": 8,
-      "name": "Кремация (стандарт)",
+      "name": "Кремация",
       "description": "Стандартная кремация",
       "price": "20000.00",
-      "is_mandatory": false,
-      "applicability": "cremation"
-    }
-  },
-  {
-    "model": "services.service",
-    "pk": 25,
-    "fields": {
-      "category": 8,
-      "name": "Кремация (срочная)",
-      "description": "Срочная кремация",
-      "price": "35000.00",
       "is_mandatory": false,
       "applicability": "cremation"
     }

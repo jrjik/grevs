@@ -91,12 +91,14 @@ a {
     justify-content: center;
     background: rgba(255, 255, 255, 0.1);
     border-radius: 8px;
-    color: #fff;
+    overflow: hidden; 
 }
 
-.logo-icon svg {
-    width: 24px;
+.logo-icon img {
+    width: 24px; 
     height: 24px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); 
 }
 
 .logo-text {
@@ -167,7 +169,6 @@ a {
 .site-footer {
     background: #1a1a2e;
     color: #fff;
-    padding: 60px 0 0 0;
 }
 
 .footer-container {
@@ -313,7 +314,7 @@ a {
 }
 
 .hero-title {
-    font-size: 48px;
+    font-size: 50px;
     font-weight: 700;
     color: #1a1a2e;
     line-height: 1.2;
@@ -1080,76 +1081,26 @@ a {
     margin-bottom: 8px;
 }
 
-/* ================================
-   Адаптив
-   ================================ */
 
-@media (max-width: 1024px) {
-    .hero-grid,
-    .services-grid,
-    .contacts-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
-
-    .hero-image,
-    .services-image {
-        order: -1;
-    }
-
-    .trust-grid,
-    .services-catalog .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .how-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .footer-container {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
+.cta-section {
+    position: relative;
+    z-index: 1;
+    overflow: hidden; 
 }
 
-@media (max-width: 768px) {
-    .hero-section,
-    .trust-section,
-    .services-section,
-    .how-section,
-    .cta-section,
-    .contacts-page,
-    .services-catalog,
-    .pricing-section {
-        padding: 50px 0;
-    }
+.site-footer {
+    position: relative;
+    z-index: 2;
+}
 
-    .hero-title,
-    .page-title,
-    .section-title {
-        font-size: 28px;
-    }
 
-    .hero-buttons,
-    .cta-buttons {
-        flex-direction: column;
-    }
+.cta-content {
+    transform: translateZ(0);
+}
 
-    .btn {
-        width: 100%;
-        justify-content: center;
-    }
 
-    .how-grid {
-        grid-template-columns: 1fr;
-        gap: 32px;
-    }
-
-    .step-number {
-        font-size: 36px;
-    }
-
-    .header-nav {
-        display: none;
-    }
+.cta-section::before,
+.cta-section::after {
+    content: none !important;
+    display: none !important;
 }

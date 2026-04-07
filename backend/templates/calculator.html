@@ -110,8 +110,9 @@
                             <div class="category-icon">
                                 <template x-if="category.name.includes('Гроб')">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <rect x="3" y="8" width="18" height="12" rx="2"/>
-                                        <line x1="12" y1="8" x2="12" y2="20"/>
+                                        <path d="M12 2L5 6v14h14V6l-7-4z"/>
+                                        <path d="M12 8v8"/>
+                                        <path d="M10 12h4"/>
                                     </svg>
                                 </template>
                                 <template x-if="category.name.includes('Крест')">
@@ -120,9 +121,11 @@
                                     </svg>
                                 </template>
                                 <template x-if="category.name.includes('Венок')">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <circle cx="12" cy="12" r="9"/>
-                                        <circle cx="12" cy="12" r="3"/>
+                                    <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="6" y="10" width="4" height="10" rx="0.5"/>
+                                        <path d="M8 6c0 0-1.5 2-1.5 3s0.7 1.5 1.5 1.5 1.5-0.5 1.5-1.5S8 6 8 6z"/>
+                                        <rect x="14" y="13" width="4" height="7" rx="0.5"/>
+                                        <path d="M16 10c0 0-1.5 2-1.5 3s0.7 1.5 1.5 1.5 1.5-0.5 1.5-1.5-1.5-3-1.5-3z"/>
                                     </svg>
                                 </template>
                                 <template x-if="category.name.includes('Табличк')">
@@ -141,13 +144,22 @@
                                 </template>
                                 <template x-if="category.name.includes('Кремация')">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <path d="M12 2c0 4-4 6-4 10a4 4 0 008 0c0-4-4-6-4-10z"/>
+                                        <path d="M8 6h8M6 8h12"/>
+                                        <path d="M12 4v2"/>
+                                        <path d="M7 10v7c0 3 2.5 5 5 5s5-2 5-5v-7"/>
+                                        <path d="M7 10c0-2 2.5-4 5-4s5 2 5 4"/>
+                                        <path d="M12 12v4"/>
+                                        <path d="M10 14h4"/>
+                                        <rect x="9" y="21" width="6" height="1" rx="0.5"/>
                                     </svg>
                                 </template>
                                 <template x-if="category.name.includes('Постель') || category.name.includes('Одежда')">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <path d="M20 12v8a2 2 0 01-2 2H6a2 2 0 01-2-2v-8"/>
-                                        <path d="M12 2v10"/>
+                                        <path d="M20 8h-3V4H7v4H4a1 1 0 00-1 1v11a2 2 0 002 2h14a2 2 0 002-2V9a1 1 0 00-1-1z"/>
+                                        <path d="M9 4l3 3 3-3"/>
+                                        <circle cx="12" cy="12" r="0.5" fill="currentColor"/>
+                                        <circle cx="12" cy="15" r="0.5" fill="currentColor"/>
+                                        <circle cx="12" cy="18" r="0.5" fill="currentColor"/>
                                     </svg>
                                 </template>
                                 <template x-if="category.name.includes('Услуги')">
@@ -156,9 +168,11 @@
                                     </svg>
                                 </template>
                                 <template x-if="!category.name.includes('Гроб') && !category.name.includes('Крест') && !category.name.includes('Венок') && !category.name.includes('Урн') && !category.name.includes('Кремация') && !category.name.includes('Табличк') && !category.name.includes('Постель') && !category.name.includes('Одежда') && !category.name.includes('Услуги')">
-                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <path d="M12 6v6l4 2"/>
+                                    <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="6" y="10" width="4" height="10" rx="0.5"/>
+                                        <path d="M8 6c0 0-1.5 2-1.5 3s0.7 1.5 1.5 1.5 1.5-0.5 1.5-1.5S8 6 8 6z"/>
+                                        <rect x="14" y="13" width="4" height="7" rx="0.5"/>
+                                        <path d="M16 10c0 0-1.5 2-1.5 3s0.7 1.5 1.5 1.5 1.5-0.5 1.5-1.5-1.5-3-1.5-3z"/>
                                     </svg>
                                 </template>
                             </div>
@@ -190,7 +204,7 @@
                             </div>
                         </div>
                     </template>
-                </div> 
+                </div>
             </div>
 
             <!-- Итого с детализацией -->
