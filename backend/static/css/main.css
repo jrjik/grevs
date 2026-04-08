@@ -169,6 +169,8 @@ a {
 .site-footer {
     background: #1a1a2e;
     color: #fff;
+    padding: 80px 0 0 0; /* ← Увеличили верхний отступ (было 60px) */
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* ← Добавили черту сверху */
 }
 
 .footer-container {
@@ -196,17 +198,20 @@ a {
 .footer-logo-icon {
     width: 40px;
     height: 40px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 8px;
+    min-width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden; 
 }
 
-.footer-logo-icon svg {
-    width: 24px;
+.footer-logo-icon img {
+    width: 24px; 
     height: 24px;
-    color: #fff;
+    object-fit: contain;
+    filter: brightness(0) invert(1); 
 }
 
 .footer-logo-text {
@@ -230,6 +235,7 @@ a {
     font-size: 14px;
     color: rgba(255, 255, 255, 0.6);
     line-height: 1.6;
+    margin-top: 16px; /* ← Отступ сверху у описания */
 }
 
 .footer-column-title {
@@ -288,12 +294,14 @@ a {
 }
 
 .footer-bottom {
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* ← Черта над копирайтом */
     padding: 24px 0;
+    margin-top: 40px; /* ← Отступ сверху */
 }
 
 .footer-copyright {
     font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
     text-align: center;
 }
 
@@ -466,24 +474,27 @@ a {
     color: #666;
     line-height: 1.6;
 }
-
 /* ================================
    Главная страница - Services
    ================================ */
 
-.services-section {
-    background: #f8f9fa;
+#services.services-section .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 120px;
+    align-items: center;
 }
 
 .services-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1fr 1.5fr; /* ← Сильное смещение вправо (было 1fr 1.2fr) */
+    gap: 120px; /* ← Большой отступ между текстом и картинкой (было 80px) */
     align-items: center;
 }
 
 .services-content {
     max-width: 500px;
+    justify-self: start; /* ← Текст слева */
 }
 
 .section-description {
@@ -508,6 +519,11 @@ a {
     color: #333;
 }
 
+#services.services-section {
+    background: #f8f9fa;
+    padding: 100px 0 !important;
+}
+
 .check-icon {
     width: 20px;
     height: 20px;
@@ -519,6 +535,9 @@ a {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    justify-self: end; 
+    width: 100%;
+    max-width: 500px; 
 }
 
 .services-image img {
