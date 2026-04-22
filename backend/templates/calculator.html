@@ -101,8 +101,129 @@
                 </div>
             </div>
 
+            <!-- Пакеты услуг -->
+            <div class="packages-section">
+                <div class="packages-header">
+                    <h2 class="packages-title">Готовые пакеты услуг</h2>
+                    <p class="packages-subtitle" x-text="currentTab === 'cremation' ? 'Для кремации — всё необходимое уже включено' : 'Выберите подходящий пакет — всё необходимое уже включено'"></p>
+                </div>
+                
+                <div class="packages-grid">
+                    <!-- Базовый пакет -->
+                    <div class="package-card">
+                        <div class="package-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                            </svg>
+                        </div>
+                        <h3 class="package-name">Базовый</h3>
+                        <p class="package-description" x-text="currentTab === 'cremation' ? 'Всё необходимое для кремации' : 'Всё необходимое для достойных похорон'"></p>
+                        <div class="package-price">
+                            от <span x-text="formatPrice(currentPackagePrices.basic)"></span> ₽
+                            <span class="package-price-note">/ предварительная стоимость</span>
+                        </div>
+                        <ul class="package-features">
+                            <template x-for="service in currentPackageServices.basic" :key="service">
+                                <li class="package-feature">
+                                    <svg class="package-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                    <span x-text="service"></span>
+                                </li>
+                            </template>
+                        </ul>
+                        <button type="button" 
+                                class="package-button" 
+                                :class="{'selected': selectedPackage === 'basic'}"
+                                @click="selectPackage('basic')">
+                            <span x-show="selectedPackage !== 'basic'">Выбрать пакет</span>
+                            <span x-show="selectedPackage === 'basic'">Пакет выбран ✓</span>
+                        </button>
+                    </div>
+
+                    <!-- Оптимальный пакет -->
+                    <div class="package-card popular">
+                        <span class="package-badge">Популярный</span>
+                        <div class="package-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="3"/>
+                            </svg>
+                        </div>
+                        <h3 class="package-name">Оптимальный</h3>
+                        <p class="package-description" x-text="currentTab === 'cremation' ? 'Расширенный набор для кремации' : 'Расширенный набор'"></p>
+                        <div class="package-price">
+                            от <span x-text="formatPrice(currentPackagePrices.optimal)"></span> ₽
+                            <span class="package-price-note">/ предварительная стоимость</span>
+                        </div>
+                        <ul class="package-features">
+                            <template x-for="service in currentPackageServices.optimal" :key="service">
+                                <li class="package-feature">
+                                    <svg class="package-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                    <span x-text="service"></span>
+                                </li>
+                            </template>
+                        </ul>
+                        <button type="button" 
+                                class="package-button" 
+                                :class="{'selected': selectedPackage === 'optimal'}"
+                                @click="selectPackage('optimal')">
+                            <span x-show="selectedPackage !== 'optimal'">Выбрать пакет</span>
+                            <span x-show="selectedPackage === 'optimal'">Пакет выбран ✓</span>
+                        </button>
+                    </div>
+
+                    <!-- Расширенный пакет -->
+                    <div class="package-card">
+                        <div class="package-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                <path d="M12 2L2 7v10c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V7l-10-5z"/>
+                                <path d="M9 12l2 2 4-4"/>
+                                <circle cx="12" cy="12" r="3"/>
+                                <path d="M12 6v2M12 16v2M6 12h2M16 12h2"/>
+                            </svg>
+                        </div>
+                        <h3 class="package-name">Расширенный</h3>
+                        <p class="package-description" x-text="currentTab === 'cremation' ? 'Полный комплекс для кремации' : 'Полный комплекс'"></p>
+                        <div class="package-price">
+                            от <span x-text="formatPrice(currentPackagePrices.extended)"></span> ₽
+                            <span class="package-price-note">/ предварительная стоимость</span>
+                        </div>
+                        <ul class="package-features">
+                            <template x-for="service in currentPackageServices.extended" :key="service">
+                                <li class="package-feature">
+                                    <svg class="package-feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                    <span x-text="service"></span>
+                                </li>
+                            </template>
+                        </ul>
+                        <button type="button" 
+                                class="package-button" 
+                                :class="{'selected': selectedPackage === 'extended'}"
+                                @click="selectPackage('extended')">
+                            <span x-show="selectedPackage !== 'extended'">Выбрать пакет</span>
+                            <span x-show="selectedPackage === 'extended'">Пакет выбран ✓</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Разделитель -->
+            <div class="section-divider">
+                <div class="section-divider-text">
+                    Или выберите услуги самостоятельно
+                    <span class="section-divider-subtitle">Соберите свой пакет услуг из доступных категорий</span>
+                </div>
+            </div>
+
             <!-- Список услуг - Карточки категорий -->
-            <div class="services-section">
+            <div class="services-section" :class="{'disabled': selectedPackage !== null}">
                 <div class="services-grid">
                     <template x-for="category in filteredCategories" :key="category.id">
                         <div class="category-card">
@@ -208,14 +329,20 @@
             </div>
 
             <!-- Итого с детализацией -->
-            <div class="total-section">
+            <div class="total-section" id="totalSection">
                 <div class="total-content">
+                    <!-- Название выбранного пакета -->
+                    <div x-show="selectedPackage" class="package-name-display" style="display: none;">
+                        <h3>Выбранный пакет: <span x-text="getSelectedPackageName()"></span></h3>
+                    </div>
+                    
                     <!-- Список выбранных услуг -->
                     <div class="total-services-list" x-show="getSelectedServicesList().length > 0">
                         <template x-for="item in getSelectedServicesList()" :key="item.id">
                             <div class="total-service-item">
                                 <span class="total-service-name" x-text="item.name"></span>
-                                <span class="total-service-price" x-text="formatPrice(item.price)"></span>
+                                <span class="total-service-price" x-show="item.price > 0" x-text="formatPrice(item.price)"></span>
+                                <span class="total-service-check" x-show="item.price === 0">✓</span>
                             </div>
                         </template>
                     </div>

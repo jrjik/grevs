@@ -779,3 +779,399 @@
         margin-bottom: 8px;
     }
 }
+
+/* ================================
+   Пакеты услуг
+   ================================ */
+
+.packages-section {
+    margin-bottom: 50px;
+}
+
+.packages-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.packages-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 12px;
+}
+
+.packages-subtitle {
+    font-size: 16px;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.package-card {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 28px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.package-card:hover {
+    border-color: #1a1a2e;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    transform: translateY(-4px);
+}
+
+.package-card.popular {
+    border-color: #1a1a2e;
+    border-width: 3px;
+}
+
+.package-badge {
+    position: absolute;
+    top: -12px;
+    right: 20px;
+    background: #1a1a2e;
+    color: #fff;
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.package-icon {
+    width: 56px;
+    height: 56px;
+    background: #f0f1f3;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+}
+
+.package-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.package-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+}
+
+.package-description {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.package-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 20px;
+}
+
+.package-price-note {
+    font-size: 14px;
+    color: #999;
+    font-weight: 400;
+}
+
+.package-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 24px 0;
+    flex: 1;
+}
+
+.package-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    color: #333;
+    line-height: 1.4;
+}
+
+.package-feature-icon {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    color: #28a745;
+}
+
+.package-button {
+    width: 100%;
+    padding: 14px;
+    background: #fff;
+    border: 2px solid #1a1a2e;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a2e;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.package-button:hover {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+.package-button.selected {
+    background: #1a1a2e;
+    color: #fff;
+}
+
+/* Адаптив для пакетов */
+@media (max-width: 1024px) {
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .packages-title {
+        font-size: 24px;
+    }
+    
+    .package-price {
+        font-size: 24px;
+    }
+}
+
+/* ================================
+   Разделитель секций
+   ================================ */
+
+.section-divider {
+    margin: 60px 0;
+    text-align: center;
+    position: relative;
+}
+
+.section-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e0e0e0, transparent);
+}
+
+.section-divider-text {
+    display: inline-block;
+    background: #f8f9fa;
+    padding: 0 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a2e;
+    position: relative;
+    z-index: 1;
+}
+
+.section-divider-subtitle {
+    display: block;
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .section-divider {
+        margin: 40px 0;
+    }
+    
+    .section-divider-text {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+}
+
+/* ================================
+   Выбранный пакет
+   ================================ */
+
+.selected-package-info {
+    background: #fff;
+    border: 2px solid #1a1a2e;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.selected-package-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.selected-package-header h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.remove-package-btn {
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    border: 2px solid #dc3545;
+    background: #fff;
+    color: #dc3545;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.remove-package-btn:hover {
+    background: #dc3545;
+    color: #fff;
+}
+
+.remove-package-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.selected-package-services {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 16px 0;
+}
+
+.selected-package-services li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: #333;
+    padding-left: 24px;
+    position: relative;
+}
+
+.selected-package-services li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #28a745;
+    font-weight: bold;
+}
+
+.selected-package-price {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a1a2e;
+    text-align: right;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+}
+
+/* ================================
+   Отключенная секция услуг
+   ================================ */
+
+.services-section.disabled {
+    opacity: 0.4;
+    pointer-events: none;
+    position: relative;
+}
+
+.services-section.disabled::after {
+    content: 'Выбран готовый пакет';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(26, 26, 46, 0.9);
+    color: #fff;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* ================================
+   Кнопка пакета выбрана
+   ================================ */
+
+.package-button.selected {
+    background: #1a1a2e;
+    color: #fff;
+    border-color: #1a1a2e;
+}
+
+.package-button.selected:hover {
+    background: #dc3545;
+    border-color: #dc3545;
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+    .selected-package-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .selected-package-price {
+        text-align: left;
+    }
+}
+/* ================================
+   Название пакета в итоговой стоимости
+   ================================ */
+
+.package-name-display {
+    background: #f0f1f3;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.package-name-display h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+}
+
+.total-service-check {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Скрываем цену для услуг пакета */
+.total-service-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+}

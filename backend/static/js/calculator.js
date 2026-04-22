@@ -11,6 +11,106 @@ function funeralCalculator() {
         // Цена за платное вскрытие
         AUTOPSY_PAID_PRICE: 3000,
 
+        // Выбранный пакет (null, 'basic', 'optimal', 'extended')
+        selectedPackage: null,
+
+        // Для отслеживания типа похорон при выборе пакета
+        lastFuneralTypeForPackage: null,
+
+        // Цены пакетов для захоронений (новая могила / подзахоронение)
+        PACKAGE_PRICES_BURIAL: {
+            basic: 35000,
+            optimal: 58000,
+            extended: 95000
+        },
+
+        // Цены пакетов для кремации
+        PACKAGE_PRICES_CREMATION: {
+            basic: 28000,
+            optimal: 45000,
+            extended: 75000
+        },
+
+        // Услуги пакетов для захоронений
+        PACKAGE_SERVICES_BURIAL: {
+            basic: [
+                'Оформление всех документов',
+                'Гроб деревянный',
+                'Крест деревянный',
+                'Табличка пластиковая',
+                'Постель в гроб',
+                'Копка могилы',
+                'Катафалк стандартный'
+            ],
+            optimal: [
+                'Оформление всех документов',
+                'Гроб лакированный',
+                'Крест металлический',
+                'Табличка пластиковая',
+                'Постель в гроб',
+                'Копка могилы',
+                'Катафалк стандартный',
+                'Венок стандартный (средний)',
+                'Выносная группа',
+                'Отпевание',
+                'Ограда на могилу'
+            ],
+            extended: [
+                'Оформление всех документов',
+                'Гроб дубовый двухкрышечный',
+                'Крест дубовый резной',
+                'Табличка металлическая',
+                'Постель в гроб',
+                'Копка могилы',
+                'Катафалк иномарка',
+                'Венок большой',
+                'Выносная группа',
+                'Отпевание',
+                'Ограда на могилу',
+                'Прощальный зал',
+                'Церковный набор'
+            ]
+        },
+
+        // Услуги пакетов для кремации
+        PACKAGE_SERVICES_CREMATION: {
+            basic: [
+                'Оформление всех документов',
+                'Гроб деревянный для кремации',
+                'Урна пластиковая',
+                'Табличка пластиковая',
+                'Постель в гроб',
+                'Катафалк стандартный',
+                'Кремация'
+            ],
+            optimal: [
+                'Оформление всех документов',
+                'Гроб лакированный для кремации',
+                'Урна металлическая',
+                'Табличка пластиковая',
+                'Постель в гроб',
+                'Катафалк стандартный',
+                'Кремация',
+                'Венок стандартный (средний)',
+                'Отпевание',
+                'Место в колумбарии (стандарт)'
+            ],
+            extended: [
+                'Оформление всех документов',
+                'Гроб дубовый двухкрышечный для кремации',
+                'Урна керамическая',
+                'Табличка металлическая',
+                'Постель в гроб',
+                'Катафалк иномарка',
+                'Кремация',
+                'Венок большой',
+                'Отпевание',
+                'Место в колумбарии (премиум)',
+                'Прощальный зал',
+                'Церковный набор'
+            ]
+        },
+
         // Выбранные услуги для каждой вкладки
         selectedServices: {
             new: [],
@@ -52,6 +152,13 @@ function funeralCalculator() {
 
         // Переключение вкладки
         switchTab(tab) {
+            // Если был выбран пакет и тип похорон меняется - сбрасываем пакет
+            if (this.selectedPackage && 
+                ((tab === 'cremation') !== (this.currentTab === 'cremation'))) {
+                this.selectedPackage = null;
+                this.lastFuneralTypeForPackage = null;
+            }
+            
             this.currentTab = tab;
             this.errors.services = '';
         },
@@ -119,9 +226,99 @@ function funeralCalculator() {
                 }
             }
         },
+        // Выбор/отмена выбора пакета
+        selectPackage(packageName) {
+            // Если пакет уже выбран - отменяем выбор
+            if (this.selectedPackage === packageName) {
+                this.selectedPackage = null;
+                // Очищаем выбранные услуги
+                this.selectedServices[this.currentTab] = [];
+            } else {
+                // Если тип похорон изменился - сбрасываем старый пакет
+                if (this.selectedPackage && this.currentFuneralType !== this.lastFuneralTypeForPackage) {
+                    this.selectedPackage = null;
+                }
+                
+                // Выбираем новый пакет
+                this.selectedPackage = packageName;
+                this.lastFuneralTypeForPackage = this.currentFuneralType;
+                
+                // Плавный скролл до секции "Итого"
+                this.$nextTick(() => {
+                    const totalSection = document.getElementById('totalSection');
+                    if (totalSection) {
+                        totalSection.scrollIntoView({ 
+                            behavior: 'smooth', 
+                            block: 'center' 
+                        });
+                    }
+                });
+            }
+        },
+
+        // Получить название выбранного пакета
+        getSelectedPackageName() {
+            const names = {
+                basic: 'Базовый',
+                optimal: 'Оптимальный',
+                extended: 'Расширенный'
+            };
+            return names[this.selectedPackage] || '';
+        },
+
+       // Получить текущий тип похорон (burial или cremation)
+        get currentFuneralType() {
+            return this.currentTab === 'cremation' ? 'cremation' : 'burial';
+        },
+
+        // Получить цены пакетов для текущего типа
+        get currentPackagePrices() {
+            return this.currentFuneralType === 'cremation' 
+                ? this.PACKAGE_PRICES_CREMATION 
+                : this.PACKAGE_PRICES_BURIAL;
+        },
+
+        // Получить услуги пакетов для текущего типа
+        get currentPackageServices() {
+            return this.currentFuneralType === 'cremation' 
+                ? this.PACKAGE_SERVICES_CREMATION 
+                : this.PACKAGE_SERVICES_BURIAL;
+        },
+
+        // Получить название выбранного пакета
+        getSelectedPackageName() {
+            const names = {
+                basic: 'Базовый',
+                optimal: 'Оптимальный',
+                extended: 'Расширенный'
+            };
+            return names[this.selectedPackage] || '';
+        },
+
+        // Получить услуги выбранного пакета
+        getSelectedPackageServices() {
+            if (!this.selectedPackage) return [];
+            return this.currentPackageServices[this.selectedPackage] || [];
+        },
+
+        // Получить цену выбранного пакета
+        getSelectedPackagePrice() {
+            if (!this.selectedPackage) return 0;
+            return this.currentPackagePrices[this.selectedPackage] || 0;
+        },
 
         // Получение списка выбранных услуг с названиями и ценами
         getSelectedServicesList() {
+            // Если выбран пакет - возвращаем его услуги
+            if (this.selectedPackage) {
+                return this.getSelectedPackageServices().map(name => ({
+                    id: 'package_' + name.replace(/\s+/g, '_'),
+                    name: name,
+                    price: 0 // Цены не показываем для услуг пакета
+                }));
+            }
+            
+            // Иначе возвращаем индивидуально выбранные услуги
             const selectedIds = this.selectedServices[this.currentTab];
             const selectedList = [];
 
@@ -145,14 +342,19 @@ function funeralCalculator() {
             let total = 0;
             const currentSelected = this.selectedServices[this.currentTab];
 
-            // Считаем выбранные услуги
-            this.allCategories.forEach(category => {
-                category.services.forEach(service => {
-                    if (currentSelected.includes(service.id)) {
-                        total += parseFloat(service.price);
-                    }
+            // Если выбран пакет - используем его цену
+            if (this.selectedPackage) {
+                total = this.getSelectedPackagePrice();
+            } else {
+                // Иначе считаем выбранные услуги
+                this.allCategories.forEach(category => {
+                    category.services.forEach(service => {
+                        if (currentSelected.includes(service.id)) {
+                            total += parseFloat(service.price);
+                        }
+                    });
                 });
-            });
+            }
 
             // Добавляем стоимость вскрытия если выбрано платное
             if (this.formData.autopsyType === 'paid') {
@@ -209,6 +411,12 @@ function funeralCalculator() {
 
         // Проверка минимального набора услуг
         validateMinimumServices() {
+            // Если выбран пакет - всё ок
+            if (this.selectedPackage) {
+                this.errors.services = '';
+                return true;
+            }
+            
             const currentSelected = this.selectedServices[this.currentTab];
 
             if (currentSelected.length === 0) {
@@ -255,6 +463,14 @@ function funeralCalculator() {
 
         // Проверка доступности кнопки отправки
         get canSubmit() {
+            // Если выбран пакет - разрешаем отправку (при наличии имени и телефона)
+            if (this.selectedPackage) {
+                if (!this.formData.name.trim()) return false;
+                if (!this.validatePhone()) return false;
+                return true;
+            }
+            
+            // Иначе проверяем индивидуально выбранные услуги
             const currentSelected = this.selectedServices[this.currentTab];
 
             if (currentSelected.length === 0) return false;
@@ -325,7 +541,6 @@ function funeralCalculator() {
             return '';
         },
 
-        // Отправка заявки
         async submitLead() {
             this.errors.name = '';
             this.errors.phone = '';
@@ -340,20 +555,31 @@ function funeralCalculator() {
                 return;
             }
 
-            if (!this.validateMinimumServices()) {
+            // Если выбран пакет - пропускаем валидацию услуг
+            if (!this.selectedPackage && !this.validateMinimumServices()) {
                 return;
             }
 
             this.submitting = true;
+
+            // Если выбран пакет, добавляем информацию о нём в selected_services
+            let servicesToSend = [...this.selectedServices[this.currentTab]];
+            
+            // Если пакет выбран, но services пуст - добавляем метку пакета
+            if (this.selectedPackage && servicesToSend.length === 0) {
+                servicesToSend = ['package_' + this.selectedPackage];
+            }
 
             const leadData = {
                 client_name: this.formData.name.trim(),
                 phone: this.formData.phone.replace(/\D/g, ''),
                 funeral_type: this.currentTab,
                 autopsy_type: this.formData.autopsyType,
-                selected_services: [...this.selectedServices[this.currentTab]],
+                selected_services: servicesToSend,
                 estimated_total: this.calculateTotal(),
-                comment: this.formData.comment.trim()
+                comment: this.formData.comment.trim(),
+                // Добавляем информацию о пакете
+                package_name: this.selectedPackage
             };
 
             try {
@@ -381,7 +607,6 @@ function funeralCalculator() {
                 this.submitting = false;
             }
         },
-
         // Получение CSRF токена
         getCookie(name) {
             let cookieValue = null;
@@ -422,6 +647,7 @@ function funeralCalculator() {
             this.formData.phone = '';
             this.formData.comment = '';
             this.formData.autopsyType = 'paid';
+            this.selectedPackage = null; // Сбрасываем пакет
             this.selectedServices = {
                 new: [],
                 relative: [],
@@ -433,7 +659,6 @@ function funeralCalculator() {
     }
 }
 
-// Маска для телефона
 document.addEventListener('DOMContentLoaded', () => {
     const phoneInput = document.getElementById('client_phone');
     if (phoneInput) {
