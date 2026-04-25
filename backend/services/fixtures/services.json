@@ -376,5 +376,51 @@
       "is_mandatory": false,
       "applicability": "cremation"
     }
+  },
+  {
+    "model": "services.category",
+    "pk": 10,
+    "fields": {
+      "name": "Колумбарий",
+      "order": 9,
+      "service_type": "cremation",
+      "selection_type": "single"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 28,
+    "fields": {
+      "category": 10,
+      "name": "Место в колумбарии (стандарт)",
+      "description": "Место в нижней части (у ног)",
+      "price": "5000.00",
+      "is_mandatory": false,
+      "applicability": "cremation"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 29,
+    "fields": {
+      "category": 10,
+      "name": "Место в колумбарии (комфорт)",
+      "description": "Место на среднем уровне",
+      "price": "10000.00",
+      "is_mandatory": false,
+      "applicability": "cremation"
+    }
+  },
+  {
+    "model": "services.service",
+    "pk": 30,
+    "fields": {
+      "category": 10,
+      "name": "Место в колумбарии (премиум)",
+      "description": "Место на уровне глаз",
+      "price": "15000.00",
+      "is_mandatory": false,
+      "applicability": "cremation"
+    }
   }
 ]

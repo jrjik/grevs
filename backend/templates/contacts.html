@@ -52,6 +52,19 @@
                             rows="4"></textarea>
                     </div>
 
+                    <div class="form-group consent-group">
+                        <label class="consent-label">
+                            <input type="checkbox" x-model="formData.consent" class="consent-checkbox">
+                            <span class="consent-text">
+                                Я даю согласие на 
+                                <a href="/privacy#privacy" target="_blank" class="consent-link">обработку персональных данных</a>
+                                и принимаю 
+                                <a href="/privacy/#agreement" target="_blank" class="consent-link">условия соглашения</a>
+                            </span>
+                        </label>
+                        <span class="error-message" x-show="errors.consent" x-text="errors.consent"></span>
+                    </div>
+
                     <button type="submit" class="submit-btn" :disabled="submitting">
                         <span x-show="!submitting">Заказать звонок</span>
                         <span x-show="submitting">Отправка...</span>
@@ -184,11 +197,13 @@
             formData: {
                 name: '',
                 phone: '',
-                message: ''
+                message: '',
+                consent: false  
             },
             errors: {
                 name: '',
-                phone: ''
+                phone: '',
+                consent: false  
             },
             submitting: false,
 
@@ -228,6 +243,13 @@
                     isValid = false;
                 } else {
                     this.errors.phone = '';
+                }
+
+                if (!this.formData.consent) {
+                    this.errors.consent = 'Необходимо согласие на обработку персональных данных';
+                    isValid = false;
+                } else {
+                    this.errors.consent = '';
                 }
 
                 return isValid;

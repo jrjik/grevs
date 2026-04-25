@@ -274,6 +274,15 @@
                                         <rect x="9" y="21" width="6" height="1" rx="0.5"/>
                                     </svg>
                                 </template>
+                                <template x-if="category.name.includes('Колумбарий')">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                                        <rect x="3" y="3" width="18" height="18" rx="2"/>
+                                        <line x1="3" y1="9" x2="21" y2="9"/>
+                                        <line x1="3" y1="15" x2="21" y2="15"/>
+                                        <line x1="9" y1="3" x2="9" y2="21"/>
+                                        <line x1="15" y1="3" x2="15" y2="21"/>
+                                    </svg>
+                                </template>
                                 <template x-if="category.name.includes('Постель') || category.name.includes('Одежда')">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                                         <path d="M20 8h-3V4H7v4H4a1 1 0 00-1 1v11a2 2 0 002 2h14a2 2 0 002-2V9a1 1 0 00-1-1z"/>
@@ -288,7 +297,7 @@
                                         <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
                                     </svg>
                                 </template>
-                                <template x-if="!category.name.includes('Гроб') && !category.name.includes('Крест') && !category.name.includes('Венок') && !category.name.includes('Урн') && !category.name.includes('Кремация') && !category.name.includes('Табличк') && !category.name.includes('Постель') && !category.name.includes('Одежда') && !category.name.includes('Услуги')">
+                                <template x-if="!category.name.includes('Гроб') && !category.name.includes('Крест') && !category.name.includes('Венок') && !category.name.includes('Урн') && !category.name.includes('Кремация') && !category.name.includes('Табличк') && !category.name.includes('Постель') && !category.name.includes('Одежда') && !category.name.includes('Услуги') && !category.name.includes('Колумбарий')">
                                     <svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5">
                                         <rect x="6" y="10" width="4" height="10" rx="0.5"/>
                                         <path d="M8 6c0 0-1.5 2-1.5 3s0.7 1.5 1.5 1.5 1.5-0.5 1.5-1.5S8 6 8 6z"/>
@@ -363,7 +372,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Форма заявки -->
             <div class="form-section">
                 <div class="form-row">
@@ -379,6 +387,20 @@
                 <div class="form-row">
                     <label for="client_comment" class="form-label">Комментарий (необязательно)</label>
                     <textarea id="client_comment" x-model="formData.comment" class="form-input form-textarea" placeholder="Дополнительная информация..." rows="3"></textarea>
+                </div>
+                
+                <!-- Чекбокс согласия на обработку ПДн (ПЕРЕМЕСТИТЬ СЮДА) -->
+                <div class="form-row consent-row">
+                    <label class="consent-label">
+                        <input type="checkbox" x-model="formData.consent" class="consent-checkbox">
+                        <span class="consent-text">
+                            Я даю согласие на 
+                            <a href="/legal/#privacy" target="_blank" class="consent-link">обработку персональных данных</a>
+                            и принимаю 
+                            <a href="/legal/#agreement" target="_blank" class="consent-link">условия соглашения</a>
+                        </span>
+                    </label>
+                    <span class="error-message" x-show="errors.consent" x-text="errors.consent"></span>
                 </div>
                 
                 <div x-show="errors.services" class="error-box">

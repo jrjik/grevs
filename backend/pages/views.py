@@ -11,3 +11,6 @@ def calculator(request):
 
 def services(request):
     return render(request, 'services.html')
+
+def privacy(request):
+    return render(request, 'privacy.html')

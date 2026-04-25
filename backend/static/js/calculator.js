@@ -81,7 +81,8 @@ function funeralCalculator() {
                 'Табличка пластиковая',
                 'Постель в гроб',
                 'Катафалк стандартный',
-                'Кремация'
+                'Кремация',
+                'Место в колумбарии (стандарт)'
             ],
             optimal: [
                 'Оформление всех документов',
@@ -93,7 +94,7 @@ function funeralCalculator() {
                 'Кремация',
                 'Венок стандартный (средний)',
                 'Отпевание',
-                'Место в колумбарии (стандарт)'
+                'Место в колумбарии (комфорт)'
             ],
             extended: [
                 'Оформление всех документов',
@@ -123,14 +124,16 @@ function funeralCalculator() {
             name: '',
             phone: '',
             comment: '',
-            autopsyType: 'paid'
+            autopsyType: 'paid',
+            consent: false  
         },
 
         // Ошибки
         errors: {
             name: '',
             phone: '',
-            services: ''
+            services: '',
+            consent: ''  
         },
 
         // Инициализация
@@ -173,7 +176,7 @@ function funeralCalculator() {
 
         // Отфильтрованные категории для текущей вкладки
         get filteredCategories() {
-            return this.allCategories
+            const filtered = this.allCategories
                 .map(category => ({
                     ...category,
                     services: category.services.filter(service =>
@@ -181,6 +184,26 @@ function funeralCalculator() {
                     )
                 }))
                 .filter(category => category.services.length > 0);
+            
+            if (this.currentTab === 'cremation') {
+                return filtered.sort((a, b) => {
+                    // Приоритеты для кремации
+                    const priority = {
+                        'Кремация': 1,
+                        'Гробы': 2,
+                        'Урны': 3,
+                        'Колумбарий': 4
+                    };
+                    
+                    const priorityA = priority[a.name] || 99;
+                    const priorityB = priority[b.name] || 99;
+                    
+                    return priorityA - priorityB;
+                });
+            }
+            
+            // Для остальных вкладок - обычный порядок
+            return filtered;
         },
 
         // Проверка выбранной услуги
@@ -467,6 +490,7 @@ function funeralCalculator() {
             if (this.selectedPackage) {
                 if (!this.formData.name.trim()) return false;
                 if (!this.validatePhone()) return false;
+                if (!this.formData.consent) return false;  // <-- Новая строка
                 return true;
             }
             
@@ -494,10 +518,10 @@ function funeralCalculator() {
 
             if (!this.formData.name.trim()) return false;
             if (!this.validatePhone()) return false;
+            if (!this.formData.consent) return false;  // <-- Новая строка
 
             return true;
         },
-
         // Подсказка почему кнопка неактивна
         getSubmitHint() {
             const currentSelected = this.selectedServices[this.currentTab];
@@ -541,10 +565,12 @@ function funeralCalculator() {
             return '';
         },
 
+        // Отправка заявки
         async submitLead() {
             this.errors.name = '';
             this.errors.phone = '';
             this.errors.services = '';
+            this.errors.consent = ''; 
 
             if (!this.formData.name.trim()) {
                 this.errors.name = 'Введите ваше имя';
@@ -555,7 +581,12 @@ function funeralCalculator() {
                 return;
             }
 
-            // Если выбран пакет - пропускаем валидацию услуг
+            // Проверка согласия на обработку ПДн
+            if (!this.formData.consent) {
+                this.errors.consent = 'Необходимо согласие на обработку персональных данных';
+                return;
+            }
+
             if (!this.selectedPackage && !this.validateMinimumServices()) {
                 return;
             }
@@ -578,8 +609,8 @@ function funeralCalculator() {
                 selected_services: servicesToSend,
                 estimated_total: this.calculateTotal(),
                 comment: this.formData.comment.trim(),
-                // Добавляем информацию о пакете
-                package_name: this.selectedPackage
+                package_name: this.selectedPackage,
+                consent_given: true 
             };
 
             try {
@@ -607,6 +638,7 @@ function funeralCalculator() {
                 this.submitting = false;
             }
         },
+
         // Получение CSRF токена
         getCookie(name) {
             let cookieValue = null;
@@ -647,7 +679,8 @@ function funeralCalculator() {
             this.formData.phone = '';
             this.formData.comment = '';
             this.formData.autopsyType = 'paid';
-            this.selectedPackage = null; // Сбрасываем пакет
+            this.formData.consent = false;  
+            this.selectedPackage = null;
             this.selectedServices = {
                 new: [],
                 relative: [],
@@ -655,6 +688,7 @@ function funeralCalculator() {
             };
             this.currentTab = 'new';
             this.errors.services = '';
+            this.errors.consent = '';  
         }
     }
 }

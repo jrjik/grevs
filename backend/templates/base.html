@@ -53,6 +53,20 @@
     </script>
 
     {% block extra_head %}{% endblock %}
+    
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript">
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=108752485', 'ym');
+
+        ym(108752485, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/108752485" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
 </head>
 
 <body>
@@ -142,6 +156,7 @@
                 <a href="/services/" class="footer-nav-link">Наши услуги</a>
                 <a href="/calculator/" class="footer-nav-link">Калькулятор стоимости</a>
                 <a href="/contacts/" class="footer-nav-link">Связаться с нами</a>
+                <a href="/privacy/" class="footer-nav-link">Юридические документы</a>
             </nav>
         </div>
     </div>
@@ -157,5 +172,49 @@
 </footer>
 
     {% block extra_scripts %}{% endblock %}
+    <!-- Баннер cookie -->
+    <div id="cookie-banner" class="cookie-banner" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; background: #1a1a2e; color: #fff; padding: 16px 20px; z-index: 9999; box-shadow: 0 -2px 10px rgba(0,0,0,0.1);">
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 250px;">
+                <p style="margin: 0; font-size: 14px; line-height: 1.5;">
+                    Мы используем cookie для улучшения работы сайта и сбора анонимной статистики. 
+                    Продолжая использовать сайт, вы соглашаетесь с 
+                    <a href="/privacy#privacy" style="color: #fff; text-decoration: underline;">Политикой конфиденциальности</a>.
+                </p>
+            </div>
+            <div style="display: flex; gap: 10px;">
+                <button id="cookie-accept" class="btn" style="padding: 10px 20px; background: #fff; color: #1a1a2e; border: none; border-radius: 6px; cursor: pointer; font-weight: 500;">
+                    Принять
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // Показ баннера cookie
+    document.addEventListener('DOMContentLoaded', function() {
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieAccept = document.getElementById('cookie-accept');
+        
+        // Проверяем, было ли уже дано согласие
+        if (!localStorage.getItem('cookieConsent')) {
+            // Показываем баннер с задержкой 2 секунды
+            setTimeout(function() {
+                cookieBanner.style.display = 'block';
+            }, 2000);
+        }
+        
+        // Обработка кнопки "Принять"
+        cookieAccept.addEventListener('click', function() {
+            localStorage.setItem('cookieConsent', 'true');
+            cookieBanner.style.display = 'none';
+            
+            // Инициализация Яндекс.Метрики (если была отложена)
+            if (typeof ym === 'function') {
+                ym('108752485', 'params', {cookie_consent: true});
+            }
+        });
+    });
+</script>
 </body>
 </html>
