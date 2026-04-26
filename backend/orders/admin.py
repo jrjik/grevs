@@ -7,9 +7,9 @@ from .models import Lead
 class LeadAdmin(admin.ModelAdmin):
     list_display = (
         'id', 'created_at', 'client_name', 'phone', 'funeral_type', 'autopsy_type', 
-        'estimated_total', 'status', 'package_name_display'
+        'estimated_total', 'status', 'package_name_display', 'source', 'request_type' 
     )
-    list_filter = ('status', 'funeral_type', 'autopsy_type', 'created_at')
+    list_filter = ('status', 'funeral_type', 'autopsy_type', 'created_at', 'source', 'request_type') 
     search_fields = ('phone', 'client_name')
 
     readonly_fields = (
@@ -18,7 +18,9 @@ class LeadAdmin(admin.ModelAdmin):
         'selected_services_display',
         'funeral_type',
         'autopsy_type',
-        'package_info_display'
+        'package_info_display',
+        'source',  
+        'request_type',  
     )
 
     list_editable = ('status',)
@@ -30,6 +32,10 @@ class LeadAdmin(admin.ModelAdmin):
         ('Тип услуги', {
             'fields': ('funeral_type', 'autopsy_type')
         }),
+        ('Источник заявки', { 
+            'fields': ('source', 'request_type'),
+            'classes': ('collapse',)  
+        }),
         ('Пакет услуг', {
             'fields': ('package_info_display',),
         }),
@@ -40,7 +46,7 @@ class LeadAdmin(admin.ModelAdmin):
             'fields': ('status', 'comment')
         }),
     )
-
+    
     def package_name_display(self, obj):
         """Отображение названия пакета"""
         # Проверяем selected_services на наличие пакета

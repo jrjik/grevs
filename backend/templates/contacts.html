@@ -9,67 +9,77 @@
 <section class="section contacts-page">
     <div class="container">
         <div class="contacts-grid">
-            <!-- Левая колонка - Форма -->
             <div class="contacts-form-section">
                 <h1 class="page-title">Заказать обратный звонок</h1>
                 <p class="page-description">
                     Оставьте свои контакты, и наш специалист свяжется с вами ближайшим временем
                 </p>
 
-                <form class="contact-form" x-data="contactForm()" @submit.prevent="submitForm()">
-                    <div class="form-group">
-                        <label for="name" class="form-label">Ваше имя</label>
-                        <input
-                            type="text"
-                            id="name"
-                            x-model="formData.name"
-                            :class="{'input-error': errors.name}"
-                            class="form-input"
-                            placeholder="Имя">
-                        <span class="error-message" x-show="errors.name" x-text="errors.name"></span>
+                <div x-data="contactForm()">
+                    <!-- Экран успеха -->
+                    <div x-show="submitSuccess" class="success-message" style="display: none;">
+                        <div class="success-icon">✓</div>
+                        <h2 class="success-title">Заявка отправлена!</h2>
+                        <p class="success-text">Менеджер перезвонит в течение 15 минут</p>
+                        <button @click="resetForm()" class="btn btn-primary">Новая заявка</button>
                     </div>
 
-                    <div class="form-group">
-                        <label for="phone" class="form-label">Телефон</label>
-                        <input
-                            type="tel"
-                            id="phone"
-                            x-model="formData.phone"
-                            @input="formatPhone()"
-                            :class="{'input-error': errors.phone}"
-                            class="form-input"
-                            placeholder="+7 (xx) xxx-xx-xx">
-                        <span class="error-message" x-show="errors.phone" x-text="errors.phone"></span>
-                    </div>
+                    <!-- Форма -->
+                    <form x-show="!submitSuccess" class="contact-form" @submit.prevent="submitForm()">
+                        <div class="form-group">
+                            <label for="name" class="form-label">Ваше имя</label>
+                            <input
+                                type="text"
+                                id="name"
+                                x-model="formData.name"
+                                :class="{'input-error': errors.name}"
+                                class="form-input"
+                                placeholder="Имя">
+                            <span class="error-message" x-show="errors.name" x-text="errors.name"></span>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="message" class="form-label">Сообщение (необязательно)</label>
-                        <textarea
-                            id="message"
-                            x-model="formData.message"
-                            class="form-input form-textarea"
-                            placeholder="Дополнительная информация..."
-                            rows="4"></textarea>
-                    </div>
+                        <div class="form-group">
+                            <label for="phone" class="form-label">Телефон</label>
+                            <input
+                                type="tel"
+                                id="phone"
+                                x-model="formData.phone"
+                                @input="formatPhone()"
+                                :class="{'input-error': errors.phone}"
+                                class="form-input"
+                                placeholder="+7 (xx) xxx-xx-xx">
+                            <span class="error-message" x-show="errors.phone" x-text="errors.phone"></span>
+                        </div>
 
-                    <div class="form-group consent-group">
-                        <label class="consent-label">
-                            <input type="checkbox" x-model="formData.consent" class="consent-checkbox">
-                            <span class="consent-text">
-                                Я даю согласие на 
-                                <a href="/privacy#privacy" target="_blank" class="consent-link">обработку персональных данных</a>
-                                и принимаю 
-                                <a href="/privacy/#agreement" target="_blank" class="consent-link">условия соглашения</a>
-                            </span>
-                        </label>
-                        <span class="error-message" x-show="errors.consent" x-text="errors.consent"></span>
-                    </div>
+                        <div class="form-group">
+                            <label for="message" class="form-label">Сообщение (необязательно)</label>
+                            <textarea
+                                id="message"
+                                x-model="formData.message"
+                                class="form-input form-textarea"
+                                placeholder="Дополнительная информация..."
+                                rows="4"></textarea>
+                        </div>
 
-                    <button type="submit" class="submit-btn" :disabled="submitting">
-                        <span x-show="!submitting">Заказать звонок</span>
-                        <span x-show="submitting">Отправка...</span>
-                    </button>
-                </form>
+                        <div class="form-group consent-group">
+                            <label class="consent-label">
+                                <input type="checkbox" x-model="formData.consent" class="consent-checkbox">
+                                <span class="consent-text">
+                                    Я даю согласие на 
+                                    <a href="/legal/#privacy" target="_blank" class="consent-link">обработку персональных данных</a>
+                                    и принимаю 
+                                    <a href="/legal/#agreement" target="_blank" class="consent-link">условия соглашения</a>
+                                </span>
+                            </label>
+                            <span class="error-message" x-show="errors.consent" x-text="errors.consent"></span>
+                        </div>
+
+                        <button type="submit" class="submit-btn" :disabled="submitting || !formData.consent">
+                            <span x-show="!submitting">Заказать звонок</span>
+                            <span x-show="submitting">Отправка...</span>
+                        </button>
+                    </form>
+                </div>
             </div>
 
             <!-- Правая колонка - Контактная информация -->
@@ -149,7 +159,6 @@
 </section>
 
 <!-- Секция FAQ -->
-<!-- Секция FAQ -->
 <section class="section faq-section">
     <div class="container">
         <h2 class="section-title">Частые вопросы</h2>
@@ -167,7 +176,7 @@
             <div class="faq-card">
                 <div class="faq-content">
                     <p class="faq-question">Какие документы нужны для организации похорон?</p>
-                    <p class="faq-answer">Паспорт покойного, медицинское свидетельство о смерти. Все остальные документы мы поможем оформить.</p>
+                    <p class="faq-answer">Паспорт покойного, свидетельство о смерти. Все остальные документы мы поможем оформить.</p>
                 </div>
             </div>
 
@@ -194,6 +203,8 @@
 <script>
     function contactForm() {
         return {
+            submitSuccess: false,  
+            
             formData: {
                 name: '',
                 phone: '',
@@ -203,7 +214,7 @@
             errors: {
                 name: '',
                 phone: '',
-                consent: false  
+                consent: ''
             },
             submitting: false,
 
@@ -262,13 +273,60 @@
 
                 this.submitting = true;
 
-                console.log('Форма отправлена:', this.formData);
+                // Подготовка данных для отправки
+                const callbackData = {
+                    client_name: this.formData.name.trim(),
+                    phone: this.formData.phone.replace(/\D/g, ''),
+                    message: this.formData.message.trim(),
+                    consent_given: this.formData.consent,
+                    source: 'contacts'
+                };
 
-                await new Promise(resolve => setTimeout(resolve, 1000));
+                try {
+                    const response = await fetch('/api/orders/callback/', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRFToken': this.getCookie('csrftoken')
+                        },
+                        body: JSON.stringify(callbackData)
+                    });
 
-                alert('Спасибо! Мы перезвоним вам в ближайшее время.');
-                this.formData = { name: '', phone: '', message: '' };
-                this.submitting = false;
+                    const result = await response.json();
+
+                    if (result.status === 'success') {
+                        // Показываем экран успеха
+                        this.submitSuccess = true;
+                    } else {
+                        alert('Ошибка отправки: ' + result.message);
+                    }
+                } catch (error) {
+                    console.error('Ошибка отправки заявки:', error);
+                    alert('Не удалось отправить заявку. Попробуйте позже.');
+                } finally {
+                    this.submitting = false;
+                }
+            },
+
+            resetForm() {
+                this.submitSuccess = false;
+                this.formData = { name: '', phone: '', message: '', consent: false };
+                this.errors = { name: '', phone: '', consent: '' };
+            },
+
+            getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    const cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        const cookie = cookies[i].trim();
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
             }
         }
     }

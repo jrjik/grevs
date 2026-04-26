@@ -17,9 +17,23 @@ class Lead(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     client_name = models.CharField(max_length=100, blank=True, verbose_name="Имя клиента")
     phone = models.CharField(max_length=20, verbose_name="Телефон")
-    funeral_type = models.CharField(max_length=20, choices=FUNERAL_TYPES, verbose_name="Тип услуги")
-    autopsy_type = models.CharField(max_length=10, choices=AUTOPSY_TYPES, default='paid',
-                                    verbose_name="Вскрытие")
+    
+    funeral_type = models.CharField(
+        max_length=20, 
+        choices=FUNERAL_TYPES, 
+        verbose_name="Тип услуги",
+        blank=True, 
+        null=True    
+    )
+
+    autopsy_type = models.CharField(
+        max_length=10, 
+        choices=AUTOPSY_TYPES, 
+        default='paid',
+        verbose_name="Вскрытие",
+        blank=True, 
+        null=True   
+    )
 
     selected_services = models.JSONField(default=list, verbose_name="Выбранные услуги (ID)")
     estimated_total = models.DecimalField(max_digits=10, decimal_places=2, default=0,
@@ -32,6 +46,33 @@ class Lead(models.Model):
         ('meeting', 'Встреча назначена'),
         ('closed', 'Завершена'),
     )
+
+    SOURCE_CHOICES = (
+        ('calculator', 'Калькулятор услуг'),
+        ('callback', 'Обратный звонок'),
+        ('contacts', 'Страница контактов'),
+    )
+
+    source = models.CharField(
+        max_length=20,
+        choices=SOURCE_CHOICES,
+        default='calculator',
+        verbose_name="Источник заявки"
+    )
+
+    REQUEST_TYPE_CHOICES = (
+        ('funeral', 'Организация похорон'),
+        ('consultation', 'Консультация'),
+        ('callback', 'Обратный звонок'),
+    )
+    
+    request_type = models.CharField(
+        max_length=20,
+        choices=REQUEST_TYPE_CHOICES,
+        default='funeral',
+        verbose_name="Тип обращения"
+    )
+
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
 
     class Meta:
