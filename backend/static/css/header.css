@@ -110,7 +110,6 @@
     width: 100%;
 }
 
-/* Активная ссылка (можно добавлять через Django) */
 .nav-link.active {
     color: #fff;
 }

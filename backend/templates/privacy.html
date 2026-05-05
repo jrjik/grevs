@@ -4,6 +4,10 @@
 {% block title %}Юридические документы | Ритуальное бюро «Гревс»{% endblock %}
 {% block description %}Политика конфиденциальности, согласие на обработку персональных данных и пользовательское соглашение{% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/legal.css' %}">
+{% endblock %}
+
 {% block content %}
 <section class="section legal-page" style="padding: 60px 0; background: #fff;">
     <div class="container">
@@ -16,7 +20,6 @@
             </p>
         </div>
 
-        <!-- Навигация по документам -->
         <nav class="legal-nav" style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px;">
             <a href="#privacy" class="legal-nav-link" style="padding: 10px 20px; background: #f0f1f3; border-radius: 6px; color: #1a1a2e; text-decoration: none; font-weight: 500;">Политика конфиденциальности</a>
             <a href="#consent" class="legal-nav-link" style="padding: 10px 20px; background: #f0f1f3; border-radius: 6px; color: #1a1a2e; text-decoration: none; font-weight: 500;">Согласие на обработку</a>
@@ -34,8 +37,8 @@
 
             <div class="legal-content" style="font-size: 15px; line-height: 1.7; color: #333;">
                 <h3 style="font-size: 18px; font-weight: 600; color: #1a1a2e; margin: 25px 0 12px 0;">1. Общие положения</h3>
-                <p style="margin-bottom: 12px;">1.1. Настоящая Политика конфиденциальности (далее -«Политика») определяет порядок обработки и защиты персональных данных пользователей веб-сайта ритуального бюро «Гревс» (далее -«Сайт»), расположенного по адресу <strong>https://grevs.ru</strong>.</p>
-                <p style="margin-bottom: 12px;">1.2. Оператор персональных данных: <strong>Индивидуальный предприниматель [ФИО]</strong>, ИНН [номер], ОГРНИП [номер], адрес регистрации: г. Ростов-на-Дону.</p>
+                <p style="margin-bottom: 12px;">1.1. Настоящая Политика конфиденциальности (далее -«Политика») определяет порядок обработки и защиты персональных данных пользователей веб-сайта ритуального бюро «Гревс» (далее -«Сайт»), расположенного по адресу <strong>https://grevs-ritual.ru</strong>.</p>
+                <p style="margin-bottom: 12px;">1.2. Оператор персональных данных: <strong>Индивидуальный предприниматель Федотов Алексей Владимирович</strong>, ИНН 78543677113, ОГРНИП 3123212309583, адрес регистрации: г. Ростов-на-Дону, ул. Международная, 3.</p>
                 <p style="margin-bottom: 12px;">1.3. Используя Сайт и оформляя заявку на ритуальные услуги, Пользователь выражает согласие с настоящей Политикой. В случае несогласия Пользователь должен прекратить использование Сайта.</p>
 
                 <h3 style="font-size: 18px; font-weight: 600; color: #1a1a2e; margin: 25px 0 12px 0;">2. Какие данные мы собираем</h3>
@@ -112,7 +115,7 @@
                     <li style="margin-bottom: 6px;">• Требовать досрочного удаления данных (за исключением случаев, предусмотренных законом)</li>
                     <li style="margin-bottom: 6px;">• Обжаловать действия Оператора в Роскомнадзор или суд</li>
                 </ul>
-                <p style="margin-bottom: 12px;">Для реализации своих прав обращайтесь: <strong>support@grevs.ru</strong> или по адресу: г. Ростов-на-Дону, [адрес].</p>
+                <p style="margin-bottom: 12px;">Для реализации своих прав обращайтесь: <strong>support@grevs.ru</strong> или по адресу: г. Ростов-на-Дону, ул. Международная, 3.</p>
 
                 <h3 style="font-size: 18px; font-weight: 600; color: #1a1a2e; margin: 25px 0 12px 0;">10. Заключительные положения</h3>
                 <p style="margin-bottom: 12px;">10.1. Оператор вправе вносить изменения в настоящую Политику. Актуальная версия размещается на данной странице Сайта.</p>
@@ -120,8 +123,8 @@
 
                 <h3 style="font-size: 18px; font-weight: 600; color: #1a1a2e; margin: 25px 0 12px 0;">11. Контакты Оператора</h3>
                 <p style="margin-bottom: 6px;"><strong>Ритуальное бюро «Гревс»</strong></p>
-                <p style="margin-bottom: 6px;">ИНН: [номер], ОГРНИП: [номер]</p>
-                <p style="margin-bottom: 6px;">Адрес: г. Ростов-на-Дону, [адрес]</p>
+                <p style="margin-bottom: 6px;">ИНН: 78543677113, ОГРНИП: 3123212309583</p>
+                <p style="margin-bottom: 6px;">Адрес: г. Ростов-на-Дону, ул. Международная, 3</p>
                 <p style="margin-bottom: 6px;">Телефон: +7 (961) 301-30-40</p>
                 <p style="margin-bottom: 6px;">Email: <a href="mailto:support@grevs.ru" style="color: #1a1a2e;">support@grevs.ru</a></p>
             </div>
@@ -137,7 +140,7 @@
             </p>
 
             <div class="legal-content" style="font-size: 15px; line-height: 1.7; color: #333;">
-                <p style="margin-bottom: 15px;">Настоящим, в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных», я, действуя свободно, своей волей и в своём интересе, даю конкретное, предметное, информированное, сознательное и однозначное согласие <strong>Индивидуальному предпринимателю [ФИО]</strong> (далее -Оператор) на обработку моих персональных данных, указанных при оформлении заявки на сайте ритуального бюро «Гревс» (https://grevs.ru).</p>
+                <p style="margin-bottom: 15px;">Настоящим, в соответствии с Федеральным законом от 27.07.2006 № 152-ФЗ «О персональных данных», я, действуя свободно, своей волей и в своём интересе, даю конкретное, предметное, информированное, сознательное и однозначное согласие <strong>Индивидуальному предпринимателю [ФИО]</strong> (далее -Оператор) на обработку моих персональных данных, указанных при оформлении заявки на сайте ритуального бюро «Гревс» (https://grevs-ritual.ru).</p>
 
                 <h3 style="font-size: 18px; font-weight: 600; color: #1a1a2e; margin: 25px 0 12px 0;">1. Перечень персональных данных, на обработку которых даётся согласие:</h3>
                 <ul style="margin: 0 0 12px 25px; padding: 0;">
@@ -184,7 +187,7 @@
             </p>
 
             <div class="legal-content" style="font-size: 15px; line-height: 1.7; color: #333;">
-                <p style="margin-bottom: 15px;">Настоящее Пользовательское соглашение (далее -«Соглашение») регулирует отношения между <strong>Индивидуальным предпринимателем [ФИО]</strong> (далее -«Исполнитель») и пользователем сервиса (далее -«Пользователь») при использовании веб-сайта ритуального бюро «Гревс» (далее -«Сайт»), расположенного по адресу <strong>https://grevs.ru</strong>.</p>
+                <p style="margin-bottom: 15px;">Настоящее Пользовательское соглашение (далее -«Соглашение») регулирует отношения между <strong>Индивидуальным предпринимателем [ФИО]</strong> (далее -«Исполнитель») и пользователем сервиса (далее -«Пользователь») при использовании веб-сайта ритуального бюро «Гревс» (далее -«Сайт»), расположенного по адресу <strong>https://grevs-ritual.ru</strong>.</p>
 
                 <h3 style="font-size: 18px; font-weight: 600; color: #1a1a2e; margin: 25px 0 12px 0;">1. Общие положения</h3>
                 <p style="margin-bottom: 12px;">1.1. Использование Сайта означает полное и безоговорочное принятие Пользователем настоящего Соглашения.</p>
@@ -246,7 +249,7 @@
 
                 <h3 style="font-size: 18px; font-weight: 600; color: #1a1a2e; margin: 25px 0 12px 0;">8. Реквизиты Исполнителя</h3>
                 <p style="margin-bottom: 6px;"><strong>Ритуальное бюро «Гревс»</strong></p>
-                <p style="margin-bottom: 6px;">ИНН: [номер], ОГРНИП: [номер]</p>
+                <p style="margin-bottom: 6px;">ИНН: 78543677113, ОГРНИП: 3123212309583</p>
                 <p style="margin-bottom: 6px;">Адрес: г. Ростов-на-Дону, [адрес]</p>
                 <p style="margin-bottom: 6px;">Телефон: +7 (961) 301-30-40</p>
                 <p style="margin-bottom: 6px;">Email: <a href="mailto:support@grevs.ru" style="color: #1a1a2e;">support@grevs.ru</a></p>
@@ -262,51 +265,7 @@
     </div>
 </section>
 
-<style>
-    .legal-nav-link:hover {
-        background: #1a1a2e;
-        color: #fff;
-    }
-    
-    .legal-content h3 {
-        margin-top: 30px;
-    }
-    
-    .legal-content ul {
-        list-style-type: none;
-    }
-    
-    .legal-content a {
-        text-decoration: none;
-        border-bottom: 1px dashed #1a1a2e;
-    }
-    
-    .legal-content a:hover {
-        border-bottom-style: solid;
-    }
-    
-    @media (max-width: 768px) {
-        .legal-nav {
-            flex-direction: column;
-            align-items: center;
-        }
-        
-        .legal-document {
-            padding: 20px;
-        }
-    }
-</style>
-
-<script>
-// Плавная прокрутка к якорям
-document.querySelectorAll('.legal-nav-link').forEach(link => {
-    link.addEventListener('click', function(e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-    });
-});
-</script>
+{% block extra_js %}
+    <script src="{% static 'js/legal.js' %}"></script>
+{% endblock %}
 {% endblock %}

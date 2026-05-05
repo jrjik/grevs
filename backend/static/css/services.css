@@ -129,6 +129,7 @@
     margin-bottom: 40px;
 }
 
+/* Кнопка Подробнее в блоке цен */
 .pricing-content {
     max-width: 800px;
     margin: 0 auto;
@@ -136,6 +137,39 @@
     border-radius: 12px;
     padding: 40px;
     border: 1px solid #e0e0e0;
+    position: relative;  /* Для абсолютного позиционирования кнопки */
+}
+
+.pricing-details-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: #1a1a2e;
+    color: #fff;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    position: absolute;
+    right: 40px;
+    bottom: 40px;
+    border: none;
+    cursor: pointer;
+}
+
+.pricing-details-btn:hover {
+    background: #2a2a3e;
+    transform: translateY(-2px);
+}
+
+.pricing-details-btn svg {
+    transition: transform 0.2s ease;
+}
+
+.pricing-details-btn:hover svg {
+    transform: translateX(4px);
 }
 
 .pricing-description {

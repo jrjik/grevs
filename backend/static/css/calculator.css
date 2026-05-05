@@ -266,7 +266,11 @@
     font-size: 12px;
     opacity: 0.7;
 }
-/* Инфо-блок (документы о родстве) - без желтого фона */
+
+/* ================================
+   Инфо-блок (документы о родстве)
+   ================================ */
+
 .info-box {
     background: #fff;
     border: 1px solid #e0e0e0;
@@ -323,32 +327,8 @@
     height: 18px;
 }
 
-/* Подсказка для документов о родстве */
-.info-box-help {
-    background: #f8f9fa;
-    border-left: 3px solid #1a1a2e;
-    padding: 16px 20px;
-    border-radius: 6px;
-    margin-top: 12px;
-}
-
-.info-box-help p {
-    margin: 0 0 8px 0;
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
-}
-
-.info-box-help p:last-child {
-    margin-bottom: 0;
-}
-
-.info-box-help strong {
-    color: #1a1a2e;
-}
-
 /* ================================
-   Услуги - Карточки категорий
+   Услуги - карточки категорий
    ================================ */
 
 .services-section {
@@ -475,14 +455,13 @@
     color: #1a1a2e;
 }
 
-/* Исправление: цена всегда видна */
 .service-option input:checked + .service-option-content .service-price {
     opacity: 1;
     color: #fff;
 }
 
 /* ================================
-   Итого (новый стиль как на контактах)
+   Итого
    ================================ */
 
 .total-section {
@@ -507,9 +486,8 @@
 .total-service-item {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 6px 0;
-    font-size: 14px;
+    align-items: center;
+    padding: 8px 0;
 }
 
 .total-service-name {
@@ -521,6 +499,12 @@
     color: #1a1a2e;
     font-weight: 500;
     margin-left: 20px;
+}
+
+.total-service-check {
+    color: #28a745;
+    font-weight: bold;
+    font-size: 16px;
 }
 
 .total-row {
@@ -563,8 +547,23 @@
     color: #1a1a2e;
 }
 
+.package-name-display {
+    background: #f0f1f3;
+    padding: 16px 20px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.package-name-display h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1a1a2e;
+    margin: 0;
+}
+
 /* ================================
-   Форма заявки (стиль как на контактах)
+   Форма заявки
    ================================ */
 
 .form-section {
@@ -661,123 +660,6 @@
     background: #ccc;
     cursor: not-allowed;
     transform: none;
-}
-
-.submit-hint {
-    text-align: center;
-    color: #666;
-    font-size: 14px;
-    margin-top: 12px;
-    padding: 12px;
-    background: #fff3cd;
-    border-radius: 6px;
-}
-
-.submit-hint p {
-    margin: 0;
-}
-
-/* ================================
-   Адаптив
-   ================================ */
-
-@media (max-width: 768px) {
-    .page-title {
-        font-size: 24px;
-    }
-
-    .tabs {
-        flex-direction: column;
-    }
-
-    .tab-button {
-        width: 100%;
-    }
-
-    .autopsy-options {
-        flex-direction: column;
-    }
-
-    .services-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .total-content,
-    .form-section {
-        padding: 20px;
-    }
-    
-    .info-box {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .info-box-content {
-        width: 100%;
-    }
-}
-
-/* ================================
-   Таблица табличек на могилу
-   ================================ */
-
-.tablets-table {
-    margin-top: 16px;
-}
-
-.tablets-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
-    border-bottom: 2px solid #e0e0e0;
-}
-
-.tablets-column-header {
-    text-align: center;
-}
-
-.tablets-type {
-    display: inline-block;
-    padding: 8px 20px;
-    background: #f0f1f3;
-    border-radius: 6px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #1a1a2e;
-}
-
-.tablets-columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-}
-
-.tablets-column {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.tablets-column .service-option {
-    margin-bottom: 0;
-}
-
-.tablets-column .service-option-content {
-    padding: 8px 12px;
-}
-
-/* Адаптив для табличек */
-@media (max-width: 640px) {
-    .tablets-header,
-    .tablets-columns {
-        grid-template-columns: 1fr;
-    }
-    
-    .tablets-column-header {
-        margin-bottom: 8px;
-    }
 }
 
 /* ================================
@@ -937,23 +819,12 @@
 .package-button.selected {
     background: #1a1a2e;
     color: #fff;
+    border-color: #1a1a2e;
 }
 
-/* Адаптив для пакетов */
-@media (max-width: 1024px) {
-    .packages-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media (max-width: 768px) {
-    .packages-title {
-        font-size: 24px;
-    }
-    
-    .package-price {
-        font-size: 24px;
-    }
+.package-button.selected:hover {
+    background: #dc3545;
+    border-color: #dc3545;
 }
 
 /* ================================
@@ -993,187 +864,6 @@
     font-size: 14px;
     font-weight: 400;
     color: #666;
-}
-
-@media (max-width: 768px) {
-    .section-divider {
-        margin: 40px 0;
-    }
-    
-    .section-divider-text {
-        font-size: 14px;
-        padding: 0 16px;
-    }
-}
-
-/* ================================
-   Выбранный пакет
-   ================================ */
-
-.selected-package-info {
-    background: #fff;
-    border: 2px solid #1a1a2e;
-    border-radius: 12px;
-    padding: 24px;
-    margin-bottom: 30px;
-}
-
-.selected-package-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid #e0e0e0;
-}
-
-.selected-package-header h3 {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1a1a2e;
-    margin: 0;
-}
-
-.remove-package-btn {
-    width: 32px;
-    height: 32px;
-    padding: 0;
-    border: 2px solid #dc3545;
-    background: #fff;
-    color: #dc3545;
-    border-radius: 6px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s ease;
-}
-
-.remove-package-btn:hover {
-    background: #dc3545;
-    color: #fff;
-}
-
-.remove-package-btn svg {
-    width: 18px;
-    height: 18px;
-}
-
-.selected-package-services {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 16px 0;
-}
-
-.selected-package-services li {
-    padding: 8px 0;
-    font-size: 14px;
-    color: #333;
-    padding-left: 24px;
-    position: relative;
-}
-
-.selected-package-services li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: #28a745;
-    font-weight: bold;
-}
-
-.selected-package-price {
-    font-size: 18px;
-    font-weight: 700;
-    color: #1a1a2e;
-    text-align: right;
-    padding-top: 16px;
-    border-top: 1px solid #e0e0e0;
-}
-
-/* ================================
-   Отключенная секция услуг
-   ================================ */
-
-.services-section.disabled {
-    opacity: 0.4;
-    pointer-events: none;
-    position: relative;
-}
-
-.services-section.disabled::after {
-    content: 'Выбран готовый пакет';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: rgba(26, 26, 46, 0.9);
-    color: #fff;
-    padding: 16px 32px;
-    border-radius: 8px;
-    font-size: 18px;
-    font-weight: 600;
-    z-index: 10;
-    pointer-events: none;
-}
-
-/* ================================
-   Кнопка пакета выбрана
-   ================================ */
-
-.package-button.selected {
-    background: #1a1a2e;
-    color: #fff;
-    border-color: #1a1a2e;
-}
-
-.package-button.selected:hover {
-    background: #dc3545;
-    border-color: #dc3545;
-}
-
-/* Адаптив */
-@media (max-width: 768px) {
-    .selected-package-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-    
-    .selected-package-price {
-        text-align: left;
-    }
-}
-/* ================================
-   Название пакета в итоговой стоимости
-   ================================ */
-
-.package-name-display {
-    background: #f0f1f3;
-    padding: 16px 20px;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    text-align: center;
-}
-
-.package-name-display h3 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #1a1a2e;
-    margin: 0;
-}
-
-.total-service-check {
-    color: #28a745;
-    font-weight: bold;
-    font-size: 16px;
-}
-
-/* Скрываем цену для услуг пакета */
-.total-service-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 0;
 }
 
 /* ================================
@@ -1217,9 +907,91 @@
     border-bottom-style: solid;
 }
 
+/* ================================
+   Адаптив
+   ================================ */
+
+@media (max-width: 1024px) {
+    .packages-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 768px) {
+    .page-title {
+        font-size: 24px;
+    }
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    .tab-button {
+        width: 100%;
+    }
+
+    .autopsy-options {
+        flex-direction: column;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .total-content,
+    .form-section {
+        padding: 20px;
+    }
+    
+    .info-box {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .info-box-content {
+        width: 100%;
+    }
+
+    .packages-title {
+        font-size: 24px;
+    }
+    
+    .package-price {
+        font-size: 24px;
+    }
+
+    .section-divider {
+        margin: 40px 0;
+    }
+    
+    .section-divider-text {
+        font-size: 14px;
+        padding: 0 16px;
+    }
+
     .consent-label {
         flex-direction: row;
         align-items: flex-start;
+    }
+
+    .selected-package-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .selected-package-price {
+        text-align: left;
+    }
+}
+
+@media (max-width: 640px) {
+    .tablets-header,
+    .tablets-columns {
+        grid-template-columns: 1fr;
+    }
+    
+    .tablets-column-header {
+        margin-bottom: 8px;
     }
 }

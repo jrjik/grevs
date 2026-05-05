@@ -29,3 +29,4 @@ urlpatterns = [
     path('services/', views.services, name='services'),
     path('privacy/', views.privacy, name='privacy'),
 ]
+ 

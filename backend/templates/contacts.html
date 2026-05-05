@@ -164,7 +164,6 @@
         <h2 class="section-title">Частые вопросы</h2>
 
         <div class="faq-grid">
-            <!-- Вопрос 1 -->
             <div class="faq-card">
                 <div class="faq-content">
                     <p class="faq-question">Как быстро вы можете приехать?</p>
@@ -172,7 +171,6 @@
                 </div>
             </div>
 
-            <!-- Вопрос 2 -->
             <div class="faq-card">
                 <div class="faq-content">
                     <p class="faq-question">Какие документы нужны для организации похорон?</p>
@@ -180,7 +178,6 @@
                 </div>
             </div>
 
-            <!-- Вопрос 3 -->
             <div class="faq-card">
                 <div class="faq-content">
                     <p class="faq-question">Можно ли организовать похороны в кредит?</p>
@@ -188,7 +185,6 @@
                 </div>
             </div>
 
-            <!-- Вопрос 4 -->
             <div class="faq-card">
                 <div class="faq-content">
                     <p class="faq-question">Организуете ли вы поминальные обеды?</p>
@@ -273,7 +269,6 @@
 
                 this.submitting = true;
 
-                // Подготовка данных для отправки
                 const callbackData = {
                     client_name: this.formData.name.trim(),
                     phone: this.formData.phone.replace(/\D/g, ''),
@@ -295,7 +290,6 @@
                     const result = await response.json();
 
                     if (result.status === 'success') {
-                        // Показываем экран успеха
                         this.submitSuccess = true;
                     } else {
                         alert('Ошибка отправки: ' + result.message);

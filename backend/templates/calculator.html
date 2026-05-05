@@ -28,7 +28,6 @@
             <button @click="resetForm()" class="btn btn-primary">Новая заявка</button>
         </div>
 
-        <!-- Основной контент -->
         <div x-show="!loading && !submitSuccess" style="display: none;">
             
             <!-- Переключатель вкладок -->
@@ -227,7 +226,6 @@
                 <div class="services-grid">
                     <template x-for="category in filteredCategories" :key="category.id">
                         <div class="category-card">
-                            <!-- Иконка категории -->
                             <div class="category-icon">
                                 <template x-if="category.name.includes('Гроб')">
                                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -340,7 +338,6 @@
             <!-- Итого с детализацией -->
             <div class="total-section" id="totalSection">
                 <div class="total-content">
-                    <!-- Название выбранного пакета -->
                     <div x-show="selectedPackage" class="package-name-display" style="display: none;">
                         <h3>Выбранный пакет: <span x-text="getSelectedPackageName()"></span></h3>
                     </div>
@@ -356,7 +353,6 @@
                         </template>
                     </div>
                     
-                    <!-- Разделитель -->
                     <div class="total-divider" x-show="getSelectedServicesList().length > 0"></div>
                     
                     <!-- Вскрытие -->
@@ -389,7 +385,7 @@
                     <textarea id="client_comment" x-model="formData.comment" class="form-input form-textarea" placeholder="Дополнительная информация..." rows="3"></textarea>
                 </div>
                 
-                <!-- Чекбокс согласия на обработку ПДн (ПЕРЕМЕСТИТЬ СЮДА) -->
+                <!-- Чекбокс согласия на обработку ПДн -->
                 <div class="form-row consent-row">
                     <label class="consent-label">
                         <input type="checkbox" x-model="formData.consent" class="consent-checkbox">
@@ -436,7 +432,6 @@ function toggleRelativeHelp(event) {
     }
 }
 
-// Закрыть подсказки при клике вне их
 document.addEventListener('click', function() {
     const autopsyHelp = document.getElementById('autopsyHelp');
     if (autopsyHelp) {
