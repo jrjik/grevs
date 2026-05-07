@@ -5,7 +5,11 @@
 {% block description %}Контакты похоронного бюро Гревс в Ростове-на-Дону. Адрес, телефоны, режим работы. Круглосуточная помощь.{% endblock %}
 {% block keywords %}контакты ритуального бюро, похоронное бюро Ростов, адрес морг{% endblock %}
 
+{% block extra_head %}
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+{% endblock %}
 {% block content %}
+
 <section class="section contacts-page">
     <div class="container">
         <div class="contacts-grid">
@@ -16,7 +20,6 @@
                 </p>
 
                 <div x-data="contactForm()">
-                    <!-- Экран успеха -->
                     <div x-show="submitSuccess" class="success-message" style="display: none;">
                         <div class="success-icon">✓</div>
                         <h2 class="success-title">Заявка отправлена!</h2>
@@ -24,7 +27,6 @@
                         <button @click="resetForm()" class="btn btn-primary">Новая заявка</button>
                     </div>
 
-                    <!-- Форма -->
                     <form x-show="!submitSuccess" class="contact-form" @submit.prevent="submitForm()">
                         <div class="form-group">
                             <label for="name" class="form-label">Ваше имя</label>
@@ -87,7 +89,6 @@
                 <h2 class="info-title">Контактная информация</h2>
 
                 <div class="contact-cards">
-                    <!-- Телефон -->
                     <div class="contact-card">
                         <div class="contact-icon">
                             <svg class="icon-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -103,7 +104,6 @@
                         </div>
                     </div>
 
-                    <!-- Режим работы -->
                     <div class="contact-card">
                         <div class="contact-icon">
                             <svg class="icon-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -117,7 +117,6 @@
                         </div>
                     </div>
 
-                    <!-- Email -->
                     <div class="contact-card">
                         <div class="contact-icon">
                             <svg class="icon-placeholder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -146,7 +145,6 @@
                     </div>
                 </div>
 
-                <!-- Тёмная карточка 24/7 -->
                 <div class="service-247-card">
                     <h3 class="service-247-title">Круглосуточная служба</h3>
                     <p class="service-247-text">
@@ -195,134 +193,8 @@
     </div>
 </section>
 
-<script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-<script>
-    function contactForm() {
-        return {
-            submitSuccess: false,  
-            
-            formData: {
-                name: '',
-                phone: '',
-                message: '',
-                consent: false  
-            },
-            errors: {
-                name: '',
-                phone: '',
-                consent: ''
-            },
-            submitting: false,
+{% block extra_js %}
+    <script src="{% static 'js/contacts.js' %}"></script>
+{% endblock %}
 
-            formatPhone() {
-                const value = this.formData.phone.replace(/\D/g, '');
-                if (value.length === 0) {
-                    this.formData.phone = '';
-                    return;
-                }
-
-                let formatted = '+7';
-                if (value[0] === '8') {
-                    value[0] = '7';
-                }
-
-                if (value.length > 1) formatted += ' (' + value.slice(1, 4);
-                if (value.length > 4) formatted += ') ' + value.slice(4, 7);
-                if (value.length > 7) formatted += '-' + value.slice(7, 9);
-                if (value.length > 9) formatted += '-' + value.slice(9, 11);
-
-                this.formData.phone = formatted;
-            },
-
-            validate() {
-                let isValid = true;
-
-                if (!this.formData.name.trim()) {
-                    this.errors.name = 'Введите ваше имя';
-                    isValid = false;
-                } else {
-                    this.errors.name = '';
-                }
-
-                const phoneDigits = this.formData.phone.replace(/\D/g, '');
-                if (phoneDigits.length < 11) {
-                    this.errors.phone = 'Введите полный номер телефона';
-                    isValid = false;
-                } else {
-                    this.errors.phone = '';
-                }
-
-                if (!this.formData.consent) {
-                    this.errors.consent = 'Необходимо согласие на обработку персональных данных';
-                    isValid = false;
-                } else {
-                    this.errors.consent = '';
-                }
-
-                return isValid;
-            },
-
-            async submitForm() {
-                if (!this.validate()) {
-                    return;
-                }
-
-                this.submitting = true;
-
-                const callbackData = {
-                    client_name: this.formData.name.trim(),
-                    phone: this.formData.phone.replace(/\D/g, ''),
-                    message: this.formData.message.trim(),
-                    consent_given: this.formData.consent,
-                    source: 'contacts'
-                };
-
-                try {
-                    const response = await fetch('/api/orders/callback/', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRFToken': this.getCookie('csrftoken')
-                        },
-                        body: JSON.stringify(callbackData)
-                    });
-
-                    const result = await response.json();
-
-                    if (result.status === 'success') {
-                        this.submitSuccess = true;
-                    } else {
-                        alert('Ошибка отправки: ' + result.message);
-                    }
-                } catch (error) {
-                    console.error('Ошибка отправки заявки:', error);
-                    alert('Не удалось отправить заявку. Попробуйте позже.');
-                } finally {
-                    this.submitting = false;
-                }
-            },
-
-            resetForm() {
-                this.submitSuccess = false;
-                this.formData = { name: '', phone: '', message: '', consent: false };
-                this.errors = { name: '', phone: '', consent: '' };
-            },
-
-            getCookie(name) {
-                let cookieValue = null;
-                if (document.cookie && document.cookie !== '') {
-                    const cookies = document.cookie.split(';');
-                    for (let i = 0; i < cookies.length; i++) {
-                        const cookie = cookies[i].trim();
-                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
-                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
-                            break;
-                        }
-                    }
-                }
-                return cookieValue;
-            }
-        }
-    }
-</script>
 {% endblock %}

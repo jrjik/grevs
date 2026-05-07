@@ -49,7 +49,6 @@ class LeadAdmin(admin.ModelAdmin):
     
     def package_name_display(self, obj):
         """Отображение названия пакета"""
-        # Проверяем selected_services на наличие пакета
         if not obj.selected_services:
             return "—"
         
@@ -69,7 +68,6 @@ class LeadAdmin(admin.ModelAdmin):
 
     def package_info_display(self, obj):
         """Простое текстовое отображение информации о пакете"""
-        # Ищем метку пакета
         if not obj.selected_services:
             return "Пакет не выбран"
         
@@ -88,7 +86,6 @@ class LeadAdmin(admin.ModelAdmin):
             'extended': 'Расширенный пакет'
         }
         
-        # Определяем тип похорон (преобразуем в burial/cremation)
         funeral_type = obj.funeral_type
         if funeral_type == 'cremation':
             type_key = 'cremation'
@@ -97,7 +94,6 @@ class LeadAdmin(admin.ModelAdmin):
             type_key = 'burial'
             type_display = 'Похороны'
         
-        # Состав пакетов
         package_services = {
             'basic': {
                 'burial': [
@@ -179,10 +175,8 @@ class LeadAdmin(admin.ModelAdmin):
             }
         }
         
-        # Получаем список услуг (используем type_key вместо funeral_type)
         services_list = package_services.get(package_name, {}).get(type_key, [])
         
-        # Формируем текст
         result = []
         result.append(f"Пакет: {package_display_names.get(package_name, package_name)}")
         result.append(f"Тип: {type_display}")
@@ -192,7 +186,6 @@ class LeadAdmin(admin.ModelAdmin):
         for idx, service_name in enumerate(services_list, 1):
             result.append(f"{idx}. {service_name}")
         
-        # Добавляем цену (тоже используем type_key)
         package_prices = {
             'burial': {'basic': 35000, 'optimal': 58000, 'extended': 95000},
             'cremation': {'basic': 28000, 'optimal': 45000, 'extended': 75000}
@@ -204,10 +197,8 @@ class LeadAdmin(admin.ModelAdmin):
         
         return "\n".join(result)
         
-        # Получаем список услуг
         services_list = package_services.get(package_name, {}).get(funeral_type, [])
         
-        # Формируем текст
         result = []
         result.append(f"Пакет: {package_display_names.get(package_name, package_name)}")
         result.append(f"Тип: {type_display}")
@@ -236,7 +227,6 @@ class LeadAdmin(admin.ModelAdmin):
         if not obj.selected_services:
             return "Услуги не выбраны"
 
-        # Проверяем, выбран ли пакет
         package_name = None
         individual_services = []
         
@@ -248,7 +238,6 @@ class LeadAdmin(admin.ModelAdmin):
         
         result = []
         
-        # Если выбран пакет
         if package_name:
             package_names = {
                 'basic': 'Базовый',
@@ -258,7 +247,6 @@ class LeadAdmin(admin.ModelAdmin):
             result.append(f"Выбран пакет: {package_names.get(package_name, package_name)}")
             result.append(f"Подробный состав смотрите в секции выше 'Информация о пакете'")
         
-        # Показываем индивидуальные услуги (если есть)
         if individual_services:
             from services.models import Service
             services = Service.objects.filter(id__in=individual_services)
