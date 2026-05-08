@@ -8,3 +8,8 @@ __pycache__
 *.pyd
 .vscode
 staticfiles
+*.pem
+*.key
+*.crt
+nginx/ssl/
+ssl/
