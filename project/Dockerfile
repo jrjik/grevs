@@ -19,9 +19,13 @@ RUN pip install gunicorn psycopg2-binary
 
 COPY . .
 
-# user без root-прав
 RUN adduser --disabled-password --gecos '' appuser
+
+RUN mkdir -p /app/staticfiles /app/media
 RUN chown -R appuser:appuser /app
+
+RUN python manage.py collectstatic --noinput 
+
 USER appuser
 
 EXPOSE 8000
