@@ -17,9 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from pages import views
+from decouple import config
+
+ADMIN_URL = config('ADMIN_URL')
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path(f'{ADMIN_URL}/', admin.site.urls),
     path('', include('services.urls')),
     path('api/', include('services.urls')),
     path('api/orders/', include('orders.urls')),
