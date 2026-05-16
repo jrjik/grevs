@@ -1123,3 +1123,151 @@ a {
     content: none !important;
     display: none !important;
 }
+
+/* Кнопка мобильного меню (гамбургер) */
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: #fff;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+}
+
+/* Анимация гамбургера в крестик */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(7px, 7px);
+}
+
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -7px);
+}
+
+/* Адаптив для хедера */
+@media (max-width: 768px) {
+    .mobile-menu-toggle {
+        display: flex;
+    }
+    
+    .header-nav {
+        position: fixed;
+        top: 73px;
+        left: 0;
+        right: 0;
+        background: #1a1a2e;
+        flex-direction: column;
+        padding: 20px;
+        gap: 0;
+        transform: translateY(-150%);
+        transition: transform 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        z-index: 1000;
+    }
+    
+    .header-nav.active {
+        transform: translateY(0);
+    }
+    
+    .header-nav .nav-link {
+        padding: 16px 20px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    .header-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    .header-nav .nav-link:hover {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* Скрываем логотип на очень маленьких экранах для экономии места */
+@media (max-width: 380px) {
+    .logo-subtitle {
+        display: none;
+    }
+    
+    .logo-name {
+        font-size: 18px;
+    }
+}
+
+/* Скрываем/показываем элементы в футере на мобильных */
+.footer-mobile-hide {
+    display: block;
+}
+
+.footer-mobile-only {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .footer-mobile-hide {
+        display: none;
+    }
+    
+    .footer-mobile-only {
+        display: block;
+    }
+    
+    /* Уменьшаем шрифты в футере */
+    .footer-description {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+    
+    .footer-contact-text,
+    .footer-contact-link {
+        font-size: 13px;
+    }
+    
+    .footer-column-title {
+        font-size: 15px;
+    }
+    
+    .footer-nav-link {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-bottom: 32px;
+    }
+    
+    .footer-description {
+        font-size: 12px;
+    }
+    
+    .footer-contact-text,
+    .footer-contact-link {
+        font-size: 12px;
+    }
+    
+    .footer-logo-name {
+        font-size: 18px;
+    }
+    
+    .footer-logo-subtitle {
+        font-size: 12px;
+    }
+}

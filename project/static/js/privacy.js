@@ -1,11 +1,25 @@
-// Плавная прокрутка к якорям
+// Плавная прокрутка к якорям с учетом высоты хедера
 document.addEventListener('DOMContentLoaded', function() {
+    const headerHeight = 73; 
+    const additionalOffset = 20; 
+    
     document.querySelectorAll('.legal-nav-link').forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
+            const targetId = this.getAttribute('href');
+            const target = document.querySelector(targetId);
+            
             if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = targetPosition - headerHeight - additionalOffset;
+                
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Обновляем URL без прокрутки
+                history.pushState(null, null, targetId);
             }
         });
     });

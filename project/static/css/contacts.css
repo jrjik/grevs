@@ -422,3 +422,258 @@
         padding: 0 16px;
     }
 }
+/* ================================
+   Мобильная адаптация (360px - 480px)
+   ================================ */
+
+@media (max-width: 480px) {
+    /* Общие отступы */
+    .contacts-page {
+        padding: 40px 0;
+    }
+    
+    .container {
+        padding: 0 12px;
+    }
+
+    /* Сетка - одна колонка */
+    .contacts-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contacts-form-section {
+        max-width: 100%;
+    }
+
+    /* Заголовок */
+    .contacts-page .page-title {
+        font-size: 32px;
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+    
+    .page-description {
+        font-size: 14px;
+        margin-bottom: 24px;
+        line-height: 1.5;
+    }
+
+    /* Форма */
+    .contact-form {
+        gap: 18px;
+    }
+    
+    .form-group {
+        gap: 6px;
+    }
+    
+    .form-label {
+        font-size: 13px;
+    }
+    
+    .form-input {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+    
+    .form-textarea {
+        min-height: 100px;
+    }
+    
+    .submit-btn {
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+
+    /* Правая колонка */
+    .info-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    .contact-cards {
+        gap: 12px;
+    }
+    
+    .contact-card {
+        padding: 16px;
+        gap: 14px;
+    }
+    
+    .contact-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+    
+    .icon-placeholder {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .contact-label {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+    
+    .contact-text {
+        font-size: 14px;
+        line-height: 1.4;
+    }
+    
+    .contact-link {
+        font-size: 14px;
+    }
+    
+    .contact-values {
+        gap: 2px;
+    }
+
+    /* Карточка 24/7 */
+    .service-247-card {
+        padding: 20px;
+    }
+    
+    .service-247-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .service-247-text {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Секция FAQ */
+    .faq-section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 26px;
+        margin-bottom: 32px;
+    }
+    
+    .faq-grid {
+        gap: 12px;
+        padding: 0 12px;
+    }
+    
+    .faq-card {
+        padding: 20px;
+    }
+    
+    .faq-question {
+        font-size: 15px;
+        line-height: 1.4;
+    }
+    
+    .faq-answer {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Чекбокс согласия */
+    .consent-label {
+        font-size: 13px;
+        gap: 8px;
+        line-height: 1.4;
+    }
+    
+    .consent-checkbox {
+        width: 16px;
+        height: 16px;
+        min-width: 16px;
+        margin-top: 1px;
+    }
+    
+    .consent-link {
+        word-break: break-word;
+    }
+    
+    .error-message {
+        font-size: 11px;
+    }
+
+    /* Экран успеха */
+    .success-message {
+        padding: 40px 24px;
+    }
+    
+    .success-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 28px;
+        margin-bottom: 16px;
+    }
+    
+    .success-title {
+        font-size: 18px;
+        margin-bottom: 8px;
+    }
+    
+    .success-text {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+    
+    .btn-primary {
+        padding: 12px 24px;
+        font-size: 14px;
+    }
+}
+
+/* ================================
+   Очень маленькие экраны (320px - 360px)
+   ================================ */
+
+@media (max-width: 360px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .info-title {
+        font-size: 20px;
+    }
+    
+    .contact-card {
+        padding: 14px;
+    }
+    
+    .faq-card {
+        padding: 16px;
+    }
+    
+    .section-title {
+        font-size: 22px;
+    }
+}
+
+/* ================================
+   Улучшения для тач-интерфейса
+   ================================ */
+
+@media (max-width: 480px) {
+    /* Увеличенные зоны клика */
+    .form-input,
+    .form-textarea,
+    .submit-btn {
+        min-height: 44px;
+    }
+    
+    .contact-card {
+        min-height: auto;
+    }
+    
+    /* Предотвращение случайных нажатий */
+    .form-input,
+    .contact-card {
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+}
