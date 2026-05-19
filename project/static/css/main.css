@@ -1271,3 +1271,280 @@ a {
         font-size: 12px;
     }
 }
+
+
+/* ================================
+   Главная страница - Мобильная адаптация (360px - 480px)
+   ================================ */
+
+@media (max-width: 480px) {
+    /* Hero Section */
+    .hero-section {
+        padding: 60px 0 40px 0;
+    }
+    
+    .hero-grid {
+        grid-template-columns: 1fr; /* Одна колонка */
+        gap: 40px;
+    }
+    
+    .hero-title {
+        font-size: 32px; /* Уменьшаем с 50px */
+        line-height: 1.2;
+        margin-bottom: 16px;
+    }
+    
+    .hero-description {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+    
+    .hero-buttons {
+        flex-direction: column; /* Кнопки друг под другом */
+        gap: 12px;
+    }
+    
+    .btn {
+        width: 100%; /* Кнопки на всю ширину */
+        justify-content: center;
+        padding: 14px 24px;
+    }
+    
+    .hero-phone {
+        font-size: 13px;
+        text-align: center;
+    }
+    
+    .hero-image {
+        order: -1; /* Картинка сверху на мобильных */
+        max-width: 100%;
+    }
+
+    /* Trust Section */
+    .trust-section {
+        padding: 60px 0;
+    }
+    
+    .section-title {
+        font-size: 28px; /* Уменьшаем с 36px */
+    }
+    
+    .section-subtitle {
+        font-size: 15px;
+    }
+    
+    .trust-grid {
+        grid-template-columns: 1fr; /* Одна колонка */
+        gap: 20px;
+    }
+    
+    .trust-card {
+        padding: 24px 20px;
+    }
+    
+    .trust-icon {
+        width: 40px;
+        height: 40px;
+        margin-bottom: 16px;
+    }
+    
+    .trust-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    
+    .trust-card-title {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+    
+    .trust-card-text {
+        font-size: 14px;
+    }
+
+    /* Services Section (на главной) */
+    #services.services-section {
+        padding: 25px 0 !important;
+    }
+    
+    #services.services-section .services-grid {
+        grid-template-columns: 1fr; /* Одна колонка */
+        gap: 40px;
+    }
+    
+    .services-content {
+        max-width: 100%;
+        justify-self: center;
+    }
+    
+    .section-description {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+    
+    .services-list {
+        gap: 12px;
+        margin-bottom: 24px;
+    }
+    
+    .service-item {
+        font-size: 14px;
+    }
+    
+    .check-icon {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .services-image {
+        max-width: 100%;
+        justify-self: center;
+    }
+
+    /* How We Work */
+    .how-section {
+        padding: 20px 0;
+    }
+    
+    .how-grid {
+        grid-template-columns: 1fr; 
+        gap: 32px;
+        margin-top: 40px;
+    }
+    
+    .how-step {
+        padding: 0;
+    }
+    
+    .step-number {
+        font-size: 36px; 
+        margin-bottom: 12px;
+    }
+    
+    .step-title {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+    
+    .step-text {
+        font-size: 14px;
+    }
+
+    /* CTA Section */
+    .cta-section {
+        padding: 60px 0;
+    }
+    
+    .cta-title {
+        font-size: 26px; 
+        margin-bottom: 14px;
+    }
+    
+    .cta-text {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .btn-white,
+    .btn-outline-white {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+    }
+}
+
+/* Очень маленькие экраны (320px - 360px) */
+@media (max-width: 360px) {
+    .hero-title {
+        font-size: 25px;
+    }
+    
+    .section-title {
+        font-size: 24px;
+    }
+    
+    .trust-card,
+    .service-card {
+        padding: 20px 16px;
+    }
+    
+    .step-number {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn,
+    .form-input,
+    .submit-btn {
+        min-height: 44px; 
+    }
+    
+
+    .trust-card:hover,
+    .service-card:hover {
+        transform: none;
+    }
+    
+    .btn:hover {
+        transform: none;
+    }
+}
+
+@media (max-width: 480px) {
+    #services.services-section {
+        background: #f8f9fa;
+        margin: 0 12px;
+        border-radius: 12px;
+        padding: 40px 0 !important; 
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        overflow: hidden;
+    }
+
+    #services.services-section .container {
+        padding: 0 20px; 
+    }
+
+    #services.services-section .section-header {
+        margin-bottom: 24px; 
+    }
+
+    #services.services-section .section-title {
+        font-size: 22px; 
+        line-height: 1.3;
+    }
+
+    #services.services-section .section-description {
+        font-size: 15px;
+        line-height: 1.6;
+        margin-bottom: 24px; 
+        color: #555;
+    }
+
+
+    #services.services-section .services-list {
+        margin-bottom: 28px; 
+        gap: 14px; 
+    }
+
+    #services.services-section .service-item {
+        font-size: 15px; 
+        line-height: 1.5;
+        gap: 10px;
+    }
+
+    #services.services-section .btn {
+        margin-bottom: 20px;
+    }
+
+    #services.services-section .services-image {
+        margin-top: 8px;
+        border-radius: 8px;
+    }
+}

@@ -319,3 +319,197 @@
     width: 20px;
     height: 20px;
 }
+
+
+/* ================================
+   Мобильная адаптация (360px - 480px)
+   ================================ */
+
+@media (max-width: 480px) {
+    /* Заголовок */
+    .services-header {
+        padding: 40px 0 30px 0;
+    }
+    
+    .page-title {
+        font-size: 28px;
+        margin-bottom: 12px;
+    }
+    
+    .page-subtitle {
+        font-size: 15px;
+        line-height: 1.5;
+    }
+
+    /* Сетка услуг - 1 колонка */
+    .services-catalog {
+        padding: 40px 0;
+    }
+    
+    .services-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .service-card {
+        padding: 24px 20px;
+    }
+    
+    .service-icon {
+        width: 48px;
+        height: 48px;
+        margin-bottom: 20px;
+    }
+    
+    .service-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .service-title {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+    
+    .service-price {
+        font-size: 16px;
+        margin-bottom: 12px;
+    }
+    
+    .service-description {
+        font-size: 14px;
+        margin-bottom: 16px;
+    }
+    
+    .service-list li {
+        font-size: 13px;
+        padding: 5px 0;
+        padding-left: 18px;
+    }
+
+    /* Ценовая политика - убираем абсолютное позиционирование */
+    .pricing-section {
+        padding: 60px 0;
+    }
+    
+    .pricing-content {
+        padding: 24px 20px;
+        position: relative; /* Оставляем, но кнопка будет в потоке */
+    }
+    
+    .pricing-description {
+        font-size: 14px;
+        margin-bottom: 24px;
+        line-height: 1.6;
+    }
+    
+    .pricing-item {
+        flex-direction: column; /* Вертикально на мобильных */
+        align-items: flex-start;
+        gap: 8px;
+        padding: 16px 0;
+    }
+    
+    .pricing-name {
+        font-size: 15px;
+    }
+    
+    .pricing-value {
+        font-size: 16px;
+        font-weight: 700;
+    }
+    
+    .pricing-note {
+        font-size: 12px;
+        margin-top: 16px;
+        line-height: 1.5;
+    }
+    
+    /* Кнопка Подробнее - в потоке, не абсолютно */
+    .pricing-details-btn {
+        position: static; /* Убираем абсолютное позиционирование */
+        display: inline-flex;
+        margin-top: 20px;
+        width: 100%; /* На всю ширину */
+        justify-content: center;
+        padding: 14px 20px;
+    }
+    
+    .pricing-details-btn:hover {
+        transform: none; /* Убираем анимацию на мобильных */
+    }
+
+    /* Как мы работаем - вертикальная сетка */
+    .how-section {
+        padding: 60px 0;
+    }
+    
+    .section-header {
+        margin-bottom: 40px;
+    }
+    
+    .how-grid {
+        grid-template-columns: 1fr; /* Одна колонка */
+        gap: 32px;
+    }
+    
+    .how-step {
+        padding: 0;
+    }
+    
+    .step-number {
+        font-size: 36px;
+        margin-bottom: 12px;
+    }
+    
+    .step-title {
+        font-size: 17px;
+        margin-bottom: 10px;
+    }
+    
+    .step-text {
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* CTA секция */
+    .cta-section {
+        padding: 60px 0;
+    }
+    
+    .cta-title {
+        font-size: 28px;
+        margin-bottom: 14px;
+    }
+    
+    .cta-text {
+        font-size: 15px;
+        margin-bottom: 24px;
+    }
+    
+    .btn-white {
+        padding: 14px 28px;
+        font-size: 15px;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Очень маленькие экраны (320px - 360px) */
+@media (max-width: 360px) {
+    .page-title {
+        font-size: 24px;
+    }
+    
+    .service-card {
+        padding: 20px 16px;
+    }
+    
+    .pricing-content {
+        padding: 20px 16px;
+    }
+    
+    .step-number {
+        font-size: 32px;
+    }
+}
