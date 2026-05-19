@@ -19,6 +19,16 @@ services:
       timeout: 5s
       retries: 5
 
+  redis:
+    image: redis:7-alpine
+    container_name: grevs_redis
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    restart: unless-stopped
+    networks:
+      - grevs_network
+
   web:
     build:
       context: ./project
@@ -66,3 +76,5 @@ volumes:
   postgres_data:
   static_volume:
   media_volume:
+  redis_data:
+  

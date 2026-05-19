@@ -3,9 +3,7 @@ from typing import Optional
 import redis
 from decouple import config
 
-# ========================
-# 🔌 Подключение к Redis
-# ========================
+# redis
 REDIS_HOST = config('REDIS_HOST', default='localhost')
 REDIS_PORT = config('REDIS_PORT', default=6379, cast=int)
 REDIS_DB = config('REDIS_DB', default=0, cast=int)
@@ -19,17 +17,13 @@ except redis.ConnectionError as e:
     print("💡 Запустите: docker-compose up -d")
     exit(1)
 
-# ========================
-# 🧠 Перечисления
-# ========================
+
 class UserState(Enum):
     IDLE = 'idle'
     WAITING_FOR_MANAGER = 'waiting_for_manager'
     MANAGER_MODE = 'manager_mode'
 
-# ========================
-# 👤 1. Состояния пользователей (Redis String)
-# ========================
+# user states
 def get_state(user_id: int) -> UserState:
     val = r.get(f"user:state:{user_id}")
     return UserState(val) if val else UserState.IDLE
@@ -47,16 +41,14 @@ def is_manager(user_id: int) -> bool:
     from config import MANAGER_VK_ID
     return str(user_id) == str(MANAGER_VK_ID)
 
-# ========================
-# 💬 2. Активные диалоги (Redis Hash)
-# ========================
+# active dialogs
 def get_conversation_partner(manager_id: int) -> Optional[int]:
     """Получить ID пользователя, с которым говорит менеджер"""
     val = r.hget("active_chats", str(manager_id))
     return int(val) if val else None
 
 def get_active_user(manager_id: int) -> Optional[int]:
-    """Кто сейчас говорит с менеджером (алиас)"""
+    """Кто сейчас говорит с менеджером """
     return get_conversation_partner(manager_id)
 
 def set_active_user(manager_id: int, user_id: int):
@@ -83,12 +75,9 @@ def is_in_conversation(manager_id: int) -> bool:
     """Проверить, ведёт ли менеджер активный диалог"""
     return r.hexists("active_chats", str(manager_id))
 
-# ========================
-# 📥 3. Очередь (Redis List)
-# ========================
+# queue
 def add_to_queue(user_id: int) -> int:
     """Добавить в очередь. Возвращает позицию (1, 2, 3...)"""
-    # LPOS доступен в Redis 6.0+ (у вас 7-alpine, всё ок)
     if not r.lpos("waiting_queue", str(user_id)):
         r.rpush("waiting_queue", str(user_id))
         set_state(user_id, UserState.WAITING_FOR_MANAGER)

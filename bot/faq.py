@@ -28,23 +28,16 @@ FAQ_ITEMS = [
 ]
 
 def get_faq_keyboard() -> dict:
-    """Клавиатура с вопросами для быстрого выбора"""
-    buttons = []
-    for item in FAQ_ITEMS[:4]:  # Показываем первые 4 вопроса
-        buttons.append([{
-            'action': {'type': 'text', 'payload': None, 'label': item['question'][:40] + '...'},
-            'color': 'secondary'
-        }])
-    
-    buttons.append([{
-        'action': {'type': 'text', 'payload': None, 'label': '🔙 Назад в меню'},
-        'color': 'negative'
-    }])
-    
+    """Клавиатура только с кнопкой возврата (без вопросов)"""
     return {
         'one_time': False,
         'inline': False,
-        'buttons': buttons
+        'buttons': [
+            [{
+                'action': {'type': 'text', 'payload': None, 'label': '🔙 Назад в меню'},
+                'color': 'negative'
+            }]
+        ]
     }
 
 def find_answer(question: str) -> Optional[str]:
@@ -58,8 +51,9 @@ def find_answer(question: str) -> Optional[str]:
     return None
 
 def get_all_faq() -> str:
-    """Вернуть все вопросы и ответы"""
+    """Вернуть все вопросы и ответы текстом"""
     result = "📋 *Часто задаваемые вопросы:*\n\n"
     for i, item in enumerate(FAQ_ITEMS, 1):
         result += f"{i}. {item['question']}\n   ↳ {item['answer']}\n\n"
     return result.strip()
+    

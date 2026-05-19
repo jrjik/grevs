@@ -18,7 +18,6 @@ def forward_to_manager(user_id: int, message: str, vk_api_instance) -> bool:
         manager_id = int(MANAGER_VK_ID)
         active_user = get_active_user(manager_id)
         
-        # Если менеджер занят, но не этим пользователем -> ставим в очередь
         if active_user and active_user != user_id:
             pos = add_to_queue(user_id)
             send_to_user(
@@ -50,7 +49,7 @@ def forward_manager_reply(manager_id: int, reply_text: str, vk_api_instance) -> 
             print(f"⚠️ Менеджер {manager_id} не в активном диалоге")
             return False
         
-        # Получаем клавиатуру
+        # получаем клавиатуру
         main_kb = get_main_keyboard()
         
         vk_api_instance.messages.send(
@@ -102,7 +101,7 @@ def get_manager_keyboard(has_active_chat: bool = True) -> dict:
             'color': 'negative'
         }])
     
-    # Кнопка "Следующий" нужна всегда, если есть очередь или чтобы проверить её
+    # кнопка следующий нужна всегда, если есть очередь или чтобы проверить её
     buttons.append([{
         'action': {'type': 'text', 'label': '⏭️ Следующий клиент', 'payload': None},
         'color': 'primary'

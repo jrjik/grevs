@@ -26,12 +26,12 @@ def handle_message(event, vk_api_instance):
     print(f"📨 Сообщение от {user_id}: '{message[:50]}...' (состояние: {state})")
 
     try:
-        # === Если пишет менеджер ===
+        #если пишет менеджер 
         if is_manager(user_id):
             handle_manager_message(user_id, message, vk_api_instance)
             return
 
-        # === Пользователь ждёт ответа менеджера ===
+        # юзер ждет ответа менеджера 
         if state == UserState.WAITING_FOR_MANAGER:
             if message.lower() in ('🔙 назад в меню', 'назад', 'меню', 'стоп'):
                 clear_state(user_id)
@@ -46,7 +46,7 @@ def handle_message(event, vk_api_instance):
                 )
             return
 
-        # === Обработка команд главного меню ===
+        # обработка команд главного меню 
         if 'связаться с менеджером' in message.lower() or message.lower() == 'менеджер':
             set_state(user_id, UserState.WAITING_FOR_MANAGER)
             send_to_user(
@@ -87,13 +87,13 @@ def handle_message(event, vk_api_instance):
 
         send_to_user(
             user_id,
-            f'🤖 {DEFAULT_ANSWER}\n\nВы можете:\n• Написать "менеджер" для связи со специалистом\n• Написать "вопросы" для просмотра FAQ',
+            f'🤖 {DEFAULT_ANSWER}\n\nВы можете:\n• Написать "менеджер" для связи со специалистом\n• Написать "вопросы" для просмотра часто задаваемых вопросов ',
             vk_api_instance,
             get_main_keyboard()
         )
         
     except Exception as e:
-        print(f"💥 Ошибка в handle_message: {e}")
+        print(f"Ошибка в handle_message: {e}")
         import traceback
         traceback.print_exc()
 
@@ -111,7 +111,7 @@ def handle_manager_mode(user_id: int, message: str, event, vk_api_instance):
     
     if get_state(user_id) == UserState.MANAGER_MODE:
         try:
-            # Парсим формат "123456: сообщение"
+            # парсим формат 123456
             if ':' in message:
                 parts = message.split(':', 1)
                 target_id = int(parts[0].strip())
@@ -124,7 +124,7 @@ def handle_manager_mode(user_id: int, message: str, event, vk_api_instance):
                 )
                 send_to_user(
                     user_id,
-                    f'✅ Сообщение отправлено пользователю {target_id}',
+                    f'Собщение отправлено пользователю {target_id}',
                     vk_api_instance,
                     get_manager_keyboard()
                 )
@@ -132,13 +132,13 @@ def handle_manager_mode(user_id: int, message: str, event, vk_api_instance):
             else:
                 send_to_user(
                     user_id,
-                    '❌ Неверный формат. Используйте: `ID: сообщение`',
+                    'Неверный формат. Используйте: `ID: сообщение`',
                     vk_api_instance
                 )
         except ValueError:
             send_to_user(
                 user_id,
-                '❌ Не удалось распознать ID пользователя. Попробуйте снова.',
+                'не удалось распознать ID пользователя. Попробуйте снова.',
                 vk_api_instance
             )
         return
@@ -146,22 +146,21 @@ def handle_manager_mode(user_id: int, message: str, event, vk_api_instance):
 def handle_manager_message(manager_id: int, message: str, vk_api_instance):
     msg_lower = message.lower().strip()
 
-    # 1. Команда "Следующий клиент"
+    # команда "следующий клиент"
     if 'следующий' in msg_lower or '⏭️' in msg_lower:
-        next_user_id = get_next_from_queue() # Импортируйте из states
+        next_user_id = get_next_from_queue()
         
         if next_user_id:
-            # Назначаем его активным
             set_active_user(manager_id, next_user_id)
             
-            # Пишем пользователю, что его зовут
+            # пишем пользователю, что его зовут
             send_to_user(
                 next_user_id,
                 '🔔 *Ваша очередь пришла!*\nМенеджер готов принять вас. Напишите ваш вопрос.',
                 vk_api_instance
             )
             
-            # Пишем менеджеру, кого взяли
+            # пишем менеджеру, кого взяли
             send_to_user(
                 manager_id,
                 f'✅ Подключен следующий клиент: {next_user_id}.\nОжидание сообщения от пользователя...',
@@ -177,9 +176,9 @@ def handle_manager_message(manager_id: int, message: str, vk_api_instance):
             )
         return
 
-    # 2. Завершить диалог
+    # завершить диалог
     if msg_lower in ('завершить', 'стоп', 'конец', '🔚 завершить диалог'):
-        ended_user = end_conversation(manager_id) # Импортируйте из states
+        ended_user = end_conversation(manager_id) 
         
         if ended_user:
             send_to_user(ended_user, '👋 Диалог завершён. Спасибо за обращение!', vk_api_instance)
@@ -188,13 +187,13 @@ def handle_manager_message(manager_id: int, message: str, vk_api_instance):
             send_to_user(manager_id, 'ℹ️ Нет активного диалога.', vk_api_instance, keyboard=json.dumps(get_manager_keyboard(has_active_chat=False), ensure_ascii=False))
         return
 
-    # 3. Обычное сообщение (ответ пользователю)
-    current_user = get_active_user(manager_id) # Импортируйте из states
+    # обычное сообщение (ответ юзеру)
+    current_user = get_active_user(manager_id) 
     if current_user:
-        forward_manager_reply(manager_id, message, vk_api_instance) # Уже есть в вашем коде
+        forward_manager_reply(manager_id, message, vk_api_instance)
         return
 
-    # 4. Если менеджер пишет в пустоту
+    # если менеджер пишет в пустоту
     send_to_user(manager_id, '⚠️ У вас нет активного диалога. Нажмите "Следующий клиент" или дождитесь заявки.', vk_api_instance, keyboard=json.dumps(get_manager_keyboard(has_active_chat=False), ensure_ascii=False))
 
 def main():
@@ -218,3 +217,4 @@ if __name__ == '__main__':
         main()
     except KeyboardInterrupt:
         print('\n🛑 Бот остановлен')
+        
