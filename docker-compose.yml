@@ -68,6 +68,19 @@ services:
     networks:
       - grevs_network
 
+  bot:
+    build:
+      context: ./bot
+      dockerfile: Dockerfile
+    container_name: grevs_bot
+    env_file:
+      - .env
+    depends_on:
+      - redis
+    restart: unless-stopped
+    networks:
+      - grevs_network
+
 networks:
   grevs_network:
     driver: bridge
@@ -77,4 +90,3 @@ volumes:
   static_volume:
   media_volume:
   redis_data:
-  
