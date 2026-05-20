@@ -196,29 +196,6 @@ class LeadAdmin(admin.ModelAdmin):
         result.append(f"Стоимость пакета: {package_price} ₽")
         
         return "\n".join(result)
-        
-        services_list = package_services.get(package_name, {}).get(funeral_type, [])
-        
-        result = []
-        result.append(f"Пакет: {package_display_names.get(package_name, package_name)}")
-        result.append(f"Тип: {type_display}")
-        result.append("")
-        result.append("Состав пакета:")
-        
-        for idx, service_name in enumerate(services_list, 1):
-            result.append(f"{idx}. {service_name}")
-        
-        # Добавляем цену
-        package_prices = {
-            'burial': {'basic': 35000, 'optimal': 58000, 'extended': 95000},
-            'cremation': {'basic': 28000, 'optimal': 45000, 'extended': 75000}
-        }
-        
-        package_price = package_prices.get(funeral_type, {}).get(package_name, 0)
-        result.append("")
-        result.append(f"Стоимость пакета: {package_price} ₽")
-        
-        return "\n".join(result)
     
     package_info_display.short_description = "Информация о пакете"
 

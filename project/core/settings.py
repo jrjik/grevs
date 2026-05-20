@@ -28,6 +28,8 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
+SITE_ID = 1
+
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
@@ -41,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sitemaps',
     'rest_framework',
     'services',
     'orders',

@@ -12,14 +12,14 @@
     <link rel="canonical" href="{{ request.build_absolute_uri }}">
     <link rel="stylesheet" href="{% static 'css/calculator.css' %}">
 
-    <!-- Open Graph -->
+    <!-- Open Graph  //////-->
     <meta property="og:title" content="{% block og_title %}Гревс - Ритуальные услуги{% endblock %}">
     <meta property="og:description" content="{% block og_description %}Помощь в организации похорон{% endblock %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ request.build_absolute_uri }}">
     <meta property="og:image" content="{% static 'img/main-image.png' %}">
 
-    <!-- Favicon -->
+    <!-- Favicon ////-->
     <link rel="icon" type="image/png" href="{% static 'img/logo.svg' %}">
 
     <!-- Fonts -->
@@ -31,20 +31,40 @@
     <link rel="stylesheet" href="{% static 'css/calculator.css' %}">
     <link rel="stylesheet" href="{% static 'css/services.css' %}">
     <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FuneralHome",
-      "name": "Дом ритуальных услуг Гревс",
-      "image": "{{ request.build_absolute_uri }}{% static 'img/logo.png' %}",
-      "telephone": "+79613013040",
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "ул. Международная, 3",
-        "addressLocality": "Ростов-на-Дону",
-        "addressCountry": "RU"
-      },
-      "openingHours": "Mo-Su 00:00-23:59",
-      "priceRange": "₽₽"
+        {
+        "@context": "https://schema.org",
+        "@type": "FuneralHome",
+        "name": "Дом ритуальных услуг Гревс",
+        "image": "{{ request.build_absolute_uri }}{% static 'img/logo.png' %}",
+        "@id": "{{ request.build_absolute_uri }}",
+        "url": "{{ request.build_absolute_uri }}",
+        "telephone": "+79613013040",
+        "priceRange": "₽₽",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Международная, 3",
+            "addressLocality": "Ростов-на-Дону",
+            "postalCode": "344000",
+            "addressCountry": "RU"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 47.2357,
+            "longitude": 39.7015
+        },
+        "openingHoursSpecification": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            "opens": "00:00",
+            "closes": "23:59"
+        },
+        "sameAs": [
+            "https://vk.com/grevs_ritual"
+        ],
+        "areaServed": {
+            "@type": "City",
+            "name": "Ростов-на-Дону"
+        }
     }
     </script>
 
@@ -95,6 +115,7 @@
         </div>
     </header>
 
+    <!-- Footer //// -->
     <main>
         {% block content %}{% endblock %}
     </main>
@@ -103,7 +124,6 @@
 <footer class="site-footer">
     <div class="footer-container">
         <!-- Колонка 1: Логотип и описание -->
-                <!-- Колонка 1: Логотип и описание -->
         <div class="footer-column footer-about">
             <a href="/" class="footer-logo">
                 <div class="footer-logo-icon">
@@ -166,7 +186,6 @@
         </div>
     </div>
 
-    <!-- Разделитель и копирайт -->
     <div class="footer-bottom">
         <div class="footer-container">
             <p class="footer-copyright">
@@ -195,7 +214,7 @@
         </div>
     </div>
 
-    <script>
+<script>
     // Показ баннера cookie
     document.addEventListener('DOMContentLoaded', function() {
         const cookieBanner = document.getElementById('cookie-banner');
@@ -224,7 +243,6 @@ function toggleMobileMenu() {
     nav.classList.toggle('active');
     toggle.classList.toggle('active');
     
-    // Блокируем прокрутку body когда меню открыто
     document.body.style.overflow = nav.classList.contains('active') ? 'hidden' : '';
 }
 

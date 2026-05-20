@@ -14,7 +14,7 @@ def submit_lead(request):
     try:
         data = request.data
 
-        # Валидация обязательных полей
+        # валидация
         if not data.get('phone'):
             return Response(
                 {'status': 'error', 'message': 'Телефон обязателен'},
@@ -27,7 +27,6 @@ def submit_lead(request):
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Создаём заявку
         lead = Lead.objects.create(
             client_name=data.get('client_name', ''),
             phone=data.get('phone', ''),

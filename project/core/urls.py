@@ -18,8 +18,14 @@ from django.contrib import admin
 from django.urls import path, include
 from pages import views
 from decouple import config
+from django.contrib.sitemaps.views import sitemap 
+from sitemap import StaticSitemap
 
 ADMIN_URL = config('ADMIN_URL')
+
+sitemaps = {
+    'static': StaticSitemap,
+}
 
 urlpatterns = [
     path(f'{ADMIN_URL}/', admin.site.urls),
@@ -31,5 +37,7 @@ urlpatterns = [
     path('calculator/', views.calculator, name='calculator'),
     path('services/', views.services, name='services'),
     path('privacy/', views.privacy, name='privacy'),
+    path('', lambda r: None, name='home'),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
  

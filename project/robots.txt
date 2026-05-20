@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# запретить индексацию служебных страниц
+Disallow: /admin/
+Disallow: /api/
+Disallow: /*?*
+
+Sitemap: https://grevs-ritual.ru/sitemap.xml

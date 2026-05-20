@@ -8,19 +8,16 @@
 {% block content %}
 <section class="section calculator-page" x-data="funeralCalculator()" x-init="initCalculator()">
     <div class="container">
-        <!-- Заголовок -->
         <div class="calculator-header">
             <h1 class="page-title">Калькулятор стоимости похорон</h1>
             <p class="page-description">Выберите необходимые услуги для расчёта стоимости</p>
         </div>
 
-        <!-- Загрузочный экран -->
         <div x-show="loading" class="calculator-loading">
             <div class="loading-spinner"></div>
             <p>Загрузка...</p>
         </div>
 
-        <!-- Экран успеха -->
         <div x-show="submitSuccess" class="success-message" style="display: none;">
             <div class="success-icon">✓</div>
             <h2 class="success-title">Заявка отправлена!</h2>
@@ -30,14 +27,12 @@
 
         <div x-show="!loading && !submitSuccess" style="display: none;">
             
-            <!-- Переключатель вкладок -->
             <div class="tabs">
                 <button :class="{'tab-active': currentTab === 'new'}" @click="switchTab('new')" class="tab-button">Новая могила</button>
                 <button :class="{'tab-active': currentTab === 'relative'}" @click="switchTab('relative')" class="tab-button">Подзахоронение</button>
                 <button :class="{'tab-active': currentTab === 'cremation'}" @click="switchTab('cremation')" class="tab-button">Кремация</button>
             </div>
 
-            <!-- Выбор типа вскрытия -->
             <div class="autopsy-section">
                 <div class="autopsy-header">
                     <h3 class="section-subtitle">Вскрытие</h3>
@@ -75,7 +70,6 @@
                 </div>
             </div>
 
-            <!-- Подсказка для подзахоронения -->
             <div x-show="currentTab === 'relative'" class="info-box">
                 <div class="info-box-content">
                     <svg class="info-box-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -100,7 +94,6 @@
                 </div>
             </div>
 
-            <!-- Пакеты услуг -->
             <div class="packages-section">
                 <div class="packages-header">
                     <h2 class="packages-title">Готовые пакеты услуг</h2>
@@ -108,7 +101,6 @@
                 </div>
                 
                 <div class="packages-grid">
-                    <!-- Базовый пакет -->
                     <div class="package-card">
                         <div class="package-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -141,7 +133,6 @@
                         </button>
                     </div>
 
-                    <!-- Оптимальный пакет -->
                     <div class="package-card popular">
                         <span class="package-badge">Популярный</span>
                         <div class="package-icon">
@@ -176,7 +167,6 @@
                         </button>
                     </div>
 
-                    <!-- Расширенный пакет -->
                     <div class="package-card">
                         <div class="package-icon">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -213,7 +203,6 @@
                 </div>
             </div>
 
-            <!-- Разделитель -->
             <div class="section-divider">
                 <div class="section-divider-text">
                     Или выберите услуги самостоятельно
@@ -305,10 +294,8 @@
                                 </template>
                             </div>
 
-                            <!-- Заголовок категории -->
                             <h4 class="category-title" x-text="category.name"></h4>
 
-                            <!-- Список услуг внутри категории -->
                             <div class="category-services">
                                 <template x-for="service in category.services" :key="service.id">
                                     <label class="service-option">
@@ -335,7 +322,7 @@
                 </div>
             </div>
 
-            <!-- Итого с детализацией -->
+            <!-- Итого с выбранными услугами -->
             <div class="total-section" id="totalSection">
                 <div class="total-content">
                     <div x-show="selectedPackage" class="package-name-display" style="display: none;">
