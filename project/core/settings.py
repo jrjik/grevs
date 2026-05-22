@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config('SECRET_KEY')
 
-DEBUG = True
-ALLOWED_HOSTS = ['*']
+DEBUG = config('DEBUG', default='False') == 'True' 
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='localhost').split(',')
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 
@@ -33,6 +33,18 @@ SITE_ID = 1
 STATICFILES_DIRS = [
     BASE_DIR / 'static',
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip() 
+    for origin in config('CSRF_TRUSTED_ORIGINS', default='https://grevs-ritual.ru,https://www.grevs-ritual.ru').split(',')
+    if origin.strip()
+]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+
+CSRF_COOKIE_HTTPONLY = True
+SESSION_COOKIE_HTTPONLY = True
 
 # Application definition
 
