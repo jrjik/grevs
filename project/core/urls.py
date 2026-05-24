@@ -21,7 +21,7 @@ from decouple import config
 from django.contrib.sitemaps.views import sitemap 
 from sitemap import StaticSitemap
 
-ADMIN_URL = config('ADMIN_URL')
+ADMIN_URL = config('ADMIN_URL', 'admin')
 
 sitemaps = {
     'static': StaticSitemap,

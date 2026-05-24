@@ -52,23 +52,22 @@
                 
                 <div class="autopsy-options">
                     <label class="autopsy-option">
-                        <input type="radio" name="autopsy_type" value="paid" x-model="formData.autopsyType" checked>
+                        <input type="radio" name="autopsy_type" value="queue" x-model="formData.autopsyType" checked>
                         <div class="autopsy-card">
-                            <span class="autopsy-name">Платное</span>
-                            <span class="autopsy-price">3 000 ₽</span>
-                            <span class="autopsy-time">1-2 дня</span>
-                        </div>
-                    </label>
-                    <label class="autopsy-option">
-                        <input type="radio" name="autopsy_type" value="free" x-model="formData.autopsyType">
-                        <div class="autopsy-card">
-                            <span class="autopsy-name">Бесплатное</span>
-                            <span class="autopsy-price">0 ₽</span>
+                            <span class="autopsy-name">Очередное</span>
+                            <span class="autopsy-price">от 8 900 ₽</span>
                             <span class="autopsy-time">2-3 дня</span>
                         </div>
                     </label>
+                    <label class="autopsy-option">
+                        <input type="radio" name="autopsy_type" value="same_day" x-model="formData.autopsyType">
+                        <div class="autopsy-card">
+                            <span class="autopsy-name">В день обращения</span>
+                            <span class="autopsy-price">от 16 550 ₽</span>
+                            <span class="autopsy-time">1-2 дня</span>
+                        </div>
+                    </label>
                 </div>
-            </div>
 
             <div x-show="currentTab === 'relative'" class="info-box">
                 <div class="info-box-content">
@@ -111,7 +110,7 @@
                         <h3 class="package-name">Базовый</h3>
                         <p class="package-description" x-text="currentTab === 'cremation' ? 'Всё необходимое для кремации' : 'Всё необходимое для достойных похорон'"></p>
                         <div class="package-price">
-                            от <span x-text="formatPrice(currentPackagePrices.basic)"></span> ₽
+                            от <span x-text="formatPrice(currentPackagePrices.basic)"></span>
                             <span class="package-price-note">/ предварительная стоимость</span>
                         </div>
                         <ul class="package-features">
@@ -145,7 +144,7 @@
                         <h3 class="package-name">Оптимальный</h3>
                         <p class="package-description" x-text="currentTab === 'cremation' ? 'Расширенный набор для кремации' : 'Расширенный набор'"></p>
                         <div class="package-price">
-                            от <span x-text="formatPrice(currentPackagePrices.optimal)"></span> ₽
+                            от <span x-text="formatPrice(currentPackagePrices.optimal)"></span>
                             <span class="package-price-note">/ предварительная стоимость</span>
                         </div>
                         <ul class="package-features">
@@ -179,7 +178,7 @@
                         <h3 class="package-name">Расширенный</h3>
                         <p class="package-description" x-text="currentTab === 'cremation' ? 'Полный комплекс для кремации' : 'Полный комплекс'"></p>
                         <div class="package-price">
-                            от <span x-text="formatPrice(currentPackagePrices.extended)"></span> ₽
+                            от <span x-text="formatPrice(currentPackagePrices.extended)"></span>
                             <span class="package-price-note">/ предварительная стоимость</span>
                         </div>
                         <ul class="package-features">

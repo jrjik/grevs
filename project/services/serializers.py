@@ -26,3 +26,4 @@ class CategorySerializer(serializers.ModelSerializer):
             'selection_type',
             'services'
         ]
+        

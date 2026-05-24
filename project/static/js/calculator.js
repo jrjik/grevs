@@ -8,8 +8,9 @@ function funeralCalculator() {
         currentTab: 'new',
         allCategories: [],
 
-        // Цена за платное вскрытие
-        AUTOPSY_PAID_PRICE: 3000,
+        // Цены за вскрытие
+        AUTOPSY_QUEUE_PRICE: 8900,
+        AUTOPSY_SAME_DAY_PRICE: 16550,
 
         // Выбранный пакет (null, 'basic', 'optimal', 'extended')
         selectedPackage: null,
@@ -34,81 +35,78 @@ function funeralCalculator() {
         // Услуги пакетов для захоронений
         PACKAGE_SERVICES_BURIAL: {
             basic: [
-                'Оформление всех документов',
-                'Гроб деревянный',
-                'Крест деревянный',
+                'Оформление документов',
+                'Гроб шестигранный деревянный (обитый тканью)',
+                'Крест эконом',
                 'Табличка пластиковая',
-                'Постель в гроб',
+                'Покрывало в гроб (тюль)',
                 'Копка могилы',
                 'Катафалк стандартный'
             ],
             optimal: [
-                'Оформление всех документов',
-                'Гроб лакированный',
+                'Оформление документов',
+                'Гроб шестигранный дерево-лак',
                 'Крест металлический',
-                'Табличка пластиковая',
-                'Постель в гроб',
+                'Табличка металлическая',
+                'Покрывало в гроб (шелк)',
                 'Копка могилы',
                 'Катафалк стандартный',
-                'Венок стандартный (средний)',
-                'Выносная группа',
+                'Венок средний (1,20 м)',
+                'Выносная группа (короткая, 1 точка)',
                 'Отпевание',
                 'Ограда на могилу'
             ],
             extended: [
-                'Оформление всех документов',
-                'Гроб дубовый двухкрышечный',
-                'Крест дубовый резной',
+                'Оформление документов',
+                'Гроб дубовый',
+                'Крест металлический',
                 'Табличка металлическая',
-                'Постель в гроб',
+                'Покрывало в гроб (стеганое)',
                 'Копка могилы',
                 'Катафалк иномарка',
-                'Венок большой',
-                'Выносная группа',
+                'Венок большой (1,5 м)',
+                'Выносная группа (длинная, 2 точки)',
                 'Отпевание',
                 'Ограда на могилу',
-                'Прощальный зал',
-                'Церковный набор'
+                'Прощальный зал (батюшка + зал)',
+                'Церковный набор (венчик, молитва, крест нательный, крест в руку, икона)'
             ]
         },
 
         // Услуги пакетов для кремации
         PACKAGE_SERVICES_CREMATION: {
             basic: [
-                'Оформление всех документов',
-                'Гроб деревянный для кремации',
+                'Оформление документов',
+                'Гроб шестигранный деревянный (обитый тканью) для кремации',
                 'Урна пластиковая',
                 'Табличка пластиковая',
-                'Постель в гроб',
+                'Покрывало в гроб (тюль)',
                 'Катафалк стандартный',
                 'Кремация',
-                'Место в колумбарии (нижняя секция)'
             ],
             optimal: [
-                'Оформление всех документов',
-                'Гроб лакированный для кремации',
+                'Оформление документов',
+                'Гроб шестигранный дерево-лак для кремации',
                 'Урна металлическая',
-                'Табличка пластиковая',
-                'Постель в гроб',
+                'Табличка металлическая',
+                'Покрывало в гроб (шелк)',
                 'Катафалк стандартный',
                 'Кремация',
-                'Венок стандартный (средний)',
+                'Венок средний (1,20 м)',
                 'Отпевание',
-                'Место в колумбарии (верхняя секция)'
             ],
             extended: [
-                'Оформление всех документов',
-                'Гроб дубовый двухкрышечный для кремации',
-                'Урна керамическая',
+                'Оформление документов',
+                'Гроб четырехгранный двустворчатый лакированный для кремации',
+                'Урна металлическая',
                 'Табличка металлическая',
-                'Постель в гроб',
+                'Покрывало в гроб (стеганое)',
                 'Катафалк иномарка',
                 'Кремация',
-                'Венок большой',
+                'Венок большой (1,5 м)',
                 'Отпевание',
-                'Место в колумбарии (секция на уровне глаз)',
-                'Прощальный зал',
-                'Церковный набор'
+                'Прощальный зал (батюшка + зал)',
+                'Церковный набор (венчик, молитва, крест нательный, крест в руку, икона)'
             ]
         },
 
@@ -122,7 +120,7 @@ function funeralCalculator() {
             name: '',
             phone: '',
             comment: '',
-            autopsyType: 'paid',
+            autopsyType: 'queue',
             consent: false  
         },
 
@@ -208,9 +206,10 @@ function funeralCalculator() {
                     cat.services.some(s => s.id === serviceId)
                 );
 
+                // снимаем все услуги категории, добавляем новую
                 if (category) {
                     const isAlreadySelected = currentSelected.includes(serviceId);
-                    
+
                     category.services.forEach(s => {
                         const idx = currentSelected.indexOf(s.id);
                         if (idx > -1) {
@@ -231,6 +230,7 @@ function funeralCalculator() {
                 }
             }
         },
+
         selectPackage(packageName) {
             if (this.selectedPackage === packageName) {
                 this.selectedPackage = null;
@@ -342,18 +342,19 @@ function funeralCalculator() {
                 });
             }
 
-            if (this.formData.autopsyType === 'paid') {
-                total += this.AUTOPSY_PAID_PRICE;
-            }
+            total += this.getAutopsyPrice();
 
             return total;
         },
 
         getAutopsyPrice() {
-            if (this.formData.autopsyType === 'paid') {
-                return this.AUTOPSY_PAID_PRICE;
+            if (this.formData.autopsyType === 'queue') {
+                return this.AUTOPSY_QUEUE_PRICE;  // 8900 ₽
             }
-            return 0;
+            if (this.formData.autopsyType === 'same_day') {
+                return this.AUTOPSY_SAME_DAY_PRICE;  // 16550 ₽
+            }
+            return 0; 
         },
 
         formatPrice(price) {
@@ -478,6 +479,7 @@ function funeralCalculator() {
 
             return true;
         },
+
         // Подсказка почему кнопка неактивна
         getSubmitHint() {
             const currentSelected = this.selectedServices[this.currentTab];
@@ -559,7 +561,7 @@ function funeralCalculator() {
                 client_name: this.formData.name.trim(),
                 phone: this.formData.phone.replace(/\D/g, ''),
                 funeral_type: this.currentTab,
-                autopsy_type: this.formData.autopsyType,
+                autopsy_type: this.formData.autopsyType, 
                 selected_services: servicesToSend,
                 estimated_total: this.calculateTotal(),
                 comment: this.formData.comment.trim(),
@@ -608,6 +610,7 @@ function funeralCalculator() {
             }
             return cookieValue;
         },
+
         getTabletServices(type) {
             const category = this.allCategories.find(cat => cat.name.includes('Табличк'));
             if (!category) return [];
@@ -624,7 +627,6 @@ function funeralCalculator() {
             });
         },
 
-
         // Сброс формы
         resetForm() {
             this.submitSuccess = false;
@@ -632,7 +634,7 @@ function funeralCalculator() {
             this.formData.name = '';
             this.formData.phone = '';
             this.formData.comment = '';
-            this.formData.autopsyType = 'paid';
+            this.formData.autopsyType = 'queue'; 
             this.formData.consent = false;  
             this.selectedPackage = null;
             this.selectedServices = {
@@ -672,4 +674,4 @@ document.addEventListener('DOMContentLoaded', () => {
             e.target.value = formatted;
         });
     }
-})
+});

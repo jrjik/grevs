@@ -277,6 +277,7 @@
     padding: 16px 20px;
     border-radius: 8px;
     margin-bottom: 24px;
+    margin-top: 24px; 
     display: flex;
     align-items: center;
     gap: 12px;
@@ -1058,6 +1059,7 @@
         flex-direction: column;
         max-width: 100%;
         gap: 8px;
+        margin-bottom: 24px;  /* 🔧 ДОБАВЛЕНО: отступ после вскрытия */
     }
     
     .autopsy-card {
@@ -1076,10 +1078,11 @@
         font-size: 11px;
     }
 
-    /* Инфо-блок */
+    /* Инфо-блок (документы о родстве) */
     .info-box {
         padding: 14px 16px;
-        margin-bottom: 20px;
+        margin-top: 0;           /* 🔧 Убран лишний отступ */
+        margin-bottom: 32px;     /* 🔧 Увеличен отступ до пакетов */
     }
     
     .info-box-text {
@@ -1106,14 +1109,17 @@
     .autopsy-help {
         padding: 12px 16px;
         font-size: 13px;
+        margin-bottom: 24px;  /* 🔧 Отступ после подсказки вскрытия */
     }
 
     /* Пакеты услуг */
     .packages-section {
+        margin-top: 8px;         /* 🔧 Небольшой отступ сверху */
         margin-bottom: 40px;
     }
     
     .packages-header {
+        margin-top: 0;           /* 🔧 Убран дублирующий отступ */
         margin-bottom: 24px;
     }
     
