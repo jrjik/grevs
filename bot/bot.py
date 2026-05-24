@@ -41,7 +41,6 @@ def handle_message(event, vk_api_instance):
             if forward_to_manager(user_id, message, vk_api_instance):
                 send_to_user(
                     user_id, 
-                    '✅ Ваше сообщение передано менеджеру. Ожидайте ответа.\n\n*Напишите "назад" чтобы вернуться в меню.*',
                     vk_api_instance
                 )
             return

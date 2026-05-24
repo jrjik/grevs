@@ -300,30 +300,43 @@ function funeralCalculator() {
         },
 
         getSelectedServicesList() {
+            let servicesList = [];
+            
             if (this.selectedPackage) {
-                return this.getSelectedPackageServices().map(name => ({
+                servicesList = this.getSelectedPackageServices().map(name => ({
                     id: 'package_' + name.replace(/\s+/g, '_'),
                     name: name,
                     price: 0 
                 }));
+            } else {
+                const selectedIds = this.selectedServices[this.currentTab];
+                
+                this.allCategories.forEach(category => {
+                    category.services.forEach(service => {
+                        if (selectedIds.includes(service.id)) {
+                            servicesList.push({
+                                id: service.id,
+                                name: service.name,
+                                price: parseFloat(service.price)
+                            });
+                        }
+                    });
+                });
             }
             
-            const selectedIds = this.selectedServices[this.currentTab];
-            const selectedList = [];
-
-            this.allCategories.forEach(category => {
-                category.services.forEach(service => {
-                    if (selectedIds.includes(service.id)) {
-                        selectedList.push({
-                            id: service.id,
-                            name: service.name,
-                            price: parseFloat(service.price)
-                        });
-                    }
+            if (this.getAutopsyPrice() > 0) {
+                const autopsyName = this.formData.autopsyType === 'queue' 
+                    ? 'Вскрытие очередное' 
+                    : 'Вскрытие в день обращения';
+                
+                servicesList.unshift({
+                    id: 'autopsy_' + this.formData.autopsyType,
+                    name: autopsyName,
+                    price: this.getAutopsyPrice()
                 });
-            });
-
-            return selectedList;
+            }
+            
+            return servicesList;
         },
 
         calculateTotal() {
@@ -556,7 +569,9 @@ function funeralCalculator() {
             if (this.selectedPackage && servicesToSend.length === 0) {
                 servicesToSend = ['package_' + this.selectedPackage];
             }
-
+            if (this.getAutopsyPrice() > 0) {
+                servicesToSend.unshift('autopsy_' + this.formData.autopsyType);
+            }
             const leadData = {
                 client_name: this.formData.name.trim(),
                 phone: this.formData.phone.replace(/\D/g, ''),

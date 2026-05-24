@@ -342,7 +342,7 @@
                     <div class="total-divider" x-show="getSelectedServicesList().length > 0"></div>
                     
                     <!-- Вскрытие -->
-                    <div class="total-row" x-show="formData.autopsyType === 'paid'">
+                    <div class="total-row" x-show="getAutopsyPrice() > 0">
                         <span class="total-label">Вскрытие:</span>
                         <span class="total-value" x-text="formatPrice(getAutopsyPrice())"></span>
                     </div>

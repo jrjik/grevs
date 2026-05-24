@@ -1515,3 +1515,55 @@
         max-width: 100% !important;
     }
 }
+
+.services-section.disabled {
+    pointer-events: none;  
+    opacity: 0.6;          
+    position: relative;
+}
+
+.services-section.disabled::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    cursor: not-allowed;
+}
+
+.services-section.disabled .category-card {
+    background: #f5f5f5 !important;  
+    border-color: #ddd !important;
+}
+
+.services-section.disabled .service-option {
+    cursor: not-allowed !important;
+}
+
+.services-section.disabled .service-option input {
+    cursor: not-allowed !important;
+}
+
+.services-section.disabled::before {
+    content: 'Выбран пакет услуг. Для изменения состава выберите "Индивидуальный подбор" или сбросьте пакет.';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(26, 26, 46, 0.9);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    text-align: center;
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.services-section.disabled:hover::before {
+    opacity: 1;
+}
